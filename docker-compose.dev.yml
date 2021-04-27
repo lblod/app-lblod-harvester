@@ -1,0 +1,33 @@
+version: '3.7'
+
+services:
+  identifier:
+    restart: "no"
+    ports:
+      - "80:80"
+  dispatcher:
+    restart: "no"
+  frontend-harvesting-self-service:
+    restart: "no"
+  database:
+    restart: "no"
+  cache:
+    restart: "no"
+  resource:
+    restart: "no"
+  deltanotifier:
+    restart: "no"
+  file:
+    restart: "no"
+  harvesting-download-url:
+    environment:
+      CACHING_MAX_RETRIES: 5
+    restart: "no"
+  harvest-collector:
+    restart: "no"
+  harvesting-import:
+    restart: "no"
+  harvesting-sameas:
+    restart: "no"
+  job-controller-service:
+    restart: "no"
