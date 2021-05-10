@@ -25,10 +25,10 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
-  frontend-harvesting-self-service:
+  frontend:
     image: lblod/frontend-harvesting-self-service:0.2.0
     volumes:
-      - ./config/frontend-harvesting:/config
+      - ./config/frontend:/config
     labels:
       - "logging=true"
     restart: always
@@ -43,11 +43,27 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
-    networks:
-      default:
-      app-centrale-vindplaats:
-        aliases:
-            - harvesting-database
+  virtuoso:
+    image: tenforce/virtuoso:1.3.2-virtuoso7.2.2
+    environment:
+      SPARQL_UPDATE: "true"
+      DEFAULT_GRAPH: "http://mu.semte.ch/graphs/public"
+    volumes:
+      - ./data/db:/data
+      - ./config/virtuoso/virtuoso.ini:/data/virtuoso.ini
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
+  migrations:
+    image: semtech/mu-migrations-service:0.7.0
+    links:
+      - virtuoso:database
+    volumes:
+      - ./config/migrations:/data/migrations
+    restart: always
+    labels:
+      - "logging=true"
   cache:
     image: semtech/mu-cache:2.0.1
     links:
@@ -86,8 +102,6 @@ services:
     logging: *default-logging
   harvesting-download-url:
     image: lblod/download-url-service:0.4.1
-    links:
-      - database:database
     volumes:
       - ./data/files:/share
     environment:
@@ -146,7 +160,3 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
-networks:
-  app-centrale-vindplaats:
-    external:
-      name: centrale_vindplaats
