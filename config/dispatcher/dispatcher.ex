@@ -22,16 +22,16 @@ defmodule Dispatcher do
   ###############
 
   # self-service
-  match "/index.html", %{ host: "*.harvesting-self-service.lblod.info", layer: :static } do
-    forward conn, [], "http://frontend-harvesting-self-service/index.html"
+  match "/index.html", %{ layer: :static } do
+    forward conn, [], "http://frontend/index.html"
   end
 
-  get "/assets/*path",  %{ host: "*.harvesting-self-service.lblod.info", layer: :static } do
-    forward conn, path, "http://frontend-harvesting-self-service/assets/"
+  get "/assets/*path",  %{ layer: :static } do
+    forward conn, path, "http://frontend/assets/"
   end
 
-  get "/@appuniversum/*path", %{ host: "*.harvesting-self-service.lblod.info", layer: :static } do
-    forward conn, path, "http://frontend-harvesting-self-service/@appuniversum/"
+  get "/@appuniversum/*path", %{ layer: :static } do
+    forward conn, path, "http://frontend/@appuniversum/"
   end
 
   ###############
@@ -47,9 +47,9 @@ defmodule Dispatcher do
   #################
 
   # self-service
-  match "/*path", %{ host: "*.harvesting-self-service.lblod.info", layer: :frontend_fallback, accept: %{ html: true } } do
+  match "/*path", %{ layer: :frontend_fallback, accept: %{ html: true } } do
     # we don't forward the path, because the app should take care of this in the browser.
-    forward conn, [], "http://frontend-harvesting-self-service/index.html"
+    forward conn, [], "http://frontend/index.html"
   end
 
   # match "/favicon.ico", @any do
