@@ -155,7 +155,9 @@ services:
     restart: always
     logging: *default-logging
   job-controller-service:
-    image: lblod/job-controller-service:0.3.0
+    image: lblod/job-controller-service:0.6.0
+    volumes:
+      - ./config/job-controller:/config
     labels:
       - "logging=true"
     restart: always
