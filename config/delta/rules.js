@@ -63,6 +63,27 @@ export default [
       },
       object: {
         type: 'uri',
+        value: 'http://lblod.data.gift/file-download-statuses/failure'
+      }
+    },
+    callback: {
+      method: 'POST',
+      url: 'http://harvest-collector/on-download-failure'
+    },
+    options: {
+      resourceFormat: 'v0.0.1',
+      gracePeriod: 1000,
+      ignoreFromSelf: true
+    }
+  },
+  {
+    match: {
+      predicate: {
+        type: 'uri',
+        value: 'http://www.w3.org/ns/adms#status'
+      },
+      object: {
+        type: 'uri',
         value: 'http://redpencil.data.gift/id/concept/JobStatus/scheduled'
       }
     },

@@ -101,7 +101,7 @@ services:
     restart: always
     logging: *default-logging
   harvesting-download-url:
-    image: lblod/download-url-service:0.4.1
+    image: lblod/download-url-service:0.4.3
     volumes:
       - ./data/files:/share
     environment:
@@ -114,7 +114,7 @@ services:
     restart: always
     logging: *default-logging
   harvest-collector:
-    image: lblod/harvest-collector-service:0.2.1
+    image: lblod/harvest-collector-service:latest
     volumes:
       - ./data/files:/share
     labels:
@@ -132,7 +132,7 @@ services:
     restart: always
     logging: *default-logging
   harvesting-validator:
-    image: lblod/harvesting-validator:0.0.6
+    image: lblod/harvesting-validator:0.0.8
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
     volumes:
