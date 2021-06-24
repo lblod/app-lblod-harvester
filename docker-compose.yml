@@ -113,8 +113,16 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
+  harvest-check-url:
+    image: lblod/harvest-check-url-collection-service:1.1.0
+    volumes:
+      - ./data/files:/share
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
   harvest-collector:
-    image: lblod/harvest-collector-service:latest
+    image: lblod/harvest-collector-service:0.3.1
     volumes:
       - ./data/files:/share
     labels:
@@ -122,7 +130,7 @@ services:
     restart: always
     logging: *default-logging
   harvesting-import:
-    image: lblod/harvesting-import-service:0.4.0-beta.2
+    image: lblod/harvesting-import-service:0.5.0-beta.1
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
     volumes:
@@ -132,7 +140,7 @@ services:
     restart: always
     logging: *default-logging
   harvesting-validator:
-    image: lblod/harvesting-validator:0.0.8
+    image: lblod/harvesting-validator:0.1.0
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
     volumes:
