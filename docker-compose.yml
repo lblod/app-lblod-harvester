@@ -132,7 +132,7 @@ services:
     restart: always
     logging: *default-logging
   harvesting-validator:
-    image: lblod/harvesting-validator:0.0.5
+    image: lblod/harvesting-validator:0.0.6
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
     volumes:
@@ -143,7 +143,7 @@ services:
     restart: always
     logging: *default-logging
   harvesting-sameas:
-    image: lblod/import-with-sameas-service:1.0.2
+    image: lblod/import-with-sameas-service:2.0.0
     environment:
       RENAME_DOMAIN: "http://data.lblod.info/id/"
       TARGET_GRAPH: "http://mu.semte.ch/graphs/public"

@@ -70,7 +70,7 @@
           sh:name "inhoud" ;
           sh:description "De beschrijving van de beoogde rechtsgevolgen, het zogenaamde beschikkend gedeelte." ;
           sh:path <http://www.w3.org/ns/prov#value> ;
-          sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
+          sh:nodeKind sh:Literal ;
           sh:minCount 1 ;
           sh:maxCount 1 ;
       ] ;
@@ -145,7 +145,7 @@
           sh:name "naam" ;
           sh:description "Naam van de bestuurseenheid." ;
           sh:path <http://www.w3.org/2004/02/skos/core#prefLabel> ;
-          sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
+          sh:nodeKind sh:Literal ;
           sh:minCount 1 ;
           sh:maxCount 1 ;
       ] ;
@@ -327,7 +327,7 @@
           sh:name "naam" ;
           sh:description "Naam van de eenheid." ;
           sh:path <http://www.w3.org/2004/02/skos/core#prefLabel> ;
-          sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
+          sh:nodeKind sh:Literal ;
           sh:minCount 1 ;
           sh:maxCount 1 ;
       ] ;
@@ -567,14 +567,6 @@
 <https://data.vlaanderen.be/shacl/besluit-publicatie#ArtikelShape>
     a sh:NodeShape ;
     sh:targetClass <http://data.vlaanderen.be/ns/besluit#Artikel> ;
-    sh:property [
-          sh:name "realiseert" ;
-          sh:description "De rechtsgrond beschreven door dit artikel." ;
-          sh:path <http://data.europa.eu/eli/ontology#realizes> ;
-          sh:class <http://data.europa.eu/eli/ontology#LegalResourceSubdivision> ;
-          sh:minCount 1 ;
-          sh:maxCount 1 ;
-      ] ;
     sh:property [
           sh:name "nummer" ;
           sh:description "Het nummer van het artikel." ;
