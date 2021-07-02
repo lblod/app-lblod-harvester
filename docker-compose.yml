@@ -101,7 +101,7 @@ services:
     restart: always
     logging: *default-logging
   harvesting-download-url:
-    image: lblod/download-url-service:0.4.1
+    image: lblod/download-url-service:0.4.3
     volumes:
       - ./data/files:/share
     environment:
@@ -109,6 +109,14 @@ services:
       CACHING_MAX_RETRIES: 10
       CACHING_CRON_PATTERN: '0 */15 * * * *'
       MAX_PENDING_TIME_IN_SECONDS: 7200
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
+  harvest-check-url:
+    image: lblod/harvest-check-url-collection-service:1.1.1
+    volumes:
+      - ./data/files:/share
     labels:
       - "logging=true"
     restart: always
@@ -122,7 +130,7 @@ services:
     restart: always
     logging: *default-logging
   harvesting-import:
-    image: lblod/harvesting-import-service:0.4.0-beta.2
+    image: lblod/harvesting-import-service:0.5.0-beta.1
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
     volumes:
@@ -132,9 +140,10 @@ services:
     restart: always
     logging: *default-logging
   harvesting-validator:
-    image: lblod/harvesting-validator:0.0.6
+    image: lblod/harvesting-validator:0.1.1
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
+      STRICT_MODE_FILTERING: "true"
     volumes:
       - ./data/files:/share
       - ./config/shacl:/config
@@ -143,7 +152,7 @@ services:
     restart: always
     logging: *default-logging
   harvesting-sameas:
-    image: lblod/import-with-sameas-service:2.0.0
+    image: lblod/import-with-sameas-service:2.1.0
     environment:
       RENAME_DOMAIN: "http://data.lblod.info/id/"
       TARGET_GRAPH: "http://mu.semte.ch/graphs/public"
