@@ -114,7 +114,7 @@ services:
     restart: always
     logging: *default-logging
   harvest-check-url:
-    image: lblod/harvest-check-url-collection-service:1.1.1
+    image: lblod/harvest-check-url-collection-service:1.1.2
     volumes:
       - ./data/files:/share
     labels:
@@ -152,9 +152,9 @@ services:
     restart: always
     logging: *default-logging
   harvesting-sameas:
-    image: lblod/import-with-sameas-service:2.1.4
+    image: lblod/import-with-sameas-service:2.1.5
     environment:
-      BATCH_SIZE: "1"
+      BATCH_SIZE: "100"
       RENAME_DOMAIN: "http://data.lblod.info/id/"
       TARGET_GRAPH: "http://mu.semte.ch/graphs/public"
     volumes:
