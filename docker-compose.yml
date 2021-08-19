@@ -241,13 +241,14 @@ services:
     restart: always
     logging: *default-logging
   delta-producer-json-diff-file-publisher-besluiten:
-    image: lblod/delta-producer-json-diff-file-publisher:0.2.3
+    image: lblod/delta-producer-json-diff-file-publisher:0.3.0
     environment:
       MAX_BODY_SIZE: "50mb"
       ERROR_GRAPH: "http://mu.semte.ch/graphs/harvesting"
       RELATIVE_FILE_PATH: "deltas/besluiten"
       PUBLISHER_URI: "http://data.lblod.info/services/delta-production-json-diff-file-manager-besluiten"
       PUBLICATION_GRAPH: 'http://redpencil.data.gift/id/deltas/producer/lblod-harvester-besluiten-producer'
+      FILES_GRAPH: 'http://mu.semte.ch/graphs/harvesting'
       DELTA_INTERVAL_MS: 10000
       PRETTY_PRINT_DIFF_JSON: "true"
     volumes:
