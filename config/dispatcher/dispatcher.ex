@@ -92,6 +92,13 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://cache/files/"
   end
 
+  #################################################################
+  # lblod-harvester besluiten sync
+  #################################################################
+  get "/sync/besluiten/files/*path" do
+    Proxy.forward conn, path, "http://delta-producer-json-diff-file-publisher-besluiten/files/"
+  end
+
   #################
   # NOT FOUND
   #################
