@@ -95,8 +95,19 @@ defmodule Dispatcher do
   #################################################################
   # lblod-harvester besluiten sync
   #################################################################
-  get "/sync/besluiten/files/*path" do
+  get "/sync/besluiten/files/*path", %{ layer: :resources, accept: %{ json: true } } do
     Proxy.forward conn, path, "http://delta-producer-json-diff-file-publisher-besluiten/files/"
+  end
+
+  #################################################################
+  # DCAT
+  #################################################################
+  match "/datasets/*path", %{ layer: :resources, accept: %{ json: true } } do
+    Proxy.forward conn, path, "http://cache/datasets/"
+  end
+
+  match "/distributions/*path", %{ layer: :resources, accept: %{ json: true } } do
+    Proxy.forward conn, path, "http://cache/distributions/"
   end
 
   #################

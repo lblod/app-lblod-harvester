@@ -24,6 +24,9 @@ defmodule Acl.UserGroups.Config do
                         "http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject",
                         "http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#DataContainer",
                         "http://oscaf.sourceforge.net/ndo.html#DownloadEvent",
+                        "http://www.w3.org/ns/dcat#Dataset",
+                        "http://www.w3.org/ns/dcat#Distribution",
+                        "http://www.w3.org/ns/dcat#Catalog"
                       ]
                     } } ] },
 

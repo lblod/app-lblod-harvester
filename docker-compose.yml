@@ -74,7 +74,7 @@ services:
       - "logging=true"
     logging: *default-logging
   resource:
-    image: semtech/mu-cl-resources:1.19.0
+    image: semtech/mu-cl-resources:1.20.0
     environment:
       CACHE_CLEAR_PATH: "http://cache/.mu/clear-keys"
     volumes:
@@ -195,7 +195,10 @@ services:
     restart: always
     logging: *default-logging
   delta-producer-dump-file-publisher:
-    image: lblod/delta-producer-dump-file-publisher:0.3.1
+    image: lblod/delta-producer-dump-file-publisher:0.3.2
+    environment:
+      FILES_GRAPH: 'http://mu.semte.ch/graphs/harvesting'
+      DCAT_DATASET_GRAPH: 'http://mu.semte.ch/graphs/harvesting'
     volumes:
       - ./config/delta-producer/dump-file-publisher:/config
       - ./data/files:/share
