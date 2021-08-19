@@ -9,6 +9,10 @@ services:
     restart: "no"
   frontend:
     restart: "no"
+  virtuoso:
+    restart: "no"
+    ports:
+      - "8890:8890"
   database:
     restart: "no"
   cache:
@@ -31,3 +35,13 @@ services:
     restart: "no"
   job-controller-service:
     restart: "no"
+  deliver-email-service:
+    restart: "no"
+  delta-producer-report-generator:
+     restart: "no"
+  delta-producer-background-jobs-initiator-besluiten:
+     restart: "no"
+  delta-producer-publication-graph-maintainer-besluiten:
+     restart: "no"
+  delta-producer-json-diff-file-publisher-besluiten:
+     restart: "no"

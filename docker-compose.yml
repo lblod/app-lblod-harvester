@@ -34,7 +34,7 @@ services:
     restart: always
     logging: *default-logging
   database:
-    image: semtech/mu-authorization:0.6.0-beta.5
+    image: cecemel/mu-authorization:0.6.0-beta.8
     environment:
       MU_SPARQL_ENDPOINT: "http://virtuoso:8890/sparql"
     volumes:
@@ -84,7 +84,7 @@ services:
       - "logging=true"
     logging: *default-logging
   deltanotifier:
-    image: semtech/mu-delta-notifier:0.1.0
+    image: cecemel/delta-notifier:0.2.0-beta.2
     volumes:
       - ./config/delta:/config
     labels:
@@ -166,10 +166,96 @@ services:
     restart: always
     logging: *default-logging
   job-controller-service:
-    image: lblod/job-controller-service:0.6.0
+    image: lblod/job-controller-service:0.7.0
     volumes:
       - ./config/job-controller:/config
     labels:
       - "logging=true"
     restart: always
     logging: *default-logging
+  deliver-email-service:
+    image: redpencil/deliver-email-service:0.2.0
+    environment:
+      MAILBOX_URI: 'http://data.lblod.info/id/mailboxes/1'
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
+################################################################################
+# DELTA GENERAL
+################################################################################
+  delta-producer-report-generator:
+    image: lblod/delta-producer-report-generator:0.3.0
+    volumes:
+      - ./config/delta-producer/report-generator:/config
+    environment:
+      OUTBOX: "http://data.lblod.info/id/mail-folders/2"
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
+  delta-producer-dump-file-publisher:
+    image: lblod/delta-producer-dump-file-publisher:0.3.1
+    volumes:
+      - ./config/delta-producer/dump-file-publisher:/config
+      - ./data/files:/share
+# Temporary disable to no saturate the app-http-logger (should be fixed in a next version)
+#    labels:
+#      - "logging=true"
+    restart: always
+    logging: *default-logging
+################################################################################
+# DELTA BESLUITEN
+################################################################################
+  delta-producer-background-jobs-initiator-besluiten:
+    image: lblod/delta-producer-background-jobs-initiator:0.3.1
+    environment:
+      JOBS_GRAPH: "http://mu.semte.ch/graphs/harvesting"
+      DUMP_FILE_CREATION_JOB_OPERATION: 'http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/deltaDumpFileCreation/besluiten'
+      INITIAL_PUBLICATION_GRAPH_SYNC_JOB_OPERATION: 'http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/initialPublicationGraphSyncing/besluiten'
+      HEALING_JOB_OPERATION: 'http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/healingOperation/besluiten'
+      CRON_PATTERN_DUMP_JOB: '0 0 0 * * 6' # weekly on saturday
+      CRON_PATTERN_HEALING_JOB: '0 0 2 * * *' # everyday at 2 AM
+      START_INITIAL_SYNC: 'false' # prefer to disable it now. We want to have feeling with how the DB acts.
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
+  delta-producer-publication-graph-maintainer-besluiten:
+    image: lblod/delta-producer-publication-graph-maintainer:0.5.0-beta.1
+    environment:
+      MAX_BODY_SIZE: "50mb"
+      JOBS_GRAPH: "http://mu.semte.ch/graphs/harvesting"
+      RELATIVE_FILE_PATH: "deltas/besluiten"
+      PUBLICATION_GRAPH: 'http://redpencil.data.gift/id/deltas/producer/lblod-harvester-besluiten-producer'
+      HEALING_JOB_OPERATION: 'http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/healingOperation/besluiten'
+      INITIAL_PUBLICATION_GRAPH_SYNC_JOB_OPERATION: 'http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/initialPublicationGraphSyncing/besluiten'
+      QUEUE_POLL_INTERVAL: 3000
+      USE_VIRTUOSO_FOR_EXPENSIVE_SELECTS: "true"
+    volumes:
+      - ./config/delta-producer/besluiten:/config
+      - ./data/files/:/share
+# Temporary disable to no saturate the app-http-logger (should be fixed in a next version)
+#    labels:
+#      - "logging=true"
+    restart: always
+    logging: *default-logging
+  delta-producer-json-diff-file-publisher-besluiten:
+    image: lblod/delta-producer-json-diff-file-publisher:0.2.3
+    environment:
+      MAX_BODY_SIZE: "50mb"
+      ERROR_GRAPH: "http://mu.semte.ch/graphs/harvesting"
+      RELATIVE_FILE_PATH: "deltas/besluiten"
+      PUBLISHER_URI: "http://data.lblod.info/services/delta-production-json-diff-file-manager-besluiten"
+      PUBLICATION_GRAPH: 'http://redpencil.data.gift/id/deltas/producer/lblod-harvester-besluiten-producer'
+      DELTA_INTERVAL_MS: 10000
+      PRETTY_PRINT_DIFF_JSON: "true"
+    volumes:
+      - ./data/files:/share
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
+################################################################################
+# DELTA BESLUITEN: END
+################################################################################
