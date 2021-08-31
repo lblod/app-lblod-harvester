@@ -153,9 +153,9 @@ services:
     restart: always
     logging: *default-logging
   harvesting-sameas:
-    image: lblod/import-with-sameas-service:2.1.5
+    image: lblod/import-with-sameas-service:2.1.6
     environment:
-      BATCH_SIZE: "100"
+      BATCH_SIZE: "1"
       RENAME_DOMAIN: "http://data.lblod.info/id/"
       TARGET_GRAPH: "http://mu.semte.ch/graphs/public"
     volumes:
