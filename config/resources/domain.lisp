@@ -13,4 +13,5 @@
 (read-domain-file "master-harvest-domain.lisp")
 (read-domain-file "master-file-domain.lisp")
 (read-domain-file "master-job-domain.lisp")
+(read-domain-file "master-scheduled-domain.lisp")
 (read-domain-file "dcat.json")
