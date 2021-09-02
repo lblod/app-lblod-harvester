@@ -76,6 +76,18 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://cache/tasks/"
   end
 
+  match "/scheduled-jobs/*path", %{ layer: :resources, accept: %{ json: true } } do
+    Proxy.forward conn, path, "http://cache/scheduled-jobs/"
+  end
+
+  match "/scheduled-tasks/*path", %{ layer: :resources, accept: %{ json: true } } do
+    Proxy.forward conn, path, "http://cache/scheduled-tasks/"
+  end
+
+  match "/cron-schedules/*path", %{ layer: :resources, accept: %{ json: true } } do
+    Proxy.forward conn, path, "http://cache/cron-schedules/"
+  end
+
   match "/data-containers/*path", %{ layer: :resources, accept: %{ json: true } } do
     Proxy.forward conn, path, "http://cache/data-containers/"
   end
