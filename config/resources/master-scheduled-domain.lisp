@@ -9,7 +9,7 @@
   :has-one `((cron-schedule :via ,(s-prefix "task:schedule")
                     :as "schedule"))
 
-  :has-many `((scheduled-tasks :via ,(s-prefix "dct:isPartOf")
+  :has-many `((scheduled-task :via ,(s-prefix "dct:isPartOf")
                     :inverse t
                     :as "scheduled-tasks"))
 
