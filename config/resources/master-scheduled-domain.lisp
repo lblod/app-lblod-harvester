@@ -3,7 +3,7 @@
   :properties `((:creator :url ,(s-prefix "dct:creator"))
                 (:created :datetime ,(s-prefix "dct:created"))
                 (:modified :datetime ,(s-prefix "dct:modified"))
-                (:job-type :url ,(s-prefix "task:operation"))
+                (:operation :url ,(s-prefix "task:operation"))
                 (:title :string ,(s-prefix "dct:title"))) ;;Later consider using proper relation in domain.lisp 
 
   :has-one `((cron-schedule :via ,(s-prefix "task:schedule")
