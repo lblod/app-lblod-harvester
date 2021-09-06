@@ -307,5 +307,22 @@ export default [
       ignoreFromSelf: true,
       optOutMuScopeIds: [ "http://redpencil.data.gift/id/concept/muScope/deltas/initialSync" ]
     }
+  },
+  {
+    match: {
+      object: {
+        type: 'uri',
+        value: 'http://vocab.deri.ie/cogs#ScheduledJob'
+      }
+    },
+    callback: {
+      url: 'http://job-controller-service/delta-schedule',
+      method: 'POST'
+    },
+    options: {
+      resourceFormat: 'v0.0.1',
+      gracePeriod: 1000,
+      ignoreFromSelf: true
+    }
   }
 ];
