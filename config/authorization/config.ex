@@ -21,6 +21,7 @@ defmodule Acl.UserGroups.Config do
                         "http://vocab.deri.ie/cogs#ScheduledJob",
                         "http://vocab.deri.ie/cogs#ScheduledTask",
                         "http://redpencil.data.gift/vocabularies/tasks/CronSchedule",
+                        "http://schema.org/repeatFrequency",
                         "http://open-services.net/ns/core#Error",
                         "http://lblod.data.gift/vocabularies/harvesting/HarvestingCollection",
                         "http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject",
