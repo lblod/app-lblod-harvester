@@ -316,7 +316,25 @@ export default [
       }
     },
     callback: {
-      url: 'http://job-controller-service/delta-schedule',
+      url: 'http://job-controller-service/delta-scheduledJob',
+      method: 'POST'
+    },
+    options: {
+      resourceFormat: 'v0.0.1',
+      gracePeriod: 1000,
+      ignoreFromSelf: true
+    }
+  },
+
+  {
+    match: {
+      predicate: {
+        type: 'uri',
+        value: 'http://schema.org/repeatFrequency'
+      }
+    },
+    callback: {
+      url: 'http://job-controller-service/delta-cronSchedule',
       method: 'POST'
     },
     options: {
