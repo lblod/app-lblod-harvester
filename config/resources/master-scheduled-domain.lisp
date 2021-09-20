@@ -18,7 +18,7 @@
   :on-path "scheduled-jobs")
 
 (define-resource scheduled-task ()
-  :class (s-prefix "cogs:ScheduledTask")
+  :class (s-prefix "task:ScheduledTask")
   :properties `((:created :datetime ,(s-prefix "dct:created"))
                 (:modified :datetime ,(s-prefix "dct:modified"))
                 (:operation :url ,(s-prefix "task:operation")) ;;Later consider using proper relation in domain.lisp
