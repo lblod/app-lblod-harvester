@@ -173,6 +173,12 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
+  scheduled-job-controller-service:
+    image: lblod/job-controller-service:0.1.0-beta.1
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
   deliver-email-service:
     image: redpencil/deliver-email-service:0.2.0
     environment:
