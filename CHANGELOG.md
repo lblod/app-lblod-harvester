@@ -1,4 +1,8 @@
 # Changelog
+## 0.5.1 (2021-12-17)
+#### :bug: Bug Fix
+- CVE-2021-45046: see https://spring.io/blog/2021/12/10/log4j2-vulnerability-and-spring-boot
+
 ## 0.5.0 (2021-11-04)
 ### :rocket: Enhancement
 - bump of various services related to deltas (fixing bugs mainly)
