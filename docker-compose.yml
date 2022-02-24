@@ -173,7 +173,14 @@ services:
     restart: always
     logging: *default-logging
   scheduled-job-controller-service:
-    image: lblod/scheduled-job-controller-service:0.1.0-beta.2
+    image: lblod/scheduled-job-controller-service:0.1.0-beta.3
+    environment:
+      # NOTE: if the delta-events prove to inaccurate,
+      # you can go back to previous behavior by commenting out env.var. below
+      # CRON_HEALING_JOB: "*/5 * * * *"
+      # DISABLE_DELTA: "true"
+      LOG_SPARQL_ALL: "false"
+      DEBUG_AUTH_HEADERS: "false"
     labels:
       - "logging=true"
     restart: always
