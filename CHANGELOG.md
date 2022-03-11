@@ -1,4 +1,6 @@
 # Changelog
+## 0.6.0 (2022-03-11)
+- Added the possibility to partially update scheduled jobs
 ## 0.5.1 (2021-12-17)
 #### :bug: Bug Fix
 - CVE-2021-45046: see https://spring.io/blog/2021/12/10/log4j2-vulnerability-and-spring-boot
