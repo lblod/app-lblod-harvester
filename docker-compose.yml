@@ -237,7 +237,7 @@ services:
     restart: always
     logging: *default-logging
   delta-producer-publication-graph-maintainer-besluiten:
-    image: lblod/delta-producer-publication-graph-maintainer:0.12.0
+    image: lblod/delta-producer-publication-graph-maintainer:0.14.0
     environment:
       SUDO_QUERY_RETRY_FOR_HTTP_STATUS_CODES: "404"
       MAX_BODY_SIZE: "50mb"
@@ -248,29 +248,16 @@ services:
       INITIAL_PUBLICATION_GRAPH_SYNC_JOB_OPERATION: "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/initialPublicationGraphSyncing/besluiten"
       QUEUE_POLL_INTERVAL: 3000
       USE_VIRTUOSO_FOR_EXPENSIVE_SELECTS: "true"
+      SKIP_MU_AUTH_INITIAL_SYNC: 'true'
+      SERVE_DELTA_FILES: "true"
+      DELTA_INTERVAL_MS: 10000
+      PRETTY_PRINT_DIFF_JSON: "true"
     volumes:
       - ./config/delta-producer/besluiten:/config
       - ./data/files/:/share
     # Temporary disable to no saturate the app-http-logger (should be fixed in a next version)
     #    labels:
     #      - "logging=true"
-    restart: always
-    logging: *default-logging
-  delta-producer-json-diff-file-publisher-besluiten:
-    image: lblod/delta-producer-json-diff-file-publisher:0.3.0
-    environment:
-      MAX_BODY_SIZE: "50mb"
-      ERROR_GRAPH: "http://mu.semte.ch/graphs/harvesting"
-      RELATIVE_FILE_PATH: "deltas/besluiten"
-      PUBLISHER_URI: "http://data.lblod.info/services/delta-production-json-diff-file-manager-besluiten"
-      PUBLICATION_GRAPH: "http://redpencil.data.gift/id/deltas/producer/lblod-harvester-besluiten-producer"
-      FILES_GRAPH: "http://mu.semte.ch/graphs/harvesting"
-      DELTA_INTERVAL_MS: 10000
-      PRETTY_PRINT_DIFF_JSON: "true"
-    volumes:
-      - ./data/files:/share
-    labels:
-      - "logging=true"
     restart: always
     logging: *default-logging
 ################################################################################
