@@ -253,6 +253,8 @@ services:
       SERVE_DELTA_FILES: "true"
       DELTA_INTERVAL_MS: 10000
       PRETTY_PRINT_DIFF_JSON: "true"
+      FILES_GRAPH: "http://mu.semte.ch/graphs/harvesting"
+      ERROR_GRAPH: "http://mu.semte.ch/graphs/harvesting"
     volumes:
       - ./config/delta-producer/besluiten:/config
       - ./data/files/:/share
