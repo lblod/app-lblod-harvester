@@ -10,6 +10,18 @@ PREFIX adms: <http://www.w3.org/ns/adms#>
 PREFIX nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>
 PREFIX dbpedia: <http://dbpedia.org/resource/>
 
+# sprintf workaround
+INSERT DATA {
+  GRAPH <http://mu.semte.ch/graphs/public> {
+    <http://a/subject/d930a21d-750e-427b-8b9e-bdc226e78bde> a nfo:FileDataObject ;
+      dct:format "application/json" ;
+      dbpedia:fileExtension "json" ;
+      dct:publisher <http://data.lblod.info/services/delta-production-json-diff-file-manager-besluiten>.
+  }
+}
+
+;
+
 DELETE {
   GRAPH <http://mu.semte.ch/graphs/public> {
    ?s ?p ?o.
@@ -27,5 +39,20 @@ WHERE {
      dbpedia:fileExtension "json" ;
      dct:publisher <http://data.lblod.info/services/delta-production-json-diff-file-manager-besluiten>;
      ?p ?o.
+  }
+}
+
+;
+
+# sprintf workaround
+DELETE {
+  GRAPH ?g {
+    ?s ?p ?o
+  }
+}
+WHERE {
+  BIND(<http://a/subject/d930a21d-750e-427b-8b9e-bdc226e78bde> as ?s)
+  GRAPH ?g {
+   ?s ?p ?o.
   }
 }
