@@ -101,7 +101,7 @@ services:
     restart: always
     logging: *default-logging
   harvesting-download-url:
-    image: lblod/download-url-service:0.5.0
+    image: lblod/download-url-service:0.7.1
     volumes:
       - ./data/files:/share
     environment:
@@ -114,7 +114,7 @@ services:
     restart: always
     logging: *default-logging
   harvest-check-url:
-    image: lblod/harvest-check-url-collection-service:1.2.0
+    image: lblod/harvest-check-url-collection-service:1.2.1
     volumes:
       - ./data/files:/share
     labels:
@@ -130,7 +130,7 @@ services:
     restart: always
     logging: *default-logging
   harvesting-import:
-    image: lblod/harvesting-import-service:0.7.0
+    image: lblod/harvesting-import-service:0.7.1
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
     volumes:
@@ -152,7 +152,7 @@ services:
     restart: always
     logging: *default-logging
   harvesting-sameas:
-    image: lblod/import-with-sameas-service:2.1.7
+    image: lblod/import-with-sameas-service:2.1.9
     environment:
       BATCH_SIZE: "1"
       RENAME_DOMAIN: "http://data.lblod.info/id/"
@@ -165,7 +165,7 @@ services:
     restart: always
     logging: *default-logging
   job-controller-service:
-    image: lblod/job-controller-service:0.7.0
+    image: lblod/job-controller-service:0.7.1
     volumes:
       - ./config/job-controller:/config
     labels:
@@ -173,7 +173,7 @@ services:
     restart: always
     logging: *default-logging
   scheduled-job-controller-service:
-    image: lblod/scheduled-job-controller-service:0.1.0-beta.4
+    image: lblod/scheduled-job-controller-service:0.1.0-beta.5
     environment:
       # NOTE: if the delta-events prove to inaccurate,
       # you can go back to previous behavior by commenting out env.var. below
@@ -186,7 +186,7 @@ services:
     restart: always
     logging: *default-logging
   deliver-email-service:
-    image: redpencil/deliver-email-service:0.2.0
+    image: redpencil/deliver-email-service:0.3.1
     environment:
       MAILBOX_URI: "http://data.lblod.info/id/mailboxes/1"
     labels:
