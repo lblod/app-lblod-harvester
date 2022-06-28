@@ -1,4 +1,7 @@
 # Changelog
+## 0.7.1 (2022-06-28)
+### :bug: Fixes
+- Revert frontend bump - causes issues with previous data
 ## 0.7.0 (2022-06-28)
 ### :bug: Fixes
 - Sprintf worarounds
