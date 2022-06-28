@@ -122,7 +122,7 @@ services:
     restart: always
     logging: *default-logging
   harvest-collector:
-    image: lblod/harvest-collector-service:0.6.0
+    image: lblod/harvest-collector-service:0.6.2
     volumes:
       - ./data/files:/share
     labels:
@@ -165,7 +165,7 @@ services:
     restart: always
     logging: *default-logging
   job-controller-service:
-    image: lblod/job-controller-service:0.7.1
+    image: lblod/job-controller-service:0.7.2
     volumes:
       - ./config/job-controller:/config
     labels:
