@@ -1,4 +1,12 @@
 # Changelog
+## 0.7.0 (2022-06-28)
+### :bug: Fixes
+- Sprintf worarounds
+- Graph updates
+- URI updates
+### :rocket: Enhancement
+- Bump multiple dependencies to use latest version of mu-auth-sudo (retry mechanism on queries)
+- Bump frontend
 ## 0.6.0 (2022-03-11)
 - Added the possibility to partially update scheduled jobs
 ## 0.5.1 (2021-12-17)
