@@ -4,7 +4,8 @@
                 (:created :datetime ,(s-prefix "dct:created"))
                 (:modified :datetime ,(s-prefix "dct:modified"))
                 (:operation :url ,(s-prefix "task:operation"))
-                (:title :string ,(s-prefix "dct:title"))) ;;Later consider using proper relation in domain.lisp 
+                (:title :string ,(s-prefix "dct:title")) ;;Later consider using proper relation in domain.lisp 
+                (:comment :string ,(s-prefix "skos:comment")))
 
   :has-one `((cron-schedule :via ,(s-prefix "task:schedule")
                     :as "schedule"))
@@ -22,7 +23,8 @@
   :properties `((:created :datetime ,(s-prefix "dct:created"))
                 (:modified :datetime ,(s-prefix "dct:modified"))
                 (:operation :url ,(s-prefix "task:operation")) ;;Later consider using proper relation in domain.lisp
-                (:index :string ,(s-prefix "task:index")))
+                (:index :string ,(s-prefix "task:index"))
+                (:comment :string ,(s-prefix "skos:comment")))
 
   :has-one `((scheduled-job :via ,(s-prefix "dct:isPartOf")
                     :as "scheduled-job"))
