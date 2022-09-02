@@ -24,8 +24,7 @@
                 (:modified :datetime ,(s-prefix "dct:modified"))
                 (:status :url ,(s-prefix "adms:status")) ;;Later consider using proper relation in domain.lisp
                 (:operation :url ,(s-prefix "task:operation")) ;;Later consider using proper relation in domain.lisp
-                (:index :string ,(s-prefix "task:index"))
-                (:comment :string ,(s-prefix "skos:comment")))
+                (:index :string ,(s-prefix "task:index")))
 
   :has-one `((job-error :via ,(s-prefix "task:error")
                     :as "error")
