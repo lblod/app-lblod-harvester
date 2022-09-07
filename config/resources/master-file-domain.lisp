@@ -22,6 +22,7 @@
                 (:modified :datetime ,(s-prefix "dct:modified"))
                 (:request-header :url ,(s-prefix "rpioHttp:requestHeader"))
                 (:status :url ,(s-prefix "adms:status"))
+                (:comment :string ,(s-prefix "skos:comment"))
                 (:creator :url ,(s-prefix "dct:creator")))
   :has-one `((file :via ,(s-prefix "nie:dataSource")
               :inverse t
