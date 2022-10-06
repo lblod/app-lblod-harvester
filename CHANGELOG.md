@@ -1,4 +1,9 @@
 # Changelog
+## 0.8.0 (2022-10-06)
+### :rocket: Enhancement
+- Bump frontend which includes some new features:
+  - Allow users to filter the results by status
+  - Show the target URI in the overview table
 ## 0.7.1 (2022-06-28)
 ### :bug: Fixes
 - Revert frontend bump - causes issues with previous data
