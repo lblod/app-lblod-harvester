@@ -193,6 +193,14 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
+  error-alert:
+    image: lblod/loket-error-alert-service:1.0.0
+    volumes:
+      - ./config/error-alert:/config/
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
   ################################################################################
   # DELTA GENERAL
   ################################################################################
@@ -232,6 +240,7 @@ services:
       CRON_PATTERN_DUMP_JOB: "0 0 0 * * 6" # weekly on saturday
       CRON_PATTERN_HEALING_JOB: "0 0 2 * * *" # everyday at 2 AM
       START_INITIAL_SYNC: "false" # prefer to disable it now. We want to have feeling with how the DB acts.
+      ERROR_CREATOR_URI: 'http://lblod.data.gift/services/delta-producer-background-jobs-initiator-besluiten'
     labels:
       - "logging=true"
     restart: always
@@ -255,6 +264,7 @@ services:
       PRETTY_PRINT_DIFF_JSON: "true"
       FILES_GRAPH: "http://mu.semte.ch/graphs/harvesting"
       ERROR_GRAPH: "http://mu.semte.ch/graphs/harvesting"
+      ERROR_CREATOR_URI: 'http://lblod.data.gift/services/delta-producer-publication-graph-maintainer-besluiten'
     volumes:
       - ./config/delta-producer/besluiten:/config
       - ./data/files/:/share
