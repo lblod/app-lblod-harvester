@@ -1,0 +1,576 @@
+<http://redpencil.data.gift/id/job/492e1f47-c239-47ff-88c4-d0f75b2b3d3d> a <http://vocab.deri.ie/cogs#Job>;
+    <http://mu.semte.ch/vocabularies/core/uuid> "492e1f47-c239-47ff-88c4-d0f75b2b3d3d";
+    <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>;
+    <http://www.w3.org/ns/adms#status> <http://redpencil.data.gift/id/concept/JobStatus/busy>;
+    <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+    <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+    <http://redpencil.data.gift/vocabularies/tasks/operation> <http://lblod.data.gift/id/jobs/concept/JobOperation/lblodHarvestAndPublish>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> a <http://lblod.data.gift/vocabularies/harvesting/HarvestingCollection>;
+    <http://mu.semte.ch/vocabularies/core/uuid> "54ec5f5f-e270-49e1-8416-41cd16e81f3c";
+    <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://redpencil.data.gift/id/dataContainers/0416a9c1-4d58-419a-8189-c2efce307189> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#DataContainer>;
+    <http://mu.semte.ch/vocabularies/core/uuid> "0416a9c1-4d58-419a-8189-c2efce307189";
+    <http://redpencil.data.gift/vocabularies/tasks/hasHarvestingCollection> <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c>.
+
+  <http://redpencil.data.gift/id/task/548bd352-437e-4520-a53c-4161a199ad43> a <http://redpencil.data.gift/vocabularies/tasks/Task> ;
+    <http://mu.semte.ch/vocabularies/core/uuid> "548bd352-437e-4520-a53c-4161a199ad43";
+    <http://purl.org/dc/terms/isPartOf> <http://redpencil.data.gift/id/job/492e1f47-c239-47ff-88c4-d0f75b2b3d3d>;
+    <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+    <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+    <http://www.w3.org/ns/adms#status> <http://redpencil.data.gift/id/concept/JobStatus/scheduled>;
+    <http://redpencil.data.gift/vocabularies/tasks/index> "0";
+    <http://redpencil.data.gift/vocabularies/tasks/inputContainer> <http://redpencil.data.gift/id/dataContainers/0416a9c1-4d58-419a-8189-c2efce307189>;
+    <http://redpencil.data.gift/vocabularies/tasks/operation> <http://lblod.data.gift/id/jobs/concept/TaskOperation/collecting>.
+  
+<http://data.lblod.info/id/remote-data-objects/012d5cab-00c5-4d3d-abbd-ad2decb14862> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "012d5cab-00c5-4d3d-abbd-ad2decb14862";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=BesluitenLijst_Gemeenteraad_30-11-2021.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/012d5cab-00c5-4d3d-abbd-ad2decb14862>.
+    
+<http://data.lblod.info/id/remote-data-objects/37f8fbb3-be88-460e-bd79-e66daf3a4787> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "37f8fbb3-be88-460e-bd79-e66daf3a4787";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=BesluitenLijst_Gemeenteraad_31-05-2022.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/37f8fbb3-be88-460e-bd79-e66daf3a4787>.
+    
+<http://data.lblod.info/id/remote-data-objects/eef0445c-8d92-4938-b987-c979013e8a9d> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "eef0445c-8d92-4938-b987-c979013e8a9d";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Notulen_Gemeenteraad_21-12-2021.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/eef0445c-8d92-4938-b987-c979013e8a9d>.
+    
+<http://data.lblod.info/id/remote-data-objects/6aa1d3a8-8060-4529-979b-05f9ee58097c> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "6aa1d3a8-8060-4529-979b-05f9ee58097c";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Notulen_Gemeenteraad_22-02-2022.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/6aa1d3a8-8060-4529-979b-05f9ee58097c>.
+    
+<http://data.lblod.info/id/remote-data-objects/db20032a-8bd5-4d1a-861f-c0868bbc7265> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "db20032a-8bd5-4d1a-861f-c0868bbc7265";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Notulen_Gemeenteraad_25-01-2022.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/db20032a-8bd5-4d1a-861f-c0868bbc7265>.
+    
+<http://data.lblod.info/id/remote-data-objects/1741c9db-c9a9-48a4-8f38-da454f5395e9> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "1741c9db-c9a9-48a4-8f38-da454f5395e9";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Notulen_Gemeenteraad_26-04-2022.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/1741c9db-c9a9-48a4-8f38-da454f5395e9>.
+    
+<http://data.lblod.info/id/remote-data-objects/fe00b33c-e9bb-4bb1-a954-0caeedba7205> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "fe00b33c-e9bb-4bb1-a954-0caeedba7205";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Notulen_Gemeenteraad_26-10-2021.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/fe00b33c-e9bb-4bb1-a954-0caeedba7205>.
+    
+<http://data.lblod.info/id/remote-data-objects/4b83ed31-b31b-44c4-84d2-fd7fd43c16df> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "4b83ed31-b31b-44c4-84d2-fd7fd43c16df";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Notulen_Gemeenteraad_29-03-2022.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/4b83ed31-b31b-44c4-84d2-fd7fd43c16df>.
+    
+<http://data.lblod.info/id/remote-data-objects/c7a0643a-854c-4e8e-8f06-d47af54d5da7> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "c7a0643a-854c-4e8e-8f06-d47af54d5da7";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Notulen_Gemeenteraad_30-11-2021.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/c7a0643a-854c-4e8e-8f06-d47af54d5da7>.
+    
+<http://data.lblod.info/id/remote-data-objects/cc2ba91f-b278-4e5e-b3a5-07a708f52cb1> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "cc2ba91f-b278-4e5e-b3a5-07a708f52cb1";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Notulen_Gemeenteraad_31-05-2022.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/cc2ba91f-b278-4e5e-b3a5-07a708f52cb1>.
+    
+<http://data.lblod.info/id/remote-data-objects/6d371ff7-453c-4581-ad04-4843a34abb49> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "6d371ff7-453c-4581-ad04-4843a34abb49";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Uittreksels_21-12-2021_45643.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/6d371ff7-453c-4581-ad04-4843a34abb49>.
+    
+<http://data.lblod.info/id/remote-data-objects/b2f01fd1-b452-460a-9f70-c78468a71ef2> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "b2f01fd1-b452-460a-9f70-c78468a71ef2";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Uittreksels_21-12-2021_45644.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/b2f01fd1-b452-460a-9f70-c78468a71ef2>.
+    
+<http://data.lblod.info/id/remote-data-objects/973d3bbf-c5fb-4810-b19a-0d3d33afcde9> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "973d3bbf-c5fb-4810-b19a-0d3d33afcde9";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Uittreksels_21-12-2021_45645.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/973d3bbf-c5fb-4810-b19a-0d3d33afcde9>.
+    
+<http://data.lblod.info/id/remote-data-objects/d51770d4-1579-4a50-afab-7e7fbdd38806> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "d51770d4-1579-4a50-afab-7e7fbdd38806";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Uittreksels_21-12-2021_45646.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/d51770d4-1579-4a50-afab-7e7fbdd38806>.
+    
+<http://data.lblod.info/id/remote-data-objects/99d04073-f375-4693-8b1a-b0aa54a1e7c0> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "99d04073-f375-4693-8b1a-b0aa54a1e7c0";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Uittreksels_21-12-2021_45647.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/99d04073-f375-4693-8b1a-b0aa54a1e7c0>.
+    
+<http://data.lblod.info/id/remote-data-objects/d0f86543-016c-4fba-a6d3-abd976a37b31> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "d0f86543-016c-4fba-a6d3-abd976a37b31";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Uittreksels_21-12-2021_45652.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/d0f86543-016c-4fba-a6d3-abd976a37b31>.
+    
+<http://data.lblod.info/id/remote-data-objects/520454d8-dd6a-4e01-a0de-8bd547ce0b29> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "520454d8-dd6a-4e01-a0de-8bd547ce0b29";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Uittreksels_21-12-2021_45655.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/520454d8-dd6a-4e01-a0de-8bd547ce0b29>.
+    
+<http://data.lblod.info/id/remote-data-objects/b5074b50-a124-4077-be61-15e254a2e757> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "b5074b50-a124-4077-be61-15e254a2e757";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Uittreksels_21-12-2021_46559.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/b5074b50-a124-4077-be61-15e254a2e757>.
+    
+<http://data.lblod.info/id/remote-data-objects/81bb66b4-94ef-4241-a1ef-15e03daf9a22> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "81bb66b4-94ef-4241-a1ef-15e03daf9a22";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Uittreksels_21-12-2021_47092.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/81bb66b4-94ef-4241-a1ef-15e03daf9a22>.
+    
+<http://data.lblod.info/id/remote-data-objects/5685ff4c-ee69-4007-aadd-6b93a2ff0423> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "5685ff4c-ee69-4007-aadd-6b93a2ff0423";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Uittreksels_21-12-2021_47243.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/5685ff4c-ee69-4007-aadd-6b93a2ff0423>.
+    
+<http://data.lblod.info/id/remote-data-objects/e8e5e950-916e-4f1e-8a5f-9149bc52b8d6> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "e8e5e950-916e-4f1e-8a5f-9149bc52b8d6";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Uittreksels_21-12-2021_47351.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/e8e5e950-916e-4f1e-8a5f-9149bc52b8d6>.
+    
+<http://data.lblod.info/id/remote-data-objects/a42934fc-1d3f-413b-aa95-b30acd6b61f2> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "a42934fc-1d3f-413b-aa95-b30acd6b61f2";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Uittreksels_21-12-2021_47353.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/a42934fc-1d3f-413b-aa95-b30acd6b61f2>.
+    
+<http://data.lblod.info/id/remote-data-objects/d4c698b7-4f8b-4dda-bd96-9ba852b977da> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "d4c698b7-4f8b-4dda-bd96-9ba852b977da";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Uittreksels_21-12-2021_47358.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/d4c698b7-4f8b-4dda-bd96-9ba852b977da>.
+    
+<http://data.lblod.info/id/remote-data-objects/9d784a1c-1fa6-48d0-9d9b-64ff931c938f> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "9d784a1c-1fa6-48d0-9d9b-64ff931c938f";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Uittreksels_21-12-2021_47404.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/9d784a1c-1fa6-48d0-9d9b-64ff931c938f>.
+    
+<http://data.lblod.info/id/remote-data-objects/1674e6ad-aa85-4537-ba6d-b5199e638fb5> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "1674e6ad-aa85-4537-ba6d-b5199e638fb5";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Uittreksels_21-12-2021_47406.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/1674e6ad-aa85-4537-ba6d-b5199e638fb5>.
+    
+<http://data.lblod.info/id/remote-data-objects/50df1ee6-e687-4efb-9adf-89174743cbd0> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "50df1ee6-e687-4efb-9adf-89174743cbd0";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Uittreksels_21-12-2021_47584.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/50df1ee6-e687-4efb-9adf-89174743cbd0>.
+    
+<http://data.lblod.info/id/remote-data-objects/a1eff8ed-c860-4fad-b9ea-39fc806ca6a4> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "a1eff8ed-c860-4fad-b9ea-39fc806ca6a4";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Uittreksels_21-12-2021_47623.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/a1eff8ed-c860-4fad-b9ea-39fc806ca6a4>.
+    
+<http://data.lblod.info/id/remote-data-objects/8f97ca05-fc82-44d0-bc31-d35aa487d249> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "8f97ca05-fc82-44d0-bc31-d35aa487d249";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Uittreksels_22-02-2022_48157.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/8f97ca05-fc82-44d0-bc31-d35aa487d249>.
+    
+<http://data.lblod.info/id/remote-data-objects/22288bd5-5356-42ba-96dc-34a90912142d> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "22288bd5-5356-42ba-96dc-34a90912142d";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Uittreksels_25-01-2022_48227.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/22288bd5-5356-42ba-96dc-34a90912142d>.
+    
+<http://data.lblod.info/id/remote-data-objects/a28b2f8e-e280-4d0f-9d6d-56b6353c898b> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "a28b2f8e-e280-4d0f-9d6d-56b6353c898b";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Uittreksels_26-10-2021_46132.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/a28b2f8e-e280-4d0f-9d6d-56b6353c898b>.
+    
+<http://data.lblod.info/id/remote-data-objects/30ff033f-df4e-47fe-aa61-c204540746fa> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "30ff033f-df4e-47fe-aa61-c204540746fa";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Uittreksels_26-10-2021_46474.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/30ff033f-df4e-47fe-aa61-c204540746fa>.
+    
+<http://data.lblod.info/id/remote-data-objects/fc464069-7a45-411f-8e03-f520bdfea773> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "fc464069-7a45-411f-8e03-f520bdfea773";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Uittreksels_26-10-2021_46690.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/fc464069-7a45-411f-8e03-f520bdfea773>.
+    
+<http://data.lblod.info/id/remote-data-objects/55b0ab9b-69df-44cc-b7ef-a0b9adeaf167> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "55b0ab9b-69df-44cc-b7ef-a0b9adeaf167";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Uittreksels_28-06-2022_49889.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/55b0ab9b-69df-44cc-b7ef-a0b9adeaf167>.
+    
+<http://data.lblod.info/id/remote-data-objects/53656db2-0dd5-49b9-83d1-d6ced625afec> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "53656db2-0dd5-49b9-83d1-d6ced625afec";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Uittreksels_28-06-2022_50519.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/53656db2-0dd5-49b9-83d1-d6ced625afec>.
+    
+<http://data.lblod.info/id/remote-data-objects/be07c276-5cab-4830-832d-2772f2f96d0e> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "be07c276-5cab-4830-832d-2772f2f96d0e";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Uittreksels_29-03-2022_48841.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/be07c276-5cab-4830-832d-2772f2f96d0e>.
+    
+<http://data.lblod.info/id/remote-data-objects/bedadc79-2303-45dc-baec-f17d6ca51caa> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "bedadc79-2303-45dc-baec-f17d6ca51caa";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Uittreksels_29-03-2022_49092.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/bedadc79-2303-45dc-baec-f17d6ca51caa>.
+    
+<http://data.lblod.info/id/remote-data-objects/27211de9-7a3f-4a9b-b46f-f46806a63d23> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "27211de9-7a3f-4a9b-b46f-f46806a63d23";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Uittreksels_30-11-2021_45979.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/27211de9-7a3f-4a9b-b46f-f46806a63d23>.
+    
+<http://data.lblod.info/id/remote-data-objects/9cac054e-5c7f-455d-9fc4-183d6b97c296> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "9cac054e-5c7f-455d-9fc4-183d6b97c296";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Uittreksels_30-11-2021_46843.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/9cac054e-5c7f-455d-9fc4-183d6b97c296>.
+    
+<http://data.lblod.info/id/remote-data-objects/932c67e7-ffd9-4dc4-95a7-25405ed0e0c7> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "932c67e7-ffd9-4dc4-95a7-25405ed0e0c7";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Uittreksels_30-11-2021_47096.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/932c67e7-ffd9-4dc4-95a7-25405ed0e0c7>.
+    
+<http://data.lblod.info/id/remote-data-objects/c261ecd5-0b3d-4a9b-8681-57298b5b5d58> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "c261ecd5-0b3d-4a9b-8681-57298b5b5d58";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Uittreksels_30-11-2021_47188.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/c261ecd5-0b3d-4a9b-8681-57298b5b5d58>.
+    
+<http://data.lblod.info/id/remote-data-objects/f1e63d9e-5219-4c84-b1e8-e902b3e54b91> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "f1e63d9e-5219-4c84-b1e8-e902b3e54b91";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Uittreksels_30-11-2021_47193.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/f1e63d9e-5219-4c84-b1e8-e902b3e54b91>.
+    
+<http://data.lblod.info/id/remote-data-objects/0ef203a8-0aca-4023-a421-ffd5ca00d28d> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "0ef203a8-0aca-4023-a421-ffd5ca00d28d";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Uittreksels_30-11-2021_47223.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/0ef203a8-0aca-4023-a421-ffd5ca00d28d>.
+    
+<http://data.lblod.info/id/remote-data-objects/f67a2882-8973-4922-981b-a513092a962e> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "f67a2882-8973-4922-981b-a513092a962e";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Uittreksels_30-11-2021_47224.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/f67a2882-8973-4922-981b-a513092a962e>.
+    
+<http://data.lblod.info/id/remote-data-objects/b49a4013-242f-4ea6-a8f9-06ec800cac08> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "b49a4013-242f-4ea6-a8f9-06ec800cac08";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Uittreksels_31-05-2022_48464.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/b49a4013-242f-4ea6-a8f9-06ec800cac08>.
+    
+<http://data.lblod.info/id/remote-data-objects/7980d9ab-f2a1-4a0d-bd22-567f3a603605> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "7980d9ab-f2a1-4a0d-bd22-567f3a603605";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Uittreksels_31-05-2022_49803.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/7980d9ab-f2a1-4a0d-bd22-567f3a603605>.
+    
+<http://data.lblod.info/id/remote-data-objects/1109c77a-55de-4cac-bced-0e59ca59f76d> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "1109c77a-55de-4cac-bced-0e59ca59f76d";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Uittreksels_31-05-2022_49829.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/1109c77a-55de-4cac-bced-0e59ca59f76d>.
+    
+<http://data.lblod.info/id/remote-data-objects/f6ee1872-389d-433e-ab1d-a7dc9de04f13> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "f6ee1872-389d-433e-ab1d-a7dc9de04f13";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Uittreksels_31-05-2022_49851.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/f6ee1872-389d-433e-ab1d-a7dc9de04f13>.
+    
+<http://data.lblod.info/id/remote-data-objects/5af4e4a4-b7f0-4e2a-9412-85c14f7e400b> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "5af4e4a4-b7f0-4e2a-9412-85c14f7e400b";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Uittreksels_31-05-2022_49897.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/5af4e4a4-b7f0-4e2a-9412-85c14f7e400b>.
+    
+<http://data.lblod.info/id/remote-data-objects/712e18d4-7d4d-43ca-905f-6cd39a27fc00> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "712e18d4-7d4d-43ca-905f-6cd39a27fc00";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Uittreksels_31-05-2022_50073.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/712e18d4-7d4d-43ca-905f-6cd39a27fc00>.
+    
+<http://data.lblod.info/id/remote-data-objects/96e2bfc7-1db1-433a-9e78-28cb08da18e9> a <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject>,<http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "96e2bfc7-1db1-433a-9e78-28cb08da18e9";
+  <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#url> <https://lblod.erpe-mere.be/LBLODWeb/Home/Overzicht/f49f676e03473239863aaf4e20c0ee2be86b824f7969dd64cabbe129978f5517/GetPublication?filename=Uittreksels_31-05-2022_50079.html>;
+  <http://www.w3.org/ns/adms#status> <http://lblod.data.gift/file-download-statuses/ready-to-be-collected>;
+  <http://redpencil.data.gift/vocabularies/http/requestHeader> <http://data.lblod.info/request-headers/accept/text/html>;
+  <http://purl.org/dc/terms/created> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-11-18T20:13:44.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/migrations>.
+
+  <http://data.lblod.info/id/harvesting-collection/54ec5f5f-e270-49e1-8416-41cd16e81f3c> <http://purl.org/dc/terms/hasPart> <http://data.lblod.info/id/remote-data-objects/96e2bfc7-1db1-433a-9e78-28cb08da18e9>.
+    
