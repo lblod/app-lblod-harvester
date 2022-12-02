@@ -231,7 +231,7 @@ services:
   # DELTA BESLUITEN
   ################################################################################
   delta-producer-background-jobs-initiator-besluiten:
-    image: lblod/delta-producer-background-jobs-initiator:0.4.0
+    image: lblod/delta-producer-background-jobs-initiator:0.4.1
     environment:
       JOBS_GRAPH: "http://mu.semte.ch/graphs/harvesting"
       DUMP_FILE_CREATION_JOB_OPERATION: "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/deltaDumpFileCreation/besluiten"
@@ -246,7 +246,7 @@ services:
     restart: always
     logging: *default-logging
   delta-producer-publication-graph-maintainer-besluiten:
-    image: lblod/delta-producer-publication-graph-maintainer:0.15.1
+    image: lblod/delta-producer-publication-graph-maintainer:0.15.2
     environment:
       SUDO_QUERY_RETRY_FOR_HTTP_STATUS_CODES: "404"
       MAX_BODY_SIZE: "50mb"
