@@ -31,7 +31,7 @@ export default [
     },
     options: {
       resourceFormat: 'v0.0.1',
-      gracePeriod: 500,
+      gracePeriod: 1000,
       ignoreFromSelf: true,
       optOutMuScopeIds: ['http://redpencil.data.gift/id/concept/muScope/deltas/initialSync'],
     },
@@ -75,7 +75,7 @@ export default [
     },
     options: {
       resourceFormat: 'v0.0.1',
-      gracePeriod: 500,
+      gracePeriod: 1000,
       ignoreFromSelf: true,
       optOutMuScopeIds: ['http://redpencil.data.gift/id/concept/muScope/deltas/initialSync'],
     },
@@ -97,7 +97,7 @@ export default [
     },
     options: {
       resourceFormat: 'v0.0.1',
-      gracePeriod: 500,
+      gracePeriod: 1000,
       ignoreFromSelf: true,
       optOutMuScopeIds: ['http://redpencil.data.gift/id/concept/muScope/deltas/initialSync'],
     },
