@@ -151,6 +151,16 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
+  harvesting-diff:
+    image: lblod/harvesting-diff-service:0.0.1
+    environment:
+      TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
+    volumes:
+      - ./data/files:/share
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
   harvesting-sameas:
     image: lblod/import-with-sameas-service:2.1.9
     environment:
