@@ -203,6 +203,14 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
+  error-alert:
+    image: lblod/loket-error-alert-service:1.0.0
+    volumes:
+      - ./config/error-alert:/config/
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
   ################################################################################
   # DELTA GENERAL
   ################################################################################
@@ -217,7 +225,7 @@ services:
     restart: always
     logging: *default-logging
   delta-producer-dump-file-publisher:
-    image: lblod/delta-producer-dump-file-publisher:0.7.1
+    image: lblod/delta-producer-dump-file-publisher:0.9.0
     environment:
       FILES_GRAPH: "http://mu.semte.ch/graphs/harvesting"
       DCAT_DATASET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
@@ -233,7 +241,7 @@ services:
   # DELTA BESLUITEN
   ################################################################################
   delta-producer-background-jobs-initiator-besluiten:
-    image: lblod/delta-producer-background-jobs-initiator:0.4.0
+    image: lblod/delta-producer-background-jobs-initiator:0.4.1
     environment:
       JOBS_GRAPH: "http://mu.semte.ch/graphs/harvesting"
       DUMP_FILE_CREATION_JOB_OPERATION: "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/deltaDumpFileCreation/besluiten"
@@ -242,12 +250,13 @@ services:
       CRON_PATTERN_DUMP_JOB: "0 0 0 * * 6" # weekly on saturday
       CRON_PATTERN_HEALING_JOB: "0 0 2 * * *" # everyday at 2 AM
       START_INITIAL_SYNC: "false" # prefer to disable it now. We want to have feeling with how the DB acts.
+      ERROR_CREATOR_URI: 'http://lblod.data.gift/services/delta-producer-background-jobs-initiator-besluiten'
     labels:
       - "logging=true"
     restart: always
     logging: *default-logging
   delta-producer-publication-graph-maintainer-besluiten:
-    image: lblod/delta-producer-publication-graph-maintainer:0.15.1
+    image: lblod/delta-producer-publication-graph-maintainer:0.15.2
     environment:
       SUDO_QUERY_RETRY_FOR_HTTP_STATUS_CODES: "404"
       MAX_BODY_SIZE: "50mb"
@@ -265,6 +274,7 @@ services:
       PRETTY_PRINT_DIFF_JSON: "true"
       FILES_GRAPH: "http://mu.semte.ch/graphs/harvesting"
       ERROR_GRAPH: "http://mu.semte.ch/graphs/harvesting"
+      ERROR_CREATOR_URI: 'http://lblod.data.gift/services/delta-producer-publication-graph-maintainer-besluiten'
     volumes:
       - ./config/delta-producer/besluiten:/config
       - ./data/files/:/share

@@ -9,6 +9,8 @@ services:
     restart: "no"
   frontend:
     restart: "no"
+  migrations:
+    restart: "no"
   virtuoso:
     restart: "no"
     ports:
@@ -40,12 +42,14 @@ services:
   deliver-email-service:
     restart: "no"
   delta-producer-report-generator:
-     restart: "no"
+    restart: "no"
   delta-producer-background-jobs-initiator-besluiten:
-     restart: "no"
+    restart: "no"
   delta-producer-publication-graph-maintainer-besluiten:
-     restart: "no"
+    restart: "no"
   harvesting-validator:
-     restart: "no"
+    restart: "no"
   harvesting-diff:
-     restart: "no"
+    restart: "no"
+  error-alert:
+    restart: "no"
