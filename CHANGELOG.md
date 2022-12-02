@@ -1,4 +1,12 @@
 # Changelog
+## 0.9.0 (2022-12-02)
+### :rocket: Enhancement
+- improve performance by using a diff step by @nbittich in https://github.com/lblod/app-lblod-harvester/pull/19
+- Upgrade virtuoso's config to offset to more than 1 million by @claire-lovisa in https://github.com/lblod/app-lblod-harvester/pull/17
+- Add agendas and decision lists to the export by @claire-lovisa in https://github.com/lblod/app-lblod-harvester/pull/14
+- Add error-alert service to receive emails when things go wrong by @claire-lovisa in https://github.com/lblod/app-lblod-harvester/pull/15
+- Skip mu-auth for dump and initial sync jobs by @claire-lovisa in https://github.com/lblod/app-lblod-harvester/pull/16
+- Add jobs to harvest Cevi and Remmicom by @claire-lovisa in https://github.com/lblod/app-lblod-harvester/pull/18
 ## 0.8.0 (2022-10-06)
 ### :rocket: Enhancement
 - Bump frontend which includes some new features:
