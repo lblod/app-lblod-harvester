@@ -1,0 +1,114 @@
+{
+  "export": [
+    {
+      "type": "http://data.lblod.info/vocabularies/erediensten/EredienstMandataris",
+      "graphsFilter": [ "http://mu.semte.ch/graphs/public" ],
+      "properties": [ //Enkel Resources
+        "http://data.lblod.info/vocabularies/erediensten/geplandeEinddatumAanstelling",
+        "http://data.lblod.info/vocabularies/erediensten/redenVanStopzetting"
+      ]
+    },
+    {
+      "type": "http://data.lblod.info/vocabularies/erediensten/RolBedienaar",
+      "graphsFilter": [ "http://mu.semte.ch/graphs/public" ],
+      "properties": [ //Enkel Resources
+        "http://www.w3.org/ns/org#holds",
+        "http://data.lblod.info/vocabularies/erediensten/financiering",
+        "http://www.w3.org/ns/org#siteAddress"
+      ]
+    },
+    {
+      "type": "http://www.w3.org/ns/person#Person",
+      "graphsFilter": [ "http://mu.semte.ch/graphs/public" ],
+      "properties": [
+        "http://xmlns.com/foaf/0.1/familyName",
+        "http://xmlns.com/foaf/0.1/name",
+        "https://data.vlaanderen.be/ns/persoon#gebruikteVoornaam",
+        <<<
+        "https://data.vlaanderen.be/ns/persoon#geslacht", //Vlaanderen
+        "http://www.w3.org/ns/person#geslacht", //Resources
+        >>>
+        "https://data.vlaanderen.be/ns/persoon#heeftGeboorte",
+        "http://www.w3.org/ns/adms#identifier",
+        "http://data.vlaanderen.be/ns/mandaat#isAangesteldAls", //enkel Vlaanderen
+        "http://data.vlaanderen.be/ns/mandaat#isBestuurlijkeAliasVan", //enkel Vlaanderen
+        "http://www.w3.org/ns/person#heeftNationaliteit", //enkel Vlaanderen
+      ]
+    },
+    {
+      "type": "http://www.w3.org/ns/adms#Identifier",
+      "graphsFilter": [ "http://mu.semte.ch/graphs/public" ],
+      "properties": [
+        "https://data.vlaanderen.be/ns/generiek#gestructureerdeIdentificator", //Enkel Vlaanderen
+        "http://www.w3.org/2004/02/skos/core#notation",
+        "http://purl.org/dc/terms/creator", //Enkel Vlaanderen
+        "http://www.w3.org/ns/adms#schemaAgency", //Enkel Vlaanderen
+        "http://purl.org/dc/terms/issued", //Enkel Vlaanderen
+      ]
+    },
+    {
+      "type": "https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator",
+      "graphsFilter": [ "http://mu.semte.ch/graphs/public" ],
+      "properties": [
+        "https://data.vlaanderen.be/ns/generiek#lokaleIdentificator",
+        "https://data.vlaanderen.be/ns/generiek#naamruimte", //Enkel Vlaanderen
+        "https://data.vlaanderen.be/ns/generiek#versieIdentificator", //Enkel Vlaanderen
+      ]
+    },
+    {
+      "type": "https://data.vlaanderen.be/ns/persoon#Geboorte",
+      "graphsFilter": [ "http://mu.semte.ch/graphs/public" ],
+      "properties": [
+        "https://data.vlaanderen.be/ns/persoon#datum"
+      ]
+    },
+    {
+      "type": "http://schema.org/ContactPoint",
+      "graphsFilter": [ "http://mu.semte.ch/graphs/public" ],
+      "properties": [
+        "http://www.w3.org/2006/vcard/ns#honorific-prefix",
+        "http://www.w3.org/ns/locn#address",
+        "http://schema.org/hoursAvailable", //Enkel Vlaanderen
+        "http://xmlns.com/foaf/0.1/name",
+        "http://schema.org/email",
+        "http://schema.org/faxNumber",
+        "http://schema.org/openingHours", //Enkel Vlaanderen
+        "http://schema.org/telephone",
+        "http://xmlns.com/foaf/0.1/page",
+        "http://xmlns.com/foaf/0.1/firstName", //Enkel Resources
+        "http://xmlns.com/foaf/0.1/familyName", //Enkel Resources
+        "http://schema.org/contactType", //Enkel Resources
+        "http://mu.semte.ch/vocabularies/ext/secondaryContactPoint", //Enkel Resources
+        "http://schema.org/contactPoint", //Enkel Resources
+      ]
+    },
+    {
+      "type": "http://www.w3.org/ns/locn#Address",
+      "graphsFilter": [ "http://mu.semte.ch/graphs/public" ],
+      "properties": [
+        "https://www.w3.org/ns/locn#locn:location", //Enkel Vlaanderen
+        "https://www.w3.org/ns/locn#locn:geographicName", //Enkel Vlaanderen
+        "https://www.w3.org/ns/locn#rdfs:seeAlso", //Enkel Vlaanderen
+        "https://www.w3.org/ns/locn#locn:geometry", //Enkel Vlaanderen
+        "https://www.w3.org/ns/locn#locn:address", //Enkel Vlaanderen
+        "https://www.w3.org/ns/locn#locn:fullAddress",
+        "https://www.w3.org/ns/locn#locn:poBox",
+        "https://www.w3.org/ns/locn#locn:thoroughfare",
+        "https://www.w3.org/ns/locn#locn:locatorDesignator",
+        "https://www.w3.org/ns/locn#locn:locatorName",
+        "https://www.w3.org/ns/locn#locn:addressArea", //Enkel Vlaanderen
+        "https://www.w3.org/ns/locn#locn:postName",
+        "https://www.w3.org/ns/locn#locn:adminUnitL2", //Enkel Vlaanderen
+        "https://www.w3.org/ns/locn#locn:adminUnitL1", //Enkel Vlaanderen
+        "https://www.w3.org/ns/locn#locn:postCode",
+        "https://www.w3.org/ns/locn#locn:addressId", //Enkel Vlaanderen
+        "https://data.vlaanderen.be/ns/adres#Adresvoorstelling.busnummer", //Enkel Resources
+        "https://data.vlaanderen.be/ns/adres#AdresVoorstelling.huisnummer", //Enkel Resources
+        "https://data.vlaanderen.be/ns/adres#gemeentenaam", //Enkel Resources
+        "https://data.vlaanderen.be/ns/adres#land", //Enkel Resources
+        "http://data.lblod.info/vocabularies/leidinggevenden/adresRegisterId", //Enkel Resources
+        "https://data.vlaanderen.be/ns/adres#verwijstNaar", //Enkel Resources
+      ]
+    }
+  ]
+}
