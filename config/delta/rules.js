@@ -295,11 +295,53 @@ export default [
     match: {
       graph: {
         type: 'uri',
+        value: 'http://mu.semte.ch/graphs/public',
+      },
+    },
+    callback: {
+      url: 'http://delta-producer-publication-graph-maintainer-worship/delta',
+      method: 'POST',
+    },
+    options: {
+      resourceFormat: 'v0.0.1',
+      gracePeriod: 1000,
+      ignoreFromSelf: true,
+      optOutMuScopeIds: [
+        'http://redpencil.data.gift/id/concept/muScope/deltas/initialSync',
+        'http://redpencil.data.gift/id/concept/muScope/deltas/publicationGraphMaintenance',
+      ],
+    },
+  },
+  {
+    match: {
+      graph: {
+        type: 'uri',
         value: 'http://mu.semte.ch/graphs/harvesting',
       },
     },
     callback: {
       url: 'http://delta-producer-publication-graph-maintainer-besluiten/delta',
+      method: 'POST',
+    },
+    options: {
+      resourceFormat: 'v0.0.1',
+      gracePeriod: 1000,
+      ignoreFromSelf: true,
+      optOutMuScopeIds: [
+        'http://redpencil.data.gift/id/concept/muScope/deltas/initialSync',
+        'http://redpencil.data.gift/id/concept/muScope/deltas/publicationGraphMaintenance',
+      ],
+    },
+  },
+  {
+    match: {
+      graph: {
+        type: 'uri',
+        value: 'http://mu.semte.ch/graphs/harvesting',
+      },
+    },
+    callback: {
+      url: 'http://delta-producer-publication-graph-maintainer-worship/delta',
       method: 'POST',
     },
     options: {
