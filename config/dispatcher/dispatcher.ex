@@ -118,6 +118,10 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://delta-producer-publication-graph-maintainer-worship/files/"
   end
 
+  post "/sync/worship/login/*path" do
+    Proxy.forward conn, path, "http://delta-producer-publication-graph-maintainer-worship/login/"
+  end
+
   #################################################################
   # DCAT
   #################################################################
