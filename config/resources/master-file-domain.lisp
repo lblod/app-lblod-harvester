@@ -29,7 +29,75 @@
               :as "file")
             (harvesting-collection :via ,(s-prefix "dct:hasPart")
               :inverse t
-              :as "harvesting-collection"))
+              :as "harvesting-collection")
+            (authentication-configuration :via ,(s-prefix "dgftSec:targetAuthenticationConfiguration")
+              :as "authentication-configuration"))
   :resource-base (s-url "http://data.lblod.info/id/remote-data-objects/")
   :features `(include-uri)
   :on-path "remote-data-objects")
+
+;; 
+;; Authentication Configuration
+;; 
+
+(define-resource authentication-configuration ()
+  :class (s-prefix "dgftSec:AuthenticationConfiguration")
+  :has-one `((secret :via ,(s-prefix "dgftSec:secrets")
+              :as "secret")
+            (security-configuration :via ,(s-prefix "dgftSec:securityConfiguration")
+              :as "security-configuration"))
+  :resource-base (s-url "http://data.lblod.info/id/authentication-configuration")
+  :features `(include-uri)
+  :on-path "authentication-configuration")
+
+;; 
+;; Secrets (Security Credentials)
+;; 
+
+(define-resource credentials ()
+  ;; Abstract superclass, so that it can be used in the frontend
+  :class (s-prefix "dgftSec:Credentials")
+  :resource-base (s-url "http://data.lblod.info/id/credentials/")
+  :features '(include-uri)
+  :on-path "credentials")
+
+(define-resource basic-authentication-credentials (credentials)
+  :class (s-prefix "dgftSec:BasicAuthenticationCredentials")
+  :properties `((:username :string ,(s-prefix "meb:username"))
+                (:password :string ,(s-prefix "muAccount:password")))
+  :resource-base (s-url "http://data.lblod.info/id/basic-authentication-credentials/")
+  :features '(include-uri)
+  :on-path "basic-authentication-credentials")
+
+(define-resource oauth2-credentials (credentials)
+  :class (s-prefix "dgftSec:OAuth2Credentials")
+  :properties `((:clientId      :string ,(s-prefix "dgftOauth:clientId"))
+                (:clientSecret  :string ,(s-prefix "dgftOauth:clientSecret")))
+  :resource-base (s-url "http://data.lblod.info/id/oauth-2-credentials/")
+  :features '(include-uri)
+  :on-path "oauth2-credentials")
+
+;;
+;; Security Schemes
+;;
+
+(define-resource security-scheme ()
+  ;; Abstract superclass
+  :class (s-prefix "wotSec:SecurityScheme")
+  :resource-base (s-url "http://data.lblod.info/id/security-scheme/")
+  :features '(include-uri)
+  :on-path "security-scheme")
+
+(define-resource basic-authentication-configuration (security-scheme)
+  :class (s-prefix "wotSec:BasicSecurityScheme")
+  :resource-base (s-url "http://data.lblod.info/id/basic-security-scheme/")
+  :features '(include-uri)
+  :on-path "basic-security-scheme")
+
+(define-resource oauth2-security-scheme (security-scheme)
+  :class (s-prefix "wotSec:OAuth2SecurityScheme")
+  :properties `((:token :string ,(s-prefix "wotSec:token"))
+                (:flow  :string ,(s-prefix "wotSec:flow")))
+  :resource-base (s-url "http://data.lblod.info/id/oauth2-security-scheme/")
+  :features '(include-uri)
+  :on-path "oauth2-security-scheme")

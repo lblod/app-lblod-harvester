@@ -64,6 +64,10 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://cache/remote-data-objects/"
   end
 
+  match "/basic-authentication-credentials/*path", %{ layer: :resources, accept: %{ json: true } } do
+    Proxy.forward conn, path, "http://cache/basic-authentication-credentials/"
+  end
+
   match "/harvesting-collections/*path", %{ layer: :resources, accept: %{ json: true } } do
     Proxy.forward conn, path, "http://cache/harvesting-collections/"
   end
