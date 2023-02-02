@@ -54,7 +54,7 @@ defmodule Acl.UserGroups.Config do
                         "http://www.w3.org/ns/dcat#Dataset",
                         "http://www.w3.org/ns/dcat#Distribution",
                         "http://www.w3.org/ns/dcat#Catalog",
-                        "http://lblod.data.gift/vocabularies/security/BasicAuthenticationCredentials"
+                        "http://lblod.data.gift/vocabularies/security/Credentials"
                       ]
                     } } ] },
 
