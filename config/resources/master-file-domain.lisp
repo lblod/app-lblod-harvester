@@ -42,26 +42,26 @@
 
 (define-resource authentication-configuration ()
   :class (s-prefix "dgftSec:AuthenticationConfiguration")
-  :has-one `((secret :via ,(s-prefix "dgftSec:secrets")
-              :as "secret")
-            (security-configuration :via ,(s-prefix "dgftSec:securityConfiguration")
-              :as "security-configuration"))
-  :resource-base (s-url "http://data.lblod.info/id/authentication-configuration")
+  :has-one `((credential :via ,(s-prefix "dgftSec:secrets")
+              :as "credential")
+            (security-scheme :via ,(s-prefix "dgftSec:securityConfiguration")
+              :as "security-scheme"))
+  :resource-base (s-url "http://data.lblod.info/id/authentication-configurations/")
   :features `(include-uri)
-  :on-path "authentication-configuration")
+  :on-path "authentication-configurations")
 
 ;; 
 ;; Secrets (Security Credentials)
 ;; 
 
-(define-resource credentials ()
+(define-resource credential ()
   ;; Abstract superclass, so that it can be used in the frontend
   :class (s-prefix "dgftSec:Credentials")
   :resource-base (s-url "http://data.lblod.info/id/credentials/")
   :features '(include-uri)
   :on-path "credentials")
 
-(define-resource basic-authentication-credentials (credentials)
+(define-resource basic-authentication-credential (credential)
   :class (s-prefix "dgftSec:BasicAuthenticationCredentials")
   :properties `((:username :string ,(s-prefix "meb:username"))
                 (:password :string ,(s-prefix "muAccount:password")))
@@ -69,7 +69,7 @@
   :features '(include-uri)
   :on-path "basic-authentication-credentials")
 
-(define-resource oauth2-credentials (credentials)
+(define-resource oauth2-credential (credential)
   :class (s-prefix "dgftSec:OAuth2Credentials")
   :properties `((:clientId      :string ,(s-prefix "dgftOauth:clientId"))
                 (:clientSecret  :string ,(s-prefix "dgftOauth:clientSecret")))
@@ -84,20 +84,20 @@
 (define-resource security-scheme ()
   ;; Abstract superclass
   :class (s-prefix "wotSec:SecurityScheme")
-  :resource-base (s-url "http://data.lblod.info/id/security-scheme/")
+  :resource-base (s-url "http://data.lblod.info/id/security-schemes/")
   :features '(include-uri)
-  :on-path "security-scheme")
+  :on-path "security-schemes")
 
-(define-resource basic-authentication-configuration (security-scheme)
+(define-resource basic-security-scheme (security-scheme)
   :class (s-prefix "wotSec:BasicSecurityScheme")
-  :resource-base (s-url "http://data.lblod.info/id/basic-security-scheme/")
+  :resource-base (s-url "http://data.lblod.info/id/basic-security-schemes/")
   :features '(include-uri)
-  :on-path "basic-security-scheme")
+  :on-path "basic-security-schemes")
 
 (define-resource oauth2-security-scheme (security-scheme)
   :class (s-prefix "wotSec:OAuth2SecurityScheme")
   :properties `((:token :string ,(s-prefix "wotSec:token"))
                 (:flow  :string ,(s-prefix "wotSec:flow")))
-  :resource-base (s-url "http://data.lblod.info/id/oauth2-security-scheme/")
+  :resource-base (s-url "http://data.lblod.info/id/oauth2-security-schemes/")
   :features '(include-uri)
-  :on-path "oauth2-security-scheme")
+  :on-path "oauth2-security-schemes")
