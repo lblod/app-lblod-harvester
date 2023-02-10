@@ -71,8 +71,8 @@
 
 (define-resource oauth2-credential (credential)
   :class (s-prefix "dgftSec:OAuth2Credentials")
-  :properties `((:clientId      :string ,(s-prefix "dgftOauth:clientId"))
-                (:clientSecret  :string ,(s-prefix "dgftOauth:clientSecret")))
+  :properties `((:client-id      :string ,(s-prefix "dgftOauth:clientId"))
+                (:client-secret  :string ,(s-prefix "dgftOauth:clientSecret")))
   :resource-base (s-url "http://data.lblod.info/id/oauth-2-credentials/")
   :features '(include-uri)
   :on-path "oauth2-credentials")
