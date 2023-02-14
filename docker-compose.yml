@@ -152,7 +152,7 @@ services:
     restart: always
     logging: *default-logging
   harvesting-diff:
-    image: lblod/harvesting-diff-service:0.0.1
+    image: lblod/harvesting-diff-service:0.1.0
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
     volumes:
@@ -250,7 +250,7 @@ services:
       CRON_PATTERN_DUMP_JOB: "0 0 0 * * 6" # weekly on saturday
       CRON_PATTERN_HEALING_JOB: "0 0 2 * * *" # everyday at 2 AM
       START_INITIAL_SYNC: "false" # prefer to disable it now. We want to have feeling with how the DB acts.
-      ERROR_CREATOR_URI: 'http://lblod.data.gift/services/delta-producer-background-jobs-initiator-besluiten'
+      ERROR_CREATOR_URI: "http://lblod.data.gift/services/delta-producer-background-jobs-initiator-besluiten"
     labels:
       - "logging=true"
     restart: always
@@ -267,14 +267,14 @@ services:
       INITIAL_PUBLICATION_GRAPH_SYNC_JOB_OPERATION: "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/initialPublicationGraphSyncing/besluiten"
       QUEUE_POLL_INTERVAL: 3000
       USE_VIRTUOSO_FOR_EXPENSIVE_SELECTS: "true"
-      SKIP_MU_AUTH_INITIAL_SYNC: 'true'
-      PUBLISHER_URI: 'http://data.lblod.info/services/delta-production-json-diff-file-manager-besluiten'
+      SKIP_MU_AUTH_INITIAL_SYNC: "true"
+      PUBLISHER_URI: "http://data.lblod.info/services/delta-production-json-diff-file-manager-besluiten"
       SERVE_DELTA_FILES: "true"
       DELTA_INTERVAL_MS: 10000
       PRETTY_PRINT_DIFF_JSON: "true"
       FILES_GRAPH: "http://mu.semte.ch/graphs/harvesting"
       ERROR_GRAPH: "http://mu.semte.ch/graphs/harvesting"
-      ERROR_CREATOR_URI: 'http://lblod.data.gift/services/delta-producer-publication-graph-maintainer-besluiten'
+      ERROR_CREATOR_URI: "http://lblod.data.gift/services/delta-producer-publication-graph-maintainer-besluiten"
     volumes:
       - ./config/delta-producer/besluiten:/config
       - ./data/files/:/share
@@ -283,12 +283,12 @@ services:
     #      - "logging=true"
     restart: always
     logging: *default-logging
-################################################################################
-# DELTA BESLUITEN: END
-################################################################################
-################################################################################
-# DELTA WORSHIP: START
-################################################################################
+  ################################################################################
+  # DELTA BESLUITEN: END
+  ################################################################################
+  ################################################################################
+  # DELTA WORSHIP: START
+  ################################################################################
   delta-producer-background-jobs-initiator-worship:
     image: lblod/delta-producer-background-jobs-initiator:0.4.1
     environment:
@@ -299,7 +299,7 @@ services:
       CRON_PATTERN_DUMP_JOB: "0 0 0 * * 6" # weekly on saturday
       CRON_PATTERN_HEALING_JOB: "0 0 3 * * *" # everyday at 3 AM
       START_INITIAL_SYNC: "false" # prefer to disable it now. We want to have feeling with how the DB acts.
-      ERROR_CREATOR_URI: 'http://lblod.data.gift/services/delta-producer-background-jobs-initiator-worship'
+      ERROR_CREATOR_URI: "http://lblod.data.gift/services/delta-producer-background-jobs-initiator-worship"
     labels:
       - "logging=true"
     restart: always
