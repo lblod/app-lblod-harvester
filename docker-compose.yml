@@ -161,6 +161,16 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
+  harvesting-execute-diff-deletes:
+    image: lblod/harvesting-execute-diff-deletes-service:1.0.0
+    environment:
+      TARGET_GRAPH: "http://mu.semte.ch/graphs/public"
+    volumes:
+      - ./data/files:/share
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
   harvesting-sameas:
     image: lblod/import-with-sameas-service:2.1.9
     environment:
