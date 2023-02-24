@@ -66,3 +66,6 @@
 (add-prefix "cogs" "http://vocab.deri.ie/cogs#")
 (add-prefix "task" "http://redpencil.data.gift/vocabularies/tasks/")
 (add-prefix "dcat" "http://www.w3.org/ns/dcat#")
+(add-prefix "dgftSec" "http://lblod.data.gift/vocabularies/security/")
+(add-prefix "wotSec" "https://www.w3.org/2019/wot/security#")
+(add-prefix "dgftOauth" "http://kanselarij.vo.data.gift/vocabularies/oauth-2.0-session/")
