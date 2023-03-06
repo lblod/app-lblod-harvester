@@ -156,6 +156,10 @@ Set the access function of the harvesting group to the logged_in_user() function
 
 Note: make sure you are running a frontend-harvesting-self-service version that has the AUTHENTICATION_ENABLED feature flag
 
+At last you will need to remove the `DEFAULT_MU_AUTH_ALLOWED_GROUPS_HEADER` & `DEFAULT_ACCESS_CONTROL_ALLOW_ORIGIN_HEADER` 
+variables from the identifier service.
+
+
 ##### Additional notes
 
 ###### Performance
