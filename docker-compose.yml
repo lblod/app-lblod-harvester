@@ -22,9 +22,9 @@ services:
     restart: always
     logging: *default-logging
   frontend:
-    image: lblod/frontend-harvesting-self-service:1.10.0
+    image: lblod/frontend-harvesting-self-service:1.10.1
     environment:
-      AUTHENTICATION_ENABLED: "true"
+      EMBER_AUTHENTICATION_ENABLED: "true"
     volumes:
       - ./config/frontend:/config
     labels:
