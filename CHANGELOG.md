@@ -1,4 +1,7 @@
 # Changelog
+## 0.10.0 (2023-02-23)
+### :rocket: Enhancement
+ - added support for authentication in normal jobs (scheduled jobs is still WIP)
 ## 0.9.0 (2022-12-02)
 ### :rocket: Enhancement
 - improve performance by using a diff step by @nbittich in https://github.com/lblod/app-lblod-harvester/pull/19
