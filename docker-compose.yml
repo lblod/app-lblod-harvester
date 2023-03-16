@@ -152,7 +152,7 @@ services:
     restart: always
     logging: *default-logging
   harvesting-diff:
-    image: lblod/harvesting-diff-service:0.1.1
+    image: lblod/harvesting-diff-service:0.1.2
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
     volumes:
@@ -162,7 +162,7 @@ services:
     restart: always
     logging: *default-logging
   harvesting-execute-diff-deletes:
-    image: lblod/harvesting-execute-diff-deletes-service:1.0.0
+    image: lblod/harvesting-execute-diff-deletes-service:1.0.1
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/public"
     volumes:
@@ -172,7 +172,7 @@ services:
     restart: always
     logging: *default-logging
   harvesting-sameas:
-    image: lblod/import-with-sameas-service:2.2.0
+    image: lblod/import-with-sameas-service:3.0.0-beta.2
     environment:
       BATCH_SIZE: "1"
       RENAME_DOMAIN: "http://data.lblod.info/id/"
