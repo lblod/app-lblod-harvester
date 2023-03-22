@@ -106,7 +106,7 @@ This app allows you to both add authentication fields to the job & scheduled-job
 
 #### Frontend service
 
-Add the `EMBER_AUTHENICATION_ENABLED` environment variable to the frontend service and set it to TRUE
+Add the `EMBER_AUTHENTICATION_ENABLED` environment variable to the frontend service and set it to TRUE
 
 ```yaml
 frontend:
@@ -158,6 +158,8 @@ Note: make sure you are running a frontend-harvesting-self-service version that 
 
 At last you will need to remove the `DEFAULT_MU_AUTH_ALLOWED_GROUPS_HEADER` & `DEFAULT_ACCESS_CONTROL_ALLOW_ORIGIN_HEADER` 
 variables from the identifier service.
+
+To have access to the frontend app you will need to create an account through migrations. 
 
 
 ##### Additional notes
