@@ -100,6 +100,66 @@ To make sure the app can share data, producers need to be set up. There is an in
 3. `drc up -d delta-producer-background-jobs-initiator-besluiten`
 4. You can follow the status of the job, through the dashboard
 
+### Authentication
+
+This app allows you to both add authentication fields to the job & scheduled-jobs request as protect the app from unauthorized access via both the frontend app and api. To allow authentication you need to add an environment variable to the frontend-harvester-self-service service and update the mu-auth config.
+
+#### Frontend service
+
+Add the `EMBER_AUTHENICATION_ENABLED` environment variable to the frontend service and set it to TRUE
+
+```yaml
+frontend:
+    image: lblod/frontend-harvesting-self-service:1.9.2
+    environment:
+      EMBER_AUTHENICATION_ENABLED: 'true'
+    volumes:
+      - ./config/frontend:/config
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-loggingEMBER_AUTHENICATION_ENABLED: 'true'
+```
+
+#### mu-auth
+Add the following function to the config:
+
+``` elixir
+defmodule Acl.UserGroups.Config do
+  ...
+  defp logged_in_user() do
+    %AccessByQuery{
+      vars: [],
+      query: "PREFIX session: <http://mu.semte.ch/vocabularies/session/>
+              SELECT DISTINCT ?account WHERE {
+                  <SESSION_ID> session:account ?account.
+        }"
+      }
+  end
+  ...
+```
+
+Set the access function of the harvesting group to the logged_in_user() function:
+
+```elixir
+  ...
+  def user_groups do
+    [
+      # Harvesting
+      %GroupSpec{
+        name: "harvesting",
+        useage: [:write, :read_for_write, :read],
+        access: logged_in_user(),
+        graphs: [ %GraphSpec{
+          ...
+```
+
+Note: make sure you are running a frontend-harvesting-self-service version that has the AUTHENTICATION_ENABLED feature flag
+
+At last you will need to remove the `DEFAULT_MU_AUTH_ALLOWED_GROUPS_HEADER` & `DEFAULT_ACCESS_CONTROL_ALLOW_ORIGIN_HEADER` 
+variables from the identifier service.
+
+
 ##### Additional notes
 
 ###### Performance
