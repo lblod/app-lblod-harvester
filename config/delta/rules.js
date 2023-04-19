@@ -181,28 +181,6 @@ export default [
     },
     callback: {
       method: 'POST',
-      url: 'http://harvesting-execute-diff-deletes/delta',
-    },
-    options: {
-      resourceFormat: 'v0.0.1',
-      gracePeriod: 1000,
-      ignoreFromSelf: true,
-      optOutMuScopeIds: ['http://redpencil.data.gift/id/concept/muScope/deltas/initialSync'],
-    },
-  },
-  {
-    match: {
-      predicate: {
-        type: 'uri',
-        value: 'http://www.w3.org/ns/adms#status',
-      },
-      object: {
-        type: 'uri',
-        value: 'http://redpencil.data.gift/id/concept/JobStatus/scheduled',
-      },
-    },
-    callback: {
-      method: 'POST',
       url: 'http://harvest-check-url/delta',
     },
     options: {
