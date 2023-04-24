@@ -1,4 +1,10 @@
 # Changelog
+## 0.11.0 (2023-03-10)
+- bump frontend with new features
+  - add login feature flag (turn login on/off)
+  - model change, store job auth info in harvest-collection instead of remote data object
+- add authentication configuration to harvest-collection model (resources)
+- bump harvest collector to support authentication configuration model change
 ## 0.10.0 (2023-02-23)
 ### :rocket: Enhancement
  - added support for authentication in normal jobs (scheduled jobs is still WIP)

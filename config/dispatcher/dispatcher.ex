@@ -124,15 +124,6 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://cache/files/"
   end
 
-
-  #################################################################
-  # auth
-  #################################################################
-
-  match "/sessions/\*path" do
-    Proxy.forward conn, path, "http://login/sessions/"
-  end
-
   #################################################################
   # lblod-harvester besluiten sync
   #################################################################
