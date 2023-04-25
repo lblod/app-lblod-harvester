@@ -100,6 +100,14 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
+  login:
+    image: semtech/login-service:2.9.1
+    environment:
+      USERS_GRAPH: "http://mu.semte.ch/graphs/users"
+      SESSIONS_GRAPH: "http://mu.semte.ch/graphs/sessions"
+    logging: *default-logging
+    labels:
+      - "logging=true"
   harvesting-download-url:
     image: lblod/download-url-service:1.0.1
     volumes:
