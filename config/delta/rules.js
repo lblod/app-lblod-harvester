@@ -278,7 +278,7 @@ export default [
       },
     },
     callback: {
-      url: 'http://delta-producer-publication-graph-maintainer-besluiten/delta',
+      url: 'http://delta-producer-publication-graph-maintainer/besluiten/delta',
       method: 'POST',
     },
     options: {
@@ -299,7 +299,7 @@ export default [
       },
     },
     callback: {
-      url: 'http://delta-producer-publication-graph-maintainer-worship/delta',
+      url: 'http://delta-producer-publication-graph-maintainer/worship/delta',
       method: 'POST',
     },
     options: {
@@ -320,7 +320,7 @@ export default [
       },
     },
     callback: {
-      url: 'http://delta-producer-publication-graph-maintainer-besluiten/delta',
+      url: 'http://delta-producer-publication-graph-maintainer/besluiten/delta',
       method: 'POST',
     },
     options: {
@@ -341,7 +341,7 @@ export default [
       },
     },
     callback: {
-      url: 'http://delta-producer-publication-graph-maintainer-worship/delta',
+      url: 'http://delta-producer-publication-graph-maintainer/worship/delta',
       method: 'POST',
     },
     options: {
