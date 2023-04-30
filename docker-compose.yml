@@ -100,6 +100,12 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
+  harvesting-singleton-jobs:
+    image: lblod/harvesting-singleton-job-service:1.0.0
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
   harvesting-download-url:
     image: lblod/download-url-service:1.0.1
     volumes:
