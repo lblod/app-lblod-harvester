@@ -27,7 +27,7 @@ export default [
     },
     callback: {
       method: 'POST',
-      url: 'http://harvesting-singleton-jobs/delta',
+      url: 'http://harvest_singleton-job/delta',
     },
     options: {
       resourceFormat: 'v0.0.1',
@@ -49,7 +49,7 @@ export default [
     },
     callback: {
       method: 'POST',
-      url: 'http://harvesting-download-url/process-remote-data-objects',
+      url: 'http://harvest_download-url/process-remote-data-objects',
     },
     options: {
       resourceFormat: 'v0.0.1',
@@ -71,7 +71,7 @@ export default [
     },
     callback: {
       method: 'POST',
-      url: 'http://harvest-collector/delta',
+      url: 'http://harvest_collector/delta',
     },
     options: {
       resourceFormat: 'v0.0.1',
@@ -93,7 +93,7 @@ export default [
     },
     callback: {
       method: 'POST',
-      url: 'http://harvest-collector/delta',
+      url: 'http://harvest_collector/delta',
     },
     options: {
       resourceFormat: 'v0.0.1',
@@ -115,7 +115,7 @@ export default [
     },
     callback: {
       method: 'POST',
-      url: 'http://harvest-collector/on-download-failure',
+      url: 'http://harvest_collector/on-download-failure',
     },
     options: {
       resourceFormat: 'v0.0.1',
@@ -137,7 +137,7 @@ export default [
     },
     callback: {
       method: 'POST',
-      url: 'http://harvesting-import/delta',
+      url: 'http://harvest_import/delta',
     },
     options: {
       resourceFormat: 'v0.0.1',
@@ -159,7 +159,7 @@ export default [
     },
     callback: {
       method: 'POST',
-      url: 'http://harvesting-validator/delta',
+      url: 'http://harvest_validator/delta',
     },
     options: {
       resourceFormat: 'v0.0.1',
@@ -181,7 +181,7 @@ export default [
     },
     callback: {
       method: 'POST',
-      url: 'http://harvesting-diff/delta',
+      url: 'http://harvest_diff/delta',
     },
     options: {
       resourceFormat: 'v0.0.1',
@@ -203,7 +203,7 @@ export default [
     },
     callback: {
       method: 'POST',
-      url: 'http://harvest-check-url/delta',
+      url: 'http://harvest_check-url/delta',
     },
     options: {
       resourceFormat: 'v0.0.1',
@@ -225,7 +225,7 @@ export default [
     },
     callback: {
       method: 'POST',
-      url: 'http://harvesting-sameas/delta',
+      url: 'http://harvest_sameas/delta',
     },
     options: {
       resourceFormat: 'v0.0.1',
@@ -243,7 +243,7 @@ export default [
     },
     callback: {
       method: 'POST',
-      url: 'http://job-controller-service/delta',
+      url: 'http://job-controller/delta',
     },
     options: {
       resourceFormat: 'v0.0.1',
@@ -407,7 +407,7 @@ export default [
     },
     callback: {
       method: 'POST',
-      url: 'http://scheduled-job-controller-service/delta',
+      url: 'http://scheduled-job-controller/delta',
     },
     options: {
       resourceFormat: 'v0.0.1',
@@ -429,7 +429,7 @@ export default [
     },
     callback: {
       method: 'POST',
-      url: 'http://scheduled-job-controller-service/delta',
+      url: 'http://scheduled-job-controller/delta',
     },
     options: {
       resourceFormat: 'v0.0.1',
