@@ -1,62 +1,95 @@
 version: '3.7'
 
 services:
+
   identifier:
     restart: "no"
-    ports:
-      - "80:80"
+
   dispatcher:
     restart: "no"
+
   frontend:
     restart: "no"
-  migrations:
-    restart: "no"
-  virtuoso:
-    restart: "no"
-    ports:
-      - "8890:8890"
+
   database:
     restart: "no"
+
+  virtuoso:
+    restart: "no"
+
+  migrations:
+    restart: "no"
+
   cache:
     restart: "no"
+
   resource:
     restart: "no"
+
   deltanotifier:
     restart: "no"
+
   file:
     restart: "no"
+
   login:
     restart: "no"
-  harvesting-download-url:
+
+  harvest_singleton-job:
+    restart: "no"
+
+  harvest_download-url:
     environment:
       CACHING_MAX_RETRIES: 5
     restart: "no"
-  harvest-collector:
+
+  harvest_check-url:
     restart: "no"
-  harvesting-import:
+
+  harvest_collector:
     restart: "no"
-  harvesting-sameas:
+
+  harvest_import:
     restart: "no"
-  job-controller-service:
+
+  harvest_validator:
     restart: "no"
-  scheduled-job-controller-service:
+
+  harvest_diff:
     restart: "no"
-  deliver-email-service:
+
+  harvest_sameas:
     restart: "no"
-  delta-producer-report-generator:
+
+  job-controller:
     restart: "no"
-  delta-producer-background-jobs-initiator-besluiten:
+
+  scheduled-job-controller:
     restart: "no"
-  delta-producer-publication-graph-maintainer-besluiten:
+
+  deliver-email:
     restart: "no"
-  delta-producer-publication-graph-maintainer-worship:
-    restart: "no"
-  harvesting-validator:
-    restart: "no"
-  harvesting-diff:
-    restart: "no"
+
   error-alert:
     environment:
       EMAIL_FROM: "noreply@lblod.info"
       EMAIL_TO: "noreply@lblod.info"
+    restart: "no"
+
+  delta-producer-report-generator:
+    restart: "no"
+
+  delta-producer-dump-file-publisher:
+    restart: "no"
+
+  delta-producer-background-jobs-initiator-besluiten:
+    restart: "no"
+
+  delta-producer-publication-graph-maintainer-besluiten:
+    restart: "no"
+
+  delta-producer-background-jobs-initiator-worship:
+    restart: "no"
+
+  delta-producer-publication-graph-maintainer-worship:
     restart: "no"
