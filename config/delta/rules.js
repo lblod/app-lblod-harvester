@@ -71,7 +71,7 @@ export default [
     },
     callback: {
       method: 'POST',
-      url: 'http://harvest_collector/delta',
+      url: 'http://harvest_collect/delta',
     },
     options: {
       resourceFormat: 'v0.0.1',
@@ -93,7 +93,7 @@ export default [
     },
     callback: {
       method: 'POST',
-      url: 'http://harvest_collector/delta',
+      url: 'http://harvest_collect/delta',
     },
     options: {
       resourceFormat: 'v0.0.1',
@@ -115,7 +115,7 @@ export default [
     },
     callback: {
       method: 'POST',
-      url: 'http://harvest_collector/on-download-failure',
+      url: 'http://harvest_collect/on-download-failure',
     },
     options: {
       resourceFormat: 'v0.0.1',
@@ -159,7 +159,7 @@ export default [
     },
     callback: {
       method: 'POST',
-      url: 'http://harvest_validator/delta',
+      url: 'http://harvest_validate/delta',
     },
     options: {
       resourceFormat: 'v0.0.1',
