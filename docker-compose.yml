@@ -28,7 +28,7 @@ services:
     logging: *default-logging
 
   frontend:
-    image: lblod/frontend-harvesting-self-service:2.1.0-beta.1
+    image: lblod/frontend-harvesting-self-service:2.1.0
     volumes:
       - ./config/frontend:/config
     labels:
@@ -112,7 +112,7 @@ services:
     logging: *default-logging
 
   harvest_singleton-job:
-    image: lblod/harvesting-singleton-job-service:1.0.0-beta.2
+    image: lblod/harvesting-singleton-job-service:1.0.0
     labels:
       - "logging=true"
     restart: always
@@ -142,7 +142,7 @@ services:
     logging: *default-logging
 
   harvest_collector:
-    image: lblod/harvest-collector-service:0.9.0-beta.1
+    image: lblod/harvest-collector-service:0.9.0
     volumes:
       - ./data/files:/share
     labels:
