@@ -244,6 +244,9 @@ services:
     environment:
       SUDO_QUERY_RETRY_FOR_HTTP_STATUS_CODES: "404"
       MAX_BODY_SIZE: "50mb"
+      ACCOUNT: "http://lblod.data.gift/accounts/e98d2b13-a09c-4b56-968d-cbc11991f308"
+      KEY: "66d0fda1-e987-4cf3-bf8c-80ee16271214"
+      PRETTY_PRINT_DIFF_JSON: "true"
     volumes:
       - ./config/delta-producer:/config
       - ./data/files/:/share
