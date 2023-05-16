@@ -7,8 +7,9 @@ x-logging: &default-logging
     max-file: "3"
 
 services:
+
   identifier:
-    image: semtech/mu-identifier:1.9.1
+    image: semtech/mu-identifier:1.10.0
     environment:
       DEFAULT_MU_AUTH_ALLOWED_GROUPS_HEADER: '[{"variables":[],"name":"harvesting"}, {"variables":[],"name":"clean"}]'
       DEFAULT_ACCESS_CONTROL_ALLOW_ORIGIN_HEADER: "*"
@@ -16,6 +17,7 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
+
   dispatcher:
     image: semtech/mu-dispatcher:2.1.0-beta.2
     volumes:
@@ -24,16 +26,18 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
+
   frontend:
-    image: lblod/frontend-harvesting-self-service:1.11.0
+    image: lblod/frontend-harvesting-self-service:2.1.0
     volumes:
       - ./config/frontend:/config
     labels:
       - "logging=true"
     restart: always
     logging: *default-logging
+
   database:
-    image: cecemel/mu-authorization:0.6.0-beta.8
+    image: semtech/mu-authorization:0.6.0-beta.8
     environment:
       MU_SPARQL_ENDPOINT: "http://virtuoso:8890/sparql"
     volumes:
@@ -42,8 +46,9 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
+
   virtuoso:
-    image: tenforce/virtuoso:1.3.2-virtuoso7.2.2
+    image: redpencil/virtuoso:1.1.0
     environment:
       SPARQL_UPDATE: "true"
       DEFAULT_GRAPH: "http://mu.semte.ch/graphs/public"
@@ -55,8 +60,9 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
+
   migrations:
-    image: semtech/mu-migrations-service:0.7.0
+    image: semtech/mu-migrations-service:0.8.0
     links:
       - virtuoso:database
     volumes:
@@ -64,6 +70,7 @@ services:
     restart: always
     labels:
       - "logging=true"
+
   cache:
     image: semtech/mu-cache:2.0.2
     links:
@@ -72,8 +79,9 @@ services:
     labels:
       - "logging=true"
     logging: *default-logging
+
   resource:
-    image: semtech/mu-cl-resources:1.21.1
+    image: semtech/mu-cl-resources:1.22.0
     environment:
       CACHE_CLEAR_PATH: "http://cache/.mu/clear-keys"
     volumes:
@@ -82,16 +90,18 @@ services:
     labels:
       - "logging=true"
     logging: *default-logging
+
   deltanotifier:
-    image: cecemel/delta-notifier:0.2.0-beta.2
+    image: cecemel/delta-notifier:0.2.0-beta.3
     volumes:
       - ./config/delta:/config
     labels:
       - "logging=true"
     restart: always
     logging: *default-logging
+
   file:
-    image: semtech/mu-file-service:3.1.0
+    image: semtech/mu-file-service:3.3.0
     environment:
       MU_APPLICATION_GRAPH: "http://mu.semte.ch/graphs/harvesting"
     volumes:
@@ -100,8 +110,16 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
-  harvesting-download-url:
-    image: lblod/download-url-service:1.0.1
+
+  harvest_singleton-job:
+    image: lblod/harvesting-singleton-job-service:1.0.0
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
+
+  harvest_download-url:
+    image: lblod/download-url-service:1.0.3
     volumes:
       - ./data/files:/share
     environment:
@@ -113,7 +131,8 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
-  harvest-check-url:
+
+  harvest_check-url:
     image: lblod/harvest-check-url-collection-service:1.2.1
     volumes:
       - ./data/files:/share
@@ -121,15 +140,17 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
-  harvest-collector:
-    image: lblod/harvest-collector-service:0.8.0
+
+  harvest_collect:
+    image: lblod/harvest-collector-service:0.9.0
     volumes:
       - ./data/files:/share
     labels:
       - "logging=true"
     restart: always
     logging: *default-logging
-  harvesting-import:
+
+  harvest_import:
     image: lblod/harvesting-import-service:0.7.1
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
@@ -139,8 +160,9 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
-  harvesting-validator:
-    image: lblod/harvesting-validator:0.1.6
+
+  harvest_validate:
+    image: lblod/harvesting-validator:0.1.7
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
       STRICT_MODE_FILTERING: "false"
@@ -151,8 +173,9 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
-  harvesting-diff:
-    image: lblod/harvesting-diff-service:0.1.0
+
+  harvest_diff:
+    image: lblod/harvesting-diff-service:0.1.3
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
     volumes:
@@ -161,10 +184,10 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
-  harvesting-sameas:
-    image: lblod/import-with-sameas-service:2.1.9
+
+  harvest_sameas:
+    image: lblod/import-with-sameas-service:3.1.0
     environment:
-      BATCH_SIZE: "1"
       RENAME_DOMAIN: "http://data.lblod.info/id/"
       TARGET_GRAPH: "http://mu.semte.ch/graphs/public"
     volumes:
@@ -174,15 +197,17 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
-  job-controller-service:
-    image: lblod/job-controller-service:0.7.2
+
+  job-controller:
+    image: lblod/job-controller-service:1.0.0
     volumes:
       - ./config/job-controller:/config
     labels:
       - "logging=true"
     restart: always
     logging: *default-logging
-  scheduled-job-controller-service:
+
+  scheduled-job-controller:
     image: lblod/scheduled-job-controller-service:0.1.0-beta.5
     environment:
       # NOTE: if the delta-events prove to inaccurate,
@@ -195,14 +220,16 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
-  deliver-email-service:
-    image: redpencil/deliver-email-service:0.3.1
+
+  deliver-email:
+    image: redpencil/deliver-email-service:0.3.3
     environment:
       MAILBOX_URI: "http://data.lblod.info/id/mailboxes/1"
     labels:
       - "logging=true"
     restart: always
     logging: *default-logging
+
   error-alert:
     image: lblod/loket-error-alert-service:1.0.0
     volumes:
@@ -211,9 +238,11 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
-  ################################################################################
+
+  #############################################################################
   # DELTA GENERAL
-  ################################################################################
+  #############################################################################
+
   delta-producer-report-generator:
     image: lblod/delta-producer-report-generator:0.4.0
     volumes:
@@ -226,8 +255,9 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
+
   delta-producer-dump-file-publisher:
-    image: lblod/delta-producer-dump-file-publisher:0.9.0
+    image: lblod/delta-producer-dump-file-publisher:0.9.1
     environment:
       FILES_GRAPH: "http://mu.semte.ch/graphs/harvesting"
       DCAT_DATASET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
@@ -239,6 +269,7 @@ services:
     #      - "logging=true"
     restart: always
     logging: *default-logging
+
   delta-producer-publication-graph-maintainer:
     image: janpieterbaert/delta-producer-publication-graph-maintainer:feature-multiple-sources
     environment:
@@ -255,9 +286,10 @@ services:
     logging: *default-logging
   ################################################################################
   # DELTA BESLUITEN
-  ################################################################################
+  #############################################################################
+
   delta-producer-background-jobs-initiator-besluiten:
-    image: lblod/delta-producer-background-jobs-initiator:0.4.1
+    image: lblod/delta-producer-background-jobs-initiator:0.4.2
     environment:
       JOBS_GRAPH: "http://mu.semte.ch/graphs/harvesting"
       DUMP_FILE_CREATION_JOB_OPERATION: "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/deltaDumpFileCreation/besluiten"
@@ -271,14 +303,16 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
-  ################################################################################
+  #############################################################################
   # DELTA BESLUITEN: END
-  ################################################################################
-  ################################################################################
+  #############################################################################
+
+  #############################################################################
   # DELTA WORSHIP: START
-  ################################################################################
+  #############################################################################
+
   delta-producer-background-jobs-initiator-worship:
-    image: lblod/delta-producer-background-jobs-initiator:0.4.1
+    image: lblod/delta-producer-background-jobs-initiator:0.4.2
     environment:
       JOBS_GRAPH: "http://mu.semte.ch/graphs/harvesting"
       DUMP_FILE_CREATION_JOB_OPERATION: "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/deltaDumpFileCreation/worship"
@@ -294,4 +328,4 @@ services:
     logging: *default-logging
 ################################################################################
 # DELTA WORSHIP: END
-################################################################################
+###############################################################################
