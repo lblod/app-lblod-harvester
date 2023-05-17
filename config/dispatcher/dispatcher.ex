@@ -128,18 +128,18 @@ defmodule Dispatcher do
   # lblod-harvester besluiten sync
   #################################################################
   get "/sync/besluiten/files/*path", %{ layer: :resources, accept: %{ json: true } } do
-    Proxy.forward conn, path, "http://delta-producer-publication-graph-maintainer-besluiten/files/"
+    Proxy.forward conn, path, "http://delta-producer-publication-graph-maintainer/besluiten/files/"
   end
 
   #################################################################
   # lblod-harvester worhsip sync
   #################################################################
   get "/sync/worship/files/*path", %{ layer: :resources, accept: %{ json: true } } do
-    Proxy.forward conn, path, "http://delta-producer-publication-graph-maintainer-worship/files/"
+    Proxy.forward conn, path, "http://delta-producer-publication-graph-maintainer/worship/files/"
   end
 
   post "/sync/worship/login/*path" do
-    Proxy.forward conn, path, "http://delta-producer-publication-graph-maintainer-worship/login/"
+    Proxy.forward conn, path, "http://delta-producer-publication-graph-maintainer/worship/login/"
   end
 
   #################################################################
