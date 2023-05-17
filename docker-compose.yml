@@ -268,9 +268,6 @@ services:
     restart: always
     logging: *default-logging
 
-  #############################################################################
-  # DELTA BESLUITEN
-  #############################################################################
   delta-producer-publication-graph-maintainer:
     image: lblod/delta-producer-publication-graph-maintainer:0.16.0
     environment:
@@ -287,54 +284,13 @@ services:
     restart: always
     logging: *default-logging
 
-  #############################################################################
-  # DELTA BESLUITEN: END
-  #############################################################################
-
-  #############################################################################
-  # DELTA WORSHIP: START
-  #############################################################################
 
   delta-producer-background-jobs-initiator:
-    image: lblod/delta-producer-background-jobs-initiator:0.4.2
+    image: lblod/delta-producer-background-jobs-initiator:0.5.0
     volumes:
       - ./config/delta-producer/background-job-initiator/config.json:/config/config.json
-      - /home/nbittich/lblod/delta-producer-background-jobs-initiator:/app
-    environment:
-      NODE_ENV: "development"
     labels:
       - "logging=true"
     restart: always
     logging: *default-logging
 
-  delta-producer-publication-graph-maintainer-worship:
-    image: lblod/delta-producer-publication-graph-maintainer:0.15.4
-    environment:
-      SUDO_QUERY_RETRY_FOR_HTTP_STATUS_CODES: "404"
-      MAX_BODY_SIZE: "50mb"
-      JOBS_GRAPH: "http://mu.semte.ch/graphs/harvesting"
-      RELATIVE_FILE_PATH: "deltas/worship"
-      PUBLICATION_GRAPH: "http://redpencil.data.gift/id/deltas/producer/lblod-harvester-worship-producer"
-      HEALING_JOB_OPERATION: "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/healingOperation/worship"
-      INITIAL_PUBLICATION_GRAPH_SYNC_JOB_OPERATION: "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/initialPublicationGraphSyncing/worship"
-      QUEUE_POLL_INTERVAL: 3000
-      USE_VIRTUOSO_FOR_EXPENSIVE_SELECTS: "true"
-      SKIP_MU_AUTH_INITIAL_SYNC: "true"
-      PUBLISHER_URI: "http://data.lblod.info/services/delta-production-json-diff-file-manager-worship"
-      SERVE_DELTA_FILES: "true"
-      DELTA_INTERVAL_MS: 10000
-      PRETTY_PRINT_DIFF_JSON: "true"
-      KEY: "66d0fda1-e987-4cf3-bf8c-80ee16271214"
-      ACCOUNT: "http://lblod.data.gift/accounts/e98d2b13-a09c-4b56-968d-cbc11991f308"
-      FILES_GRAPH: "http://mu.semte.ch/graphs/worship-mandates-delta-files"
-      ERROR_GRAPH: "http://mu.semte.ch/graphs/harvesting"
-      ERROR_CREATOR_URI: "http://lblod.data.gift/services/delta-producer-publication-graph-maintainer-worship"
-    volumes:
-      - ./config/delta-producer/worship:/config
-      - ./data/files/:/share
-    restart: always
-    logging: *default-logging
-
-###############################################################################
-# DELTA WORSHIP: END
-###############################################################################
