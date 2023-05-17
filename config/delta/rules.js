@@ -300,7 +300,7 @@ export default [
       },
     },
     callback: {
-      url: 'http://delta-producer-publication-graph-maintainer-besluiten/delta',
+      url: 'http://delta-producer-publication-graph-maintainer/besluiten/delta',
       method: 'POST',
     },
     options: {
@@ -321,7 +321,7 @@ export default [
       },
     },
     callback: {
-      url: 'http://delta-producer-publication-graph-maintainer-worship/delta',
+      url: 'http://delta-producer-publication-graph-maintainer/worship/delta',
       method: 'POST',
     },
     options: {
@@ -342,7 +342,7 @@ export default [
       },
     },
     callback: {
-      url: 'http://delta-producer-publication-graph-maintainer-besluiten/delta',
+      url: 'http://delta-producer-publication-graph-maintainer/besluiten/delta',
       method: 'POST',
     },
     options: {
@@ -363,7 +363,7 @@ export default [
       },
     },
     callback: {
-      url: 'http://delta-producer-publication-graph-maintainer-worship/delta',
+      url: 'http://delta-producer-publication-graph-maintainer/worship/delta',
       method: 'POST',
     },
     options: {
@@ -446,12 +446,12 @@ export default [
       },
       object: {
         type: 'uri',
-        value:'http://open-services.net/ns/core#Error'
+        value: 'http://open-services.net/ns/core#Error'
       }
     },
     callback: {
       url: 'http://error-alert/delta',
-      method:'POST'
+      method: 'POST'
     },
     options: {
       resourceFormat: 'v0.0.1',
