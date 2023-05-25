@@ -46,13 +46,15 @@ intial sync, that is potentially very expensive, and must be started manually.
    configuration is provided:
 
      ```yaml
-     delta-producer-background-jobs-initiator-besluiten:
+     delta-producer-background-jobs-initiator:
        environment:
          START_INITIAL_SYNC: 'true'
+     delta-producer-publication-graph-maintainer:
+       environment:
+         KEY: "Add a random key with sufficient entropy"
      ```
-
-3. Restart the service: `drc up -d
-   delta-producer-background-jobs-initiator-besluiten`
+3. Restart the services: `drc up -d delta-producer-background-jobs-initiator
+   delta-producer-publication-graph-maintainer`
 4. You can follow the status of the job, through the dashboard frontend.
 
 ## Additional notes
