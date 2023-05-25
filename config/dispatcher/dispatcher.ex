@@ -132,17 +132,6 @@ defmodule Dispatcher do
   end
 
   #################################################################
-  # lblod-harvester worhsip sync
-  #################################################################
-  get "/sync/worship/files/*path", %{ layer: :resources, accept: %{ json: true } } do
-    Proxy.forward conn, path, "http://delta-producer-publication-graph-maintainer/worship/files/"
-  end
-
-  post "/sync/worship/login/*path" do
-    Proxy.forward conn, path, "http://delta-producer-publication-graph-maintainer/worship/login/"
-  end
-
-  #################################################################
   # DCAT
   #################################################################
   match "/datasets/*path", %{ layer: :resources, accept: %{ json: true } } do
