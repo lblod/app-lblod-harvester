@@ -391,7 +391,12 @@ export default [
     },
     options: {
       resourceFormat: 'v0.0.1',
-      gracePeriod: 1000,
+      //Allow more time (10s) for the frontend to have saved everything. If the
+      //scheduled-job exists before its tasks and authentication configuration,
+      //then the scheduled job service tries to query that data before it is
+      //written to the triplestore, failing to encrypt the secrets for the
+      //scheduled task.
+      gracePeriod: 10000,
       ignoreFromSelf: true,
       optOutMuScopeIds: ['http://redpencil.data.gift/id/concept/muScope/deltas/initialSync'],
     },
