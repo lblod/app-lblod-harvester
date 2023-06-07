@@ -283,7 +283,7 @@ export default [
       },
     },
     callback: {
-      url: 'http://delta-producer-publication-graph-maintainer/besluiten/delta',
+      url: 'http://delta-producer-publication-graph-maintainer/delta',
       method: 'POST',
     },
     options: {
@@ -304,7 +304,7 @@ export default [
       },
     },
     callback: {
-      url: 'http://delta-producer-publication-graph-maintainer/besluiten/delta',
+      url: 'http://delta-producer-publication-graph-maintainer/delta',
       method: 'POST',
     },
     options: {
