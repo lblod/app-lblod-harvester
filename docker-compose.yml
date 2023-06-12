@@ -122,15 +122,12 @@ services:
     restart: always
     logging: *default-logging
 
-  harvest_download-url:
-    image: lblod/download-url-service:1.0.3
+  harvest_scraper:
+    image: nvdk/lblod-scraper
     volumes:
       - ./data/files:/share
     environment:
       DEFAULT_GRAPH: "http://mu.semte.ch/graphs/harvesting"
-      CACHING_MAX_RETRIES: 10
-      CACHING_CRON_PATTERN: "0 */15 * * * *"
-      MAX_PENDING_TIME_IN_SECONDS: 7200
     labels:
       - "logging=true"
     restart: always
@@ -138,15 +135,6 @@ services:
 
   harvest_check-url:
     image: lblod/harvest-check-url-collection-service:1.2.1
-    volumes:
-      - ./data/files:/share
-    labels:
-      - "logging=true"
-    restart: always
-    logging: *default-logging
-
-  harvest_collect:
-    image: lblod/harvest-collector-service:0.9.0
     volumes:
       - ./data/files:/share
     labels:
