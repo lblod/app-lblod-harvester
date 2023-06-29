@@ -103,7 +103,6 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
-
   file:
     image: semtech/mu-file-service:3.3.0
     environment:
@@ -123,7 +122,7 @@ services:
     logging: *default-logging
 
   harvest_scraper:
-    image: nvdk/lblod-scraper
+    image: nvdk/lblod-scraper:1.0.0-beta.1
     volumes:
       - ./data/files:/share
     environment:
@@ -141,9 +140,8 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
-
   harvest_import:
-    image: lblod/harvesting-import-service:0.7.1
+    image: lblod/harvesting-import-service:feature-gzip-support
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
     volumes:
