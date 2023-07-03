@@ -141,7 +141,7 @@ services:
     restart: always
     logging: *default-logging
   harvest_import:
-    image: lblod/harvesting-import-service:feature-gzip-support
+    image: lblod/harvesting-import-service:0.8.0
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
     volumes:
