@@ -37,15 +37,10 @@ services:
   harvest_singleton-job:
     restart: "no"
 
-  harvest_download-url:
-    environment:
-      CACHING_MAX_RETRIES: 5
-    restart: "no"
-
   harvest_check-url:
     restart: "no"
 
-  harvest_collect:
+  harvest_scraper:
     restart: "no"
 
   harvest_import:

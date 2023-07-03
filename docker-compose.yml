@@ -52,7 +52,7 @@ services:
     logging: *default-logging
 
   virtuoso:
-    image: redpencil/virtuoso:1.1.0
+    image: redpencil/virtuoso:1.0.0
     environment:
       SPARQL_UPDATE: "true"
       DEFAULT_GRAPH: "http://mu.semte.ch/graphs/public"
@@ -103,7 +103,6 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
-
   file:
     image: semtech/mu-file-service:3.3.0
     environment:
@@ -122,15 +121,12 @@ services:
     restart: always
     logging: *default-logging
 
-  harvest_download-url:
-    image: lblod/download-url-service:1.0.3
+  harvest_scraper:
+    image: nvdk/lblod-scraper:1.0.0-beta.2
     volumes:
       - ./data/files:/share
     environment:
       DEFAULT_GRAPH: "http://mu.semte.ch/graphs/harvesting"
-      CACHING_MAX_RETRIES: 10
-      CACHING_CRON_PATTERN: "0 */15 * * * *"
-      MAX_PENDING_TIME_IN_SECONDS: 7200
     labels:
       - "logging=true"
     restart: always
@@ -144,18 +140,8 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
-
-  harvest_collect:
-    image: lblod/harvest-collector-service:0.9.0
-    volumes:
-      - ./data/files:/share
-    labels:
-      - "logging=true"
-    restart: always
-    logging: *default-logging
-
   harvest_import:
-    image: lblod/harvesting-import-service:0.7.1
+    image: lblod/harvesting-import-service:0.8.0
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
     volumes:
