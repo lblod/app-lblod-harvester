@@ -48,6 +48,8 @@ services:
 
   harvest_validate:
     restart: "no"
+    environment:
+      LOGGING_LEVEL: "DEBUG" # optionals
 
   harvest_diff:
     restart: "no"
