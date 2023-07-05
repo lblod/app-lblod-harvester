@@ -131,6 +131,14 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
+  harvest_compression:
+    image: semtech/mu-javascript-template:feature-node-16-support
+    volumes:
+      - ./data/files:/share
+      - /home/nbittich/lblod/job-compression-service:/app
+    environment:
+      NODE_ENV: development
+      DEFAULT_GRAPH: "http://mu.semte.ch/graphs/harvesting"
 
   harvest_check-url:
     image: lblod/harvest-check-url-collection-service:1.2.1
