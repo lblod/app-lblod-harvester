@@ -137,6 +137,10 @@ services:
       - ./data/files:/share
     environment:
       DEFAULT_GRAPH: "http://mu.semte.ch/graphs/harvesting"
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
   harvest_check-url:
     image: lblod/harvest-check-url-collection-service:1.2.1
     volumes:
