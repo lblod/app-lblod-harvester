@@ -37,7 +37,6 @@ export default [
     },
   },
 
-
   {
     match: {
       predicate: {
@@ -60,7 +59,6 @@ export default [
       optOutMuScopeIds: ['http://redpencil.data.gift/id/concept/muScope/deltas/initialSync'],
     },
   },
-
 
 
   {
