@@ -104,7 +104,7 @@ services:
     restart: always
     logging: *default-logging
   file:
-    image: semtech/mu-file-service:3.4.0
+    image: semtech/mu-file-service:3.3.0
     environment:
       MU_APPLICATION_GRAPH: "http://mu.semte.ch/graphs/harvesting"
     volumes:
@@ -185,7 +185,7 @@ services:
     logging: *default-logging
 
   harvest_sameas:
-    image: lblod/import-with-sameas-service:3.3.0
+    image: lblod/import-with-sameas-service:3.4.0
     environment:
       RENAME_DOMAIN: "http://data.lblod.info/id/"
       TARGET_GRAPH: "http://mu.semte.ch/graphs/public"
