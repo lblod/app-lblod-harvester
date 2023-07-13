@@ -275,7 +275,7 @@ services:
   delta-producer-publication-graph-maintainer:
     image: lblod/delta-producer-publication-graph-maintainer:0.16.2-rc-3
     environment:
-      SUDO_QUERY_RETRY_FOR_HTTP_STATUS_CODES: "404"
+      SUDO_QUERY_RETRY_FOR_HTTP_STATUS_CODES: "404,500,503"
       MAX_BODY_SIZE: "50mb"
       PRETTY_PRINT_DIFF_JSON: "true"
       CONFIG_SERVICES_JSON_PATH: '/config/publication-graph-maintainer/config.json'
