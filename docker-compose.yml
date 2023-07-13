@@ -104,7 +104,7 @@ services:
     restart: always
     logging: *default-logging
   file:
-    image: semtech/mu-file-service:3.4.0
+    image: semtech/mu-file-service:3.3.0
     environment:
       MU_APPLICATION_GRAPH: "http://mu.semte.ch/graphs/harvesting"
     volumes:
@@ -185,7 +185,7 @@ services:
     logging: *default-logging
 
   harvest_sameas:
-    image: lblod/import-with-sameas-service:3.3.0
+    image: lblod/import-with-sameas-service:3.4.0
     environment:
       RENAME_DOMAIN: "http://data.lblod.info/id/"
       TARGET_GRAPH: "http://mu.semte.ch/graphs/public"
@@ -268,9 +268,9 @@ services:
     logging: *default-logging
 
   delta-producer-publication-graph-maintainer:
-    image: lblod/delta-producer-publication-graph-maintainer:0.16.0
+    image: lblod/delta-producer-publication-graph-maintainer:1.0.0
     environment:
-      SUDO_QUERY_RETRY_FOR_HTTP_STATUS_CODES: "404"
+      SUDO_QUERY_RETRY_FOR_HTTP_STATUS_CODES: "404,500,503"
       MAX_BODY_SIZE: "50mb"
       PRETTY_PRINT_DIFF_JSON: "true"
       CONFIG_SERVICES_JSON_PATH: '/config/publication-graph-maintainer/config.json'
@@ -291,4 +291,3 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
-

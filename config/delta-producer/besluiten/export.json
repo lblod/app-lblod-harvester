@@ -13,8 +13,17 @@
         "http://purl.org/dc/terms/reference",
         "http://purl.org/dc/terms/title",
         "http://data.vlaanderen.be/ns/besluit#Agendapunt.type",
-        "http://www.w3.org/2002/07/owl#sameAs"
-      ]
+        "http://www.w3.org/2002/07/owl#sameAs",
+        "http://www.w3.org/ns/prov#wasDerivedFrom"
+      ],
+      "healingOptions": {
+        "http://data.europa.eu/eli/ontology#description": {
+          "queryChunkSize": 100000
+        },
+        "http://data.europa.eu/eli/ontology#title": {
+          "queryChunkSize": 100000
+        }
+      }
     },
     {
       "type": "http://data.vlaanderen.be/ns/besluit#Artikel",
@@ -27,13 +36,18 @@
         "http://data.europa.eu/eli/ontology#cites",
         "http://data.europa.eu/eli/ontology#corrects",
         "http://data.europa.eu/eli/ontology#corrected_by",
-        "http://www.w3.org/ns/prov#value",
         "http://data.europa.eu/eli/ontology#language",
         "http://data.europa.eu/eli/ontology#title",
         "http://data.europa.eu/eli/ontology#changed_by",
         "http://data.europa.eu/eli/ontology#changes",
-        "http://www.w3.org/2002/07/owl#sameAs"
-      ]
+        "http://www.w3.org/2002/07/owl#sameAs",
+        "http://www.w3.org/ns/prov#wasDerivedFrom"
+      ],
+      "healingOptions": {
+        "http://data.europa.eu/eli/ontology#title": {
+          "queryChunkSize": 100000
+        }
+      }
     },
     {
       "type": "http://data.vlaanderen.be/ns/besluit#BehandelingVanAgendapunt",
@@ -49,7 +63,8 @@
         "http://data.vlaanderen.be/ns/besluit#heeftStemming",
         "http://data.vlaanderen.be/ns/besluit#heeftVoorzitter",
         "http://data.vlaanderen.be/ns/besluit#openbaar",
-        "http://www.w3.org/2002/07/owl#sameAs"
+        "http://www.w3.org/2002/07/owl#sameAs",
+        "http://www.w3.org/ns/prov#wasDerivedFrom"
       ]
     },
     {
@@ -67,13 +82,29 @@
         "http://data.europa.eu/eli/ontology#cites",
         "http://data.europa.eu/eli/ontology#corrects",
         "http://data.europa.eu/eli/ontology#corrected_by",
-        "http://www.w3.org/ns/prov#value",
         "http://data.europa.eu/eli/ontology#language",
         "http://data.europa.eu/eli/ontology#title",
         "http://data.europa.eu/eli/ontology#changed_by",
         "http://data.europa.eu/eli/ontology#changes",
-        "http://www.w3.org/2002/07/owl#sameAs"
-      ]
+        "http://www.w3.org/2002/07/owl#sameAs",
+        "http://data.europa.eu/eli/ontology#passed_by",
+        "http://data.europa.eu/eli/ontology#has_part",
+        "http://data.europa.eu/eli/ontology#date_no_longer_in_force",
+        "http://data.europa.eu/eli/ontology#first_date_entry_in_force",
+        "http://data.europa.eu/eli/ontology#type_document",
+        "http://www.w3.org/ns/prov#wasDerivedFrom"
+      ],
+      "healingOptions": {
+        "http://data.europa.eu/eli/ontology#description": {
+          "queryChunkSize": 100000
+        },
+        "http://data.vlaanderen.be/ns/besluit#motivering": {
+          "queryChunkSize": 50000
+        },
+        "http://data.europa.eu/eli/ontology#title": {
+          "queryChunkSize": 100000
+        }
+      }
     },
     {
       "type": "http://xmlns.com/foaf/0.1/Document",
@@ -93,7 +124,8 @@
         "http://purl.org/dc/terms/isPartOf",
         "https://data.vlaanderen.be/ns/generiek#nummer",
         "http://purl.org/dc/terms/type",
-        "http://www.w3.org/2002/07/owl#sameAs"
+        "http://www.w3.org/2002/07/owl#sameAs",
+        "http://www.w3.org/ns/prov#wasDerivedFrom"
       ]
     },
     {
@@ -102,16 +134,27 @@
       "properties": [
         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
         "http://mu.semte.ch/vocabularies/core/uuid",
+        "http://data.europa.eu/eli/ontology#date_no_longer_in_force",
         "http://data.europa.eu/eli/ontology#cites",
         "http://data.europa.eu/eli/ontology#corrects",
         "http://data.europa.eu/eli/ontology#corrected_by",
+        "http://data.europa.eu/eli/ontology#first_date_entry_in_force",
+        "http://data.europa.eu/eli/ontology#type_document",
         "http://www.w3.org/ns/prov#value",
         "http://data.europa.eu/eli/ontology#language",
         "http://data.europa.eu/eli/ontology#title",
         "http://data.europa.eu/eli/ontology#changed_by",
         "http://data.europa.eu/eli/ontology#changes",
-        "http://www.w3.org/2002/07/owl#sameAs"
-      ]
+        "http://data.europa.eu/eli/ontology#passed_by",
+        "http://data.europa.eu/eli/ontology#has_part",
+        "http://www.w3.org/2002/07/owl#sameAs",
+        "http://www.w3.org/ns/prov#wasDerivedFrom"
+      ],
+      "healingOptions": {
+        "http://data.europa.eu/eli/ontology#title": {
+          "queryChunkSize": 100000
+        }
+      }
     },
     {
       "type": "http://data.europa.eu/eli/ontology#LegalResource",
@@ -123,15 +166,23 @@
         "http://data.europa.eu/eli/ontology#cites",
         "http://data.europa.eu/eli/ontology#corrects",
         "http://data.europa.eu/eli/ontology#corrected_by",
-        "http://data.europa.eu/eli/ontology#cites",
         "http://data.europa.eu/eli/ontology#first_date_entry_in_force",
         "http://data.europa.eu/eli/ontology#type_document",
+        "http://www.w3.org/ns/prov#value",
+        "http://data.europa.eu/eli/ontology#language",
+        "http://data.europa.eu/eli/ontology#title",
         "http://data.europa.eu/eli/ontology#changed_by",
         "http://data.europa.eu/eli/ontology#changes",
         "http://data.europa.eu/eli/ontology#passed_by",
         "http://data.europa.eu/eli/ontology#has_part",
-        "http://www.w3.org/2002/07/owl#sameAs"
-      ]
+        "http://www.w3.org/2002/07/owl#sameAs",
+        "http://www.w3.org/ns/prov#wasDerivedFrom"
+      ],
+      "healingOptions": {
+        "http://data.europa.eu/eli/ontology#title": {
+          "queryChunkSize": 100000
+        }
+      }
     },
     {
       "type": "http://data.europa.eu/eli/ontology#LegalResourceSubdivision",
@@ -151,7 +202,8 @@
         "http://data.europa.eu/eli/ontology#changes",
         "http://data.europa.eu/eli/ontology#passed_by",
         "http://data.europa.eu/eli/ontology#has_part",
-        "http://www.w3.org/2002/07/owl#sameAs"
+        "http://www.w3.org/2002/07/owl#sameAs",
+        "http://www.w3.org/ns/prov#wasDerivedFrom"
       ]
     },
     {
@@ -171,7 +223,8 @@
         "http://data.vlaanderen.be/ns/besluit#heeftTegenstander",
         "http://data.vlaanderen.be/ns/besluit#heeftVoorstander",
         "http://data.vlaanderen.be/ns/besluit#onderwerp",
-        "http://www.w3.org/2002/07/owl#sameAs"
+        "http://www.w3.org/2002/07/owl#sameAs",
+        "http://www.w3.org/ns/prov#wasDerivedFrom"
       ]
     },
     {
@@ -181,7 +234,8 @@
         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
         "http://mu.semte.ch/vocabularies/core/uuid",
         "http://data.vlaanderen.be/ns/besluit#heeftAanwezige",
-        "http://www.w3.org/2002/07/owl#sameAs"
+        "http://www.w3.org/2002/07/owl#sameAs",
+        "http://www.w3.org/ns/prov#wasDerivedFrom"
       ]
     },
     {
@@ -203,7 +257,8 @@
         "http://data.vlaanderen.be/ns/besluit#heeftZittingsverslag",
         "http://data.vlaanderen.be/ns/besluit#isGehoudenDoor",
         "http://www.w3.org/ns/prov#atLocation",
-        "http://www.w3.org/2002/07/owl#sameAs"
+        "http://www.w3.org/2002/07/owl#sameAs",
+        "http://www.w3.org/ns/prov#wasDerivedFrom"
       ]
     }
   ]

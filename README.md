@@ -36,26 +36,42 @@ without errors you can visit the frontend in a browser on
 
 ## Setting up the delta-producers
 
-To make sure the app can share data, producers need to be set up. There is an
-intial sync, that is potentially very expensive, and must be started manually.
+To ensure that the app can share data, it is necessary to set up the producers. We recommend that you first ensure a significant dataset has been harvested. The more data that has been harvested before setting up the producers, the faster the consumers will retrieve their data.
 
-### Producers besluiten
+During its initial run, each producer performs a sync operation, which publishes the dataset as a `DCAT` dataset. This format can easily be ingested by consumers. After this initial sync, the producer switches to 'normal operation' mode, where it publishes delta files whenever new data is ingested.
+
+Please note, for this app, we do not provide live delta-streaming. This means that delta files are not published immediately as new data gets ingested. Instead, delta files are created only during 'healing mode'. This is a background job that runs according to a specific cron pattern to create the delta files.
+Check `./config/delta-producer/background-job-initiator/config.json` for the exact timings of the healing-job.
+
+The reason why we do not provide live streaming is due to performance considerations. It has pushed us towards skipping `mu-authorization` and updating Virtuoso directly.
+
+### Setting up producer besluiten
 
 1. Make sure the app is up and running, and the migrations have run.
-2. In a `docker-compose.override.yml` file, make sure the following
-   configuration is provided:
+2. In `./config/delta-producer/background-job-initiator/config.json` file, make sure the following
+   configuration is changed:
 
-     ```yaml
-     delta-producer-background-jobs-initiator:
-       environment:
-         START_INITIAL_SYNC: 'true'
-     delta-producer-publication-graph-maintainer:
-       environment:
-         KEY: "Add a random key with sufficient entropy"
+     ```json
+        [
+          {
+            "name": "besluiten",
+            # (...) other config
+
+            "startInitialSync": true, # changed from 'false' to 'true'
+
+            # (...) other config
+
+          }
+        ]
      ```
-3. Restart the services: `drc up -d delta-producer-background-jobs-initiator
-   delta-producer-publication-graph-maintainer`
+3. Restart the services: `drc restart delta-producer-background-jobs-initiator`
 4. You can follow the status of the job, through the dashboard frontend.
+
+### Triggering the healing-job manually
+In some cases, you might want to trigger the healing job manually.
+```
+drc exec delta-producer-background-jobs-initiator wget --post-data='' http://localhost/besluiten/healing-jobs
+```
 
 ## Additional notes
 
