@@ -47,6 +47,23 @@ The reason why we do not provide live streaming is due to performance considerat
 
 ### Setting up producer besluiten
 
+0. Only in case you are *fushing and restarting* from scratch, ensure
+
+     ```json
+        [
+          {
+            "name": "besluiten",
+            # (...) other config
+
+            "startInitialSync": false, # changed from 'true' to 'false'
+
+            # (...) other config
+
+          }
+        ]
+     ```
+     - And also ensure some data has been harvested before starting the initial sync.
+
 1. Make sure the app is up and running, and the migrations have run.
 2. In `./config/delta-producer/background-job-initiator/config.json` file, make sure the following
    configuration is changed:
