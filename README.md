@@ -47,7 +47,7 @@ The reason why we do not provide live streaming is due to performance considerat
 
 ### Setting up producer besluiten
 
-0. Only in case you are *fushing and restarting* from scratch, ensure
+0. Only in case you are *fushing and restarting* from scratch, ensure in  `./config/delta-producer/background-job-initiator/config.json`
 
      ```json
         [
