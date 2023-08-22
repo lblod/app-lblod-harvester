@@ -1,0 +1,54 @@
+PREFIX besluit: <http://data.vlaanderen.be/ns/besluit#>
+PREFIX mandaat: <http://data.vlaanderen.be/ns/mandaat#>
+PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+# Test instances
+# PREFIX : <http://example.org/>
+# :agendaPuntWithoutSession
+#   a besluit:Agendapunt.
+# # :agendaPuntWithoutType
+# #   owl:sameAs :agendaPuntWithoutSession .
+# :agendaPuntWithoutSession
+#   owl:sameAs :agendaPuntWithoutType .
+# :session
+#   a besluit:Zitting ;
+#   besluit:behandelt :agendaPuntWithoutSession .
+
+
+{
+  ?agendaPunt
+    a besluit:Agendapunt ;
+    owl:sameAs ?anotherAgendaPunt .
+} => {
+  ?anotherAgendaPunt
+    a besluit:Agendapunt ;
+    owl:sameAs ?agendaPunt .
+}.
+
+{
+  ?agendaPunt
+    owl:sameAs ?anotherAgendaPunt .
+
+  ?anotherAgendaPunt
+    a besluit:Agendapunt .
+} => {
+  ?anotherAgendaPunt
+    owl:sameAs ?agendaPunt .
+
+  ?agendaPunt
+    a besluit:Agendapunt .
+}.
+
+{
+  ?session
+    besluit:behandelt ?agendaPunt .
+
+  ?agendaPunt
+    a besluit:Agendapunt ;
+    owl:sameAs ?anotherAgendaPunt .
+} => {
+  ?session
+    besluit:behandelt ?anotherAgendaPunt .
+}.
