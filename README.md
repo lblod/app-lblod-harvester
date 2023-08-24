@@ -114,6 +114,8 @@ In some cases, you might want to trigger the healing job manually.
 ```
 drc exec delta-producer-background-jobs-initiator wget --post-data='' http://localhost/besluiten/healing-jobs
 ```
+### Cleaning up delta related background jobs manually
+Trigger the debug endpoints in [delta-producer-background-jobs-initiator](https://github.com/lblod/delta-producer-background-jobs-initiator)
 
 ## Additional notes
 
