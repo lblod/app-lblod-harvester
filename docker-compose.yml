@@ -197,6 +197,17 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
+  harvest_gen_delta:
+   image: lblod/harvesting-generation-delta-service
+   environment:
+     TARGET_DIRECTORY_DELTA_PATH: "/share/harvesting-delta-generation"
+     BUFFER_SIZE: "100"
+   volumes:
+     - ./data/files:/share
+   labels:
+      - "logging=true"
+   restart: always
+   logging: *default-logging
 
   job-controller:
     image: lblod/job-controller-service:1.0.0
