@@ -93,17 +93,15 @@ To enable dumps, edit `./config/delta-producer/background-job-initiator/config.j
      "dumpFileCreationJobOperation": "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/deltaDumpFileCreation/besluiten",
      "initialPublicationGraphSyncJobOperation": "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/initialPublicationGraphSyncing/besluiten",
      "healingJobOperation": "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/healingOperation/besluiten",
--    "cronPatternDumpJob": "0 0 0 * * 6",
-+    "cronPatternDumpJob": "0 10 0 * * 6",
+     "cronPatternDumpJob": "0 10 0 * * 6",
      "cronPatternHealingJob": "0 0 2 * * *",
      "startInitialSync": false,
      "errorCreatorUri": "http://lblod.data.gift/services/delta-producer-background-jobs-initiator-besluiten",
--    "disableDumpFileCreation": true
-+    "disableDumpFileCreation": false
+     "disableDumpFileCreation": false
    }
 ```
 
-Make sure to restart the background-job-initiator service after changing the config. 
+Make sure to restart the background-job-initiator service after changing the config.
 
 Dumps will be generated in [data/files/delta-producer-dumps](data/files/delta-producer-dumps/).
 
