@@ -183,7 +183,13 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
-
+  harvest_reason:
+    image: lblod/harvesting-reasoning-service
+    restart: always
+    volumes:
+      - ./config/reasoner:/config
+      - ./data/reasoner:/tmp
+      - ./data/files:/share
   harvest_sameas:
     image: lblod/import-with-sameas-service:3.6.1
     environment:
