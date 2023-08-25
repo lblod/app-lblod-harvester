@@ -255,7 +255,7 @@ services:
     logging: *default-logging
 
   delta-producer-dump-file-publisher:
-    image: lblod/delta-producer-dump-file-publisher:0.9.1
+    image: lblod/delta-producer-dump-file-publisher:0.10.0
     environment:
       FILES_GRAPH: "http://mu.semte.ch/graphs/harvesting"
       DCAT_DATASET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
@@ -285,7 +285,7 @@ services:
     logging: *default-logging
 
   delta-producer-background-jobs-initiator:
-    image: lblod/delta-producer-background-jobs-initiator:0.5.0
+    image: lblod/delta-producer-background-jobs-initiator:1.0.0
     volumes:
       - ./config/delta-producer/background-job-initiator/config.json:/config/config.json
     labels:
