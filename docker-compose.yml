@@ -198,10 +198,11 @@ services:
     restart: always
     logging: *default-logging
   harvest_gen_delta:
-   image: lblod/harvesting-generation-delta-service:0.0.2
+   image: lblod/harvesting-generation-delta-service:0.0.3
    environment:
      TARGET_DIRECTORY_DELTA_PATH: "/share/deltas/besluiten"
      BUFFER_SIZE: "100"
+     PUBLISHER_URI: "http://data.lblod.info/services/delta-production-json-diff-file-manager-besluiten"
    volumes:
      - ./data/files:/share
    labels:
