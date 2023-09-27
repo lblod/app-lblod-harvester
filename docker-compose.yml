@@ -7,7 +7,6 @@ x-logging: &default-logging
     max-file: "3"
 
 services:
-
   identifier:
     image: semtech/mu-identifier:1.10.0
     environment:
@@ -132,7 +131,7 @@ services:
     restart: always
     logging: *default-logging
   harvest_compression:
-    image: lblod/job-compression-service:0.1.4
+    image: lblod/job-compression-service:latest
     volumes:
       - ./data/files:/share
     environment:
@@ -150,7 +149,7 @@ services:
     restart: always
     logging: *default-logging
   harvest_import:
-    image: lblod/harvesting-import-service:0.10.0
+    image: lblod/harvesting-import-service:feature-one-file-per-extract
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
     volumes:
@@ -161,7 +160,7 @@ services:
     logging: *default-logging
 
   harvest_validate:
-    image: lblod/harvesting-validator:0.2.0
+    image: lblod/harvesting-validator:feature-split-files
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
       STRICT_MODE_FILTERING: "false"
@@ -174,7 +173,7 @@ services:
     logging: *default-logging
 
   harvest_diff:
-    image: lblod/harvesting-diff-service:0.1.4
+    image: lblod/harvesting-diff-service:feature-split-files
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
     volumes:
@@ -185,7 +184,7 @@ services:
     logging: *default-logging
 
   harvest_sameas:
-    image: lblod/import-with-sameas-service:3.6.1
+    image: lblod/import-with-sameas-service:feature-split-files
     environment:
       RENAME_DOMAIN: "http://data.lblod.info/id/"
       TARGET_GRAPH: "http://mu.semte.ch/graphs/public"
@@ -198,19 +197,19 @@ services:
     restart: always
     logging: *default-logging
   harvest_gen_delta:
-   image: lblod/harvesting-generation-delta-service:0.0.8
-   environment:
-     TARGET_DIRECTORY_DELTA_PATH: "/share/deltas/besluiten"
-     BUFFER_SIZE: "100"
-     PUBLISHER_URI: "http://data.lblod.info/services/delta-production-json-diff-file-manager-besluiten"
-     TARGET_PUBLISHER_GRAPH: "http://redpencil.data.gift/id/deltas/producer/lblod-harvester-besluiten-producer"
+    image: lblod/harvesting-generation-delta-service:feature-split-files
+    environment:
+      TARGET_DIRECTORY_DELTA_PATH: "/share/deltas/besluiten"
+      BUFFER_SIZE: "100"
+      PUBLISHER_URI: "http://data.lblod.info/services/delta-production-json-diff-file-manager-besluiten"
+      TARGET_PUBLISHER_GRAPH: "http://redpencil.data.gift/id/deltas/producer/lblod-harvester-besluiten-producer"
 
-   volumes:
-     - ./data/files:/share
-   labels:
+    volumes:
+      - ./data/files:/share
+    labels:
       - "logging=true"
-   restart: always
-   logging: *default-logging
+    restart: always
+    logging: *default-logging
 
   job-controller:
     image: lblod/job-controller-service:1.0.0
@@ -288,7 +287,7 @@ services:
       SUDO_QUERY_RETRY_FOR_HTTP_STATUS_CODES: "404,500,503"
       MAX_BODY_SIZE: "50mb"
       PRETTY_PRINT_DIFF_JSON: "true"
-      CONFIG_SERVICES_JSON_PATH: '/config/publication-graph-maintainer/config.json'
+      CONFIG_SERVICES_JSON_PATH: "/config/publication-graph-maintainer/config.json"
     volumes:
       - ./config/delta-producer:/config
       - ./data/files/:/share
