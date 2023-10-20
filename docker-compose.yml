@@ -7,7 +7,6 @@ x-logging: &default-logging
     max-file: "3"
 
 services:
-
   identifier:
     image: semtech/mu-identifier:1.10.1
     environment:
@@ -198,19 +197,19 @@ services:
     restart: always
     logging: *default-logging
   harvest_gen_delta:
-   image: lblod/harvesting-generation-delta-service:0.0.8
-   environment:
-     TARGET_DIRECTORY_DELTA_PATH: "/share/deltas/besluiten"
-     BUFFER_SIZE: "100"
-     PUBLISHER_URI: "http://data.lblod.info/services/delta-production-json-diff-file-manager-besluiten"
-     TARGET_PUBLISHER_GRAPH: "http://redpencil.data.gift/id/deltas/producer/lblod-harvester-besluiten-producer"
+    image: lblod/harvesting-generation-delta-service:0.0.8
+    environment:
+      TARGET_DIRECTORY_DELTA_PATH: "/share/deltas/besluiten"
+      BUFFER_SIZE: "100"
+      PUBLISHER_URI: "http://data.lblod.info/services/delta-production-json-diff-file-manager-besluiten"
+      TARGET_PUBLISHER_GRAPH: "http://redpencil.data.gift/id/deltas/producer/lblod-harvester-besluiten-producer"
 
-   volumes:
-     - ./data/files:/share
-   labels:
+    volumes:
+      - ./data/files:/share
+    labels:
       - "logging=true"
-   restart: always
-   logging: *default-logging
+    restart: always
+    logging: *default-logging
 
   job-controller:
     image: lblod/job-controller-service:1.0.0
@@ -269,7 +268,7 @@ services:
     logging: *default-logging
 
   delta-producer-dump-file-publisher:
-    image: lblod/delta-producer-dump-file-publisher:0.10.0
+    image: lblod/delta-producer-dump-file-publisher:0.10.1
     environment:
       FILES_GRAPH: "http://mu.semte.ch/graphs/harvesting"
       DCAT_DATASET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
@@ -288,7 +287,7 @@ services:
       SUDO_QUERY_RETRY_FOR_HTTP_STATUS_CODES: "404,500,503"
       MAX_BODY_SIZE: "50mb"
       PRETTY_PRINT_DIFF_JSON: "true"
-      CONFIG_SERVICES_JSON_PATH: '/config/publication-graph-maintainer/config.json'
+      CONFIG_SERVICES_JSON_PATH: "/config/publication-graph-maintainer/config.json"
     volumes:
       - ./config/delta-producer:/config
       - ./data/files/:/share
