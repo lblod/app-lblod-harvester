@@ -149,9 +149,10 @@ services:
     restart: always
     logging: *default-logging
   harvest_import:
-    image: lblod/harvesting-import-service:0.10.0
+    image: lblod/harvesting-import-service:0.11.0
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
+      NODE_OPTIONS: "--max-old-space-size=4096" # needed with the new rdfa parser
     volumes:
       - ./data/files:/share
     labels:
