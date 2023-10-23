@@ -149,7 +149,7 @@ services:
     restart: always
     logging: *default-logging
   harvest_import:
-    image: lblod/harvesting-import-service:0.11.0
+    image: lblod/harvesting-import-service:0.11.1
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
       NODE_OPTIONS: "--max-old-space-size=4096" # needed with the new rdfa parser
@@ -185,7 +185,7 @@ services:
     logging: *default-logging
 
   harvest_sameas:
-    image: lblod/import-with-sameas-service:3.6.1
+    image: lblod/import-with-sameas-service:3.6.2
     environment:
       RENAME_DOMAIN: "http://data.lblod.info/id/"
       TARGET_GRAPH: "http://mu.semte.ch/graphs/public"
