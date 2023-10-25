@@ -149,8 +149,10 @@ services:
     restart: always
     logging: *default-logging
   harvest_import:
-    image: lblod/harvesting-import-service:0.10.0
+    image: lblod/harvesting-import-service:0.10.1
     environment:
+      VIRTUOSO_ENDPOINT: "http://virtuoso:8890/sparql"
+      SUDO_QUERY_RETRY: "true"
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
     volumes:
       - ./data/files:/share
