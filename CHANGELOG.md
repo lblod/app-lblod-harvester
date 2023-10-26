@@ -1,4 +1,6 @@
 # Changelog
+## 0.14.4 (2023-10-26)
+- bump dump file publisher
 ## 0.11.0 (2023-03-10)
 - bump frontend with new features
   - add login feature flag (turn login on/off)
