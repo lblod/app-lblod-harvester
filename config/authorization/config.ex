@@ -6,26 +6,14 @@ alias Acl.GroupSpec.GraphCleanup, as: GraphCleanup
 alias Acl.Accessibility.ByQuery, as: AccessByQuery
 
 defmodule Acl.UserGroups.Config do
-  defp can_access_worship_deltas() do
+  defp logged_in_user() do
     %AccessByQuery{
-      vars: [ ],
-      query: "
-        PREFIX foaf: <http://xmlns.com/foaf/0.1/>
-        PREFIX muAccount: <http://mu.semte.ch/vocabularies/account/>
-        SELECT DISTINCT ?onlineAccount WHERE {
-          <SESSION_ID> muAccount:account ?onlineAccount .
-
-          ?onlineAccount a foaf:OnlineAccount .
-
-          ?agent
-            a foaf:Agent ;
-            foaf:account ?onlineAccount .
-
-          <http://lblod.data.gift/groups/worship-delta-access>
-            a foaf:Group ;
-            foaf:member ?agent .
-        }"
-      }
+      vars: [],
+      query: "PREFIX session: <http://mu.semte.ch/vocabularies/session/>
+      SELECT DISTINCT ?account WHERE {
+      <SESSION_ID> session:account ?account.
+      }"
+    }
   end
 
   def user_groups do
@@ -34,7 +22,7 @@ defmodule Acl.UserGroups.Config do
       %GroupSpec{
         name: "harvesting",
         useage: [:write, :read_for_write, :read],
-        access: %AlwaysAccessible{},
+        access: logged_in_user(),
         graphs: [ %GraphSpec{
                     graph: "http://mu.semte.ch/graphs/harvesting",
                     constraint: %ResourceConstraint{
