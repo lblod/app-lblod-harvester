@@ -145,11 +145,12 @@ services:
     restart: always
     logging: *default-logging
   harvest_compression:
-    image: lblod/job-compression-service:0.1.5
+    image: lblod/job-compression-service:0.1.6
     volumes:
       - ./data/files:/share
     environment:
       DEFAULT_GRAPH: "http://mu.semte.ch/graphs/harvesting"
+      HIGH_LOAD_DATABASE_ENDPOINT: "http://virtuoso:8890/sparql"
     labels:
       - "logging=true"
     restart: always
@@ -220,7 +221,7 @@ services:
       BUFFER_SIZE: "100"
       PUBLISHER_URI: "http://data.lblod.info/services/delta-production-json-diff-file-manager-besluiten"
       TARGET_PUBLISHER_GRAPH: "http://redpencil.data.gift/id/deltas/producer/lblod-harvester-besluiten-producer"
-
+      HIGH_LOAD_DATABASE_ENDPOINT: "http://virtuoso:8890/sparql"
     volumes:
       - ./data/files:/share
     labels:
