@@ -145,7 +145,7 @@ services:
     restart: always
     logging: *default-logging
   harvest_compression:
-    image: lblod/job-compression-service:0.1.4
+    image: lblod/job-compression-service:0.1.5
     volumes:
       - ./data/files:/share
     environment:
@@ -163,7 +163,7 @@ services:
     restart: always
     logging: *default-logging
   harvest_import:
-    image: lblod/harvesting-import-service:0.12.1
+    image: lblod/harvesting-import-service:feature-split-file-rebased
     environment:
       VIRTUOSO_ENDPOINT: "http://virtuoso:8890/sparql"
       SUDO_QUERY_RETRY: "true"
@@ -177,10 +177,11 @@ services:
     logging: *default-logging
 
   harvest_validate:
-    image: lblod/harvesting-validator:0.2.0
+    image: lblod/harvesting-validator:feature-split-files
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
       STRICT_MODE_FILTERING: "false"
+      JAVA_OPTS: "-Xms1024M -Xmx4096M"
     volumes:
       - ./data/files:/share
       - ./config/shacl:/config
@@ -190,9 +191,10 @@ services:
     logging: *default-logging
 
   harvest_diff:
-    image: lblod/harvesting-diff-service:0.1.4
+    image: lblod/harvesting-diff-service:feature-split-files
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
+      JAVA_OPTS: "-Xms1024M -Xmx4096M"
     volumes:
       - ./data/files:/share
     labels:
@@ -201,7 +203,7 @@ services:
     logging: *default-logging
 
   harvest_sameas:
-    image: lblod/import-with-sameas-service:3.6.2
+    image: lblod/import-with-sameas-service:feature-split-file-rebased
     environment:
       RENAME_DOMAIN: "http://data.lblod.info/id/"
       TARGET_GRAPH: "http://mu.semte.ch/graphs/public"
@@ -214,7 +216,7 @@ services:
     restart: always
     logging: *default-logging
   harvest_gen_delta:
-    image: lblod/harvesting-generation-delta-service:0.0.8
+    image: lblod/harvesting-generation-delta-service:feature-split-files
     environment:
       TARGET_DIRECTORY_DELTA_PATH: "/share/deltas/besluiten"
       BUFFER_SIZE: "100"
