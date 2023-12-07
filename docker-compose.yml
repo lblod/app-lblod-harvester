@@ -181,7 +181,6 @@ services:
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
       STRICT_MODE_FILTERING: "false"
-      JAVA_OPTS: "-Xms1024M -Xmx4096M"
     volumes:
       - ./data/files:/share
       - ./config/shacl:/config
@@ -194,7 +193,6 @@ services:
     image: lblod/harvesting-diff-service:feature-split-files
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
-      JAVA_OPTS: "-Xms1024M -Xmx4096M"
     volumes:
       - ./data/files:/share
     labels:
