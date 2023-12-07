@@ -52,6 +52,26 @@ defmodule Acl.UserGroups.Config do
                       ]
                     } } ] },
 
+      # Allow access to (public) harvesting config for delta consumers
+      # Note this allows access to all data to data in the harvesting graph and not just the listed types
+      # being able to read this is consider OK for, but we should set up authenticated delta's later on
+      %GroupSpec{
+        name: "harvesting-public",
+        useage: [:read],
+        access: %AlwaysAccessible{},
+        graphs: [
+          %GraphSpec{
+            graph: "http://mu.semte.ch/graphs/harvesting",
+            constraint: %ResourceConstraint{
+              resource_types: [
+                "http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject",
+                "http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject",
+              ]
+            }
+          }
+        ]
+      },
+
       # Allow access to (public) scraped data
       # Note this allows access to all data to data in the public graph and not just the listed types
       # This behaviour may change in the future as mu-auth evolves
