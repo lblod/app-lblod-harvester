@@ -130,6 +130,12 @@ defmodule Dispatcher do
   get "/sync/besluiten/files/*path", %{ layer: :resources, accept: %{ json: true } } do
     Proxy.forward conn, path, "http://delta-producer-publication-graph-maintainer/besluiten/files/"
   end
+  #################################################################
+  # login
+  #################################################################
+  match "/sessions/*path", %{ layer: resources, accept: %{ any: true}} do
+    Proxy.forward conn, path, "http://login/sessions/"
+  end
 
   #################################################################
   # DCAT
