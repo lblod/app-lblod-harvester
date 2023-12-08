@@ -12,6 +12,22 @@
         "interactive": true,
         "script": "generate-account/run.sh"
       }
+    },
+    {
+      "documentation": {
+        "command": "job-cleanup",
+        "description": "interactive job cleanup script",
+        "arguments": []
+      },
+      "environment": {
+        "image": "ruby:3.2-bookworm",
+        "interactive": true,
+        "script": "job-cleanup/run.rb",
+        "join_networks": true
+      },
+      "mounts": {
+        "app": "/project"
+      }
     }
   ]
 }
