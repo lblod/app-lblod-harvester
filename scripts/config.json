@@ -12,6 +12,22 @@
         "interactive": true,
         "script": "generate-account/run.sh"
       }
+    },
+    {
+      "documentation": {
+        "command": "job-optimizer",
+        "description": "interactive job schedule optimizer",
+        "arguments": []
+      },
+      "environment": {
+        "image": "ruby:3.2-bookworm",
+        "interactive": true,
+        "script": "optimize-jobs/run.rb",
+        "join_networks": true
+      },
+      "mounts": {
+        "app": "/project"
+      }
     }
   ]
 }
