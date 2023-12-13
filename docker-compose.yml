@@ -135,11 +135,12 @@ services:
     logging: *default-logging
 
   harvest_scraper:
-    image: lblod/scraper:1.0.0
+    image: lblod/scraper:1.1.0
     volumes:
       - ./data/files:/share
     environment:
       DEFAULT_GRAPH: "http://mu.semte.ch/graphs/harvesting"
+      INCREMENTAL_RETRIEVAL: "true"
     labels:
       - "logging=true"
     restart: always
