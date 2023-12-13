@@ -182,6 +182,7 @@ services:
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
       STRICT_MODE_FILTERING: "false"
+      LIMIT_SIZE: 1000
     volumes:
       - ./data/files:/share
       - ./config/shacl:/config
@@ -194,6 +195,7 @@ services:
     image: lblod/harvesting-diff-service:feature-split-files
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
+      LIMIT_SIZE: 1000
     volumes:
       - ./data/files:/share
     labels:
