@@ -61,7 +61,7 @@ defmodule Dispatcher do
   ###############
 
   match "/remote-data-objects/*path", %{ layer: :resources, accept: %{ json: true } } do
-    Proxy.forward conn, path, "http://cache/remote-data-objects/"
+    Proxy.forward conn, path, "http://resource/remote-data-objects/"
   end
 
   match "/basic-authentication-credentials/*path", %{ layer: :resources, accept: %{ json: true } } do
@@ -93,7 +93,7 @@ defmodule Dispatcher do
   end
 
   match "/tasks/*path", %{ layer: :resources, accept: %{ json: true } } do
-    Proxy.forward conn, path, "http://cache/tasks/"
+    Proxy.forward conn, path, "http://resource/tasks/"
   end
 
   match "/scheduled-jobs/*path", %{ layer: :resources, accept: %{ json: true } } do
@@ -109,7 +109,7 @@ defmodule Dispatcher do
   end
 
   match "/data-containers/*path", %{ layer: :resources, accept: %{ json: true } } do
-    Proxy.forward conn, path, "http://cache/data-containers/"
+    Proxy.forward conn, path, "http://resource/data-containers/"
   end
 
   match "/job-errors/*path", %{ layer: :resources, accept: %{ json: true } } do
@@ -121,7 +121,7 @@ defmodule Dispatcher do
   end
 
   match "/files/*path" do
-    Proxy.forward conn, path, "http://cache/files/"
+    Proxy.forward conn, path, "http://resource/files/"
   end
 
   #################################################################
