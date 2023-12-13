@@ -144,17 +144,17 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
-  harvest_compression:
-    image: lblod/job-compression-service:0.2.4
-    volumes:
-      - ./data/files:/share
-    environment:
-      DEFAULT_GRAPH: "http://mu.semte.ch/graphs/harvesting"
-      HIGH_LOAD_DATABASE_ENDPOINT: "http://virtuoso:8890/sparql"
-    labels:
-      - "logging=true"
-    restart: always
-    logging: *default-logging
+  # harvest_compression:
+  #   image: lblod/job-compression-service:0.2.4
+  #   volumes:
+  #     - ./data/files:/share
+  #   environment:
+  #     DEFAULT_GRAPH: "http://mu.semte.ch/graphs/harvesting"
+  #     HIGH_LOAD_DATABASE_ENDPOINT: "http://virtuoso:8890/sparql"
+  #   labels:
+  #     - "logging=true"
+  #   restart: always
+  #   logging: *default-logging
   harvest_check-url:
     image: lblod/harvest-check-url-collection-service:1.3.1
     volumes:
