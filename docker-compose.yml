@@ -179,7 +179,7 @@ services:
     logging: *default-logging
 
   harvest_validate:
-    image: lblod/harvesting-validator:feature-split-files
+    image: lblod/harvesting-validator:0.3.0
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
       STRICT_MODE_FILTERING: "false"
@@ -193,7 +193,7 @@ services:
     logging: *default-logging
 
   harvest_diff:
-    image: lblod/harvesting-diff-service:feature-split-files
+    image: lblod/harvesting-diff-service:0.2.0
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
       LIMIT_SIZE: 1000
