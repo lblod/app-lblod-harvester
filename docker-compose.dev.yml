@@ -1,7 +1,6 @@
-version: '3.7'
+version: "3.7"
 
 services:
-
   identifier:
     restart: "no"
     ports:
@@ -51,9 +50,9 @@ services:
   harvest_validate:
     restart: "no"
     environment:
-      LOGGING_LEVEL: "DEBUG" # optionals
-  harvest_compression:
-    restart: "no"
+      LOGGING_LEVEL: "INFO" # optionals
+  # harvest_compression:
+  #   restart: "no"
   harvest_gen_delta:
     restart: "no"
 
