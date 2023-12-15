@@ -179,7 +179,7 @@ services:
     logging: *default-logging
 
   harvest_validate:
-    image: lblod/harvesting-validator:0.3.0
+    image: lblod/harvesting-validator:feature-multi-threads
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
       STRICT_MODE_FILTERING: "false"
@@ -193,9 +193,10 @@ services:
     logging: *default-logging
 
   harvest_diff:
-    image: lblod/harvesting-diff-service:0.2.0
+    image: lblod/harvesting-diff-service:feature-use-triplestore
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
+      PUBLICATION_GRAPH: "http://mu.semte.ch/graphs/public"
       LIMIT_SIZE: 1000
     volumes:
       - ./data/files:/share
