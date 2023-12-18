@@ -171,6 +171,7 @@ services:
       SUDO_QUERY_RETRY: "true"
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
       NODE_OPTIONS: "--max-old-space-size=4096" # needed with the new rdfa parser
+      WRITE_DEBUG_TTLS: "false"
     volumes:
       - ./data/files:/share
     labels:
