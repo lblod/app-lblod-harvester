@@ -165,7 +165,7 @@ services:
     restart: always
     logging: *default-logging
   harvest_import:
-    image: lblod/harvesting-import-service:feature-fallback-about-blanck-base-uri
+    image: lblod/harvesting-import-service:0.13.1
     environment:
       VIRTUOSO_ENDPOINT: "http://virtuoso:8890/sparql"
       SUDO_QUERY_RETRY: "true"
@@ -179,7 +179,7 @@ services:
     logging: *default-logging
 
   harvest_validate:
-    image: lblod/harvesting-validator:feature-multi-threads
+    image: lblod/harvesting-validator:0.3.1
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
       STRICT_MODE_FILTERING: "false"
@@ -193,7 +193,7 @@ services:
     logging: *default-logging
 
   harvest_diff:
-    image: lblod/harvesting-diff-service:feature-multi-threads-and-reduce-file-creation
+    image: lblod/harvesting-diff-service:0.2.1
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
       PUBLICATION_GRAPH: "http://mu.semte.ch/graphs/public"
