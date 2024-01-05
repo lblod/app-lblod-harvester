@@ -165,7 +165,7 @@ services:
     restart: always
     logging: *default-logging
   harvest_import:
-    image: lblod/harvesting-import-service:0.13.0
+    image: lblod/harvesting-import-service:0.13.1
     environment:
       VIRTUOSO_ENDPOINT: "http://virtuoso:8890/sparql"
       SUDO_QUERY_RETRY: "true"
@@ -180,7 +180,7 @@ services:
     logging: *default-logging
 
   harvest_validate:
-    image: lblod/harvesting-validator:0.3.0
+    image: lblod/harvesting-validator:0.3.2
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
       STRICT_MODE_FILTERING: "false"
@@ -194,9 +194,10 @@ services:
     logging: *default-logging
 
   harvest_diff:
-    image: lblod/harvesting-diff-service:0.2.0
+    image: lblod/harvesting-diff-service:0.2.2
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
+      PUBLICATION_GRAPH: "http://mu.semte.ch/graphs/public"
       LIMIT_SIZE: 1000
     volumes:
       - ./data/files:/share
@@ -243,7 +244,7 @@ services:
     logging: *default-logging
 
   scheduled-job-controller:
-    image: lblod/scheduled-job-controller-service:1.0.2
+    image: lblod/scheduled-job-controller-service:1.0.3
     environment:
       # NOTE: if the delta-events prove to inaccurate,
       # you can go back to previous behavior by commenting out env.var. below
