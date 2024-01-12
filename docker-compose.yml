@@ -165,7 +165,7 @@ services:
     restart: always
     logging: *default-logging
   harvest_import:
-    image: lblod/harvesting-import-service:0.13.1
+    image: lblod/harvesting-import-service:0.13.2
     environment:
       VIRTUOSO_ENDPOINT: "http://virtuoso:8890/sparql"
       SUDO_QUERY_RETRY: "true"
@@ -207,7 +207,7 @@ services:
     logging: *default-logging
 
   harvest_sameas:
-    image: lblod/import-with-sameas-service:4.1.0
+    image: lblod/import-with-sameas-service:4.1.1
     environment:
       RENAME_DOMAIN: "http://data.lblod.info/id/"
       TARGET_GRAPH: "http://mu.semte.ch/graphs/public"
