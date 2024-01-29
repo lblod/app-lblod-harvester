@@ -179,6 +179,14 @@ services:
     restart: always
     logging: *default-logging
 
+  harvest_cleanup:
+    image: lblod/harvesting-cleanup-previous-jobs-service:0.1.0
+    environment:
+      MAX_DAYS_TO_KEEP_SUCCESSFUL_JOBS: 30
+      MAX_DAYS_TO_KEEP_BUSY_JOBS: 7
+      MAX_DAYS_TO_KEEP_FAILED_JOBS: 7
+    volumes:
+      - ./data/files:/share
   harvest_validate:
     image: lblod/harvesting-validator:0.3.2
     environment:
