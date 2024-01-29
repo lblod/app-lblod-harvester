@@ -180,15 +180,13 @@ services:
     logging: *default-logging
 
   harvest_cleanup:
-    image: lblod/harvesting-cleanup-previous-jobs-service
+    image: lblod/harvesting-cleanup-previous-jobs-service:0.1.0
     environment:
-      NODE_ENV: "development"
-      MAX_DAYS_TO_KEEP_SUCCESSFUL_JOBS: 10
-      MAX_DAYS_TO_KEEP_BUSY_JOBS: 3
-      MAX_DAYS_TO_KEEP_FAILED_JOBS: 3
+      MAX_DAYS_TO_KEEP_SUCCESSFUL_JOBS: 30
+      MAX_DAYS_TO_KEEP_BUSY_JOBS: 7
+      MAX_DAYS_TO_KEEP_FAILED_JOBS: 7
     volumes:
       - ./data/files:/share
-      - /home/nbittich/lblod/harvesting-cleanup-previous-jobs/:/app
   harvest_validate:
     image: lblod/harvesting-validator:0.3.2
     environment:
