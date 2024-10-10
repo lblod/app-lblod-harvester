@@ -50,11 +50,11 @@ services:
       EMBER_WORSHIP_HARVESTING_ENABLED: "false"
 
   database:
-    image: semtech/mu-authorization:0.6.0-beta.8
+    image: semtech/sparql-parser:feature-quad-transformations
     environment:
       MU_SPARQL_ENDPOINT: "http://virtuoso:8890/sparql"
     volumes:
-      - ./config/authorization:/config
+      - ./config/cl-authorization:/config
     labels:
       - "logging=true"
     restart: always
@@ -188,7 +188,7 @@ services:
     volumes:
       - ./data/files:/share
   harvest_validate:
-    image: lblod/harvesting-validator:0.3.4
+    image: lblod/harvesting-validator:feature-remove-whitespace
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
       STRICT_MODE_FILTERING: "false"
