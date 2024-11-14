@@ -38,9 +38,6 @@
 
 <https://data.vlaanderen.be/shacl/besluit-publicatie#BestuurseenheidShape> a sh:NodeShape ;
     sh:targetClass <http://data.vlaanderen.be/ns/besluit#Bestuurseenheid> ;
-    sh:property [ sh:name "classificatie" ; sh:description "Classificatie van de bestuurseenheid." ; sh:path <http://www.w3.org/ns/org#classification> ; sh:class <http://www.w3.org/2004/02/skos/core#Concept> ; sh:minCount 1 ; sh:maxCount 1 ] ;
-    sh:property [ sh:name "naam" ; sh:description "Naam van de bestuurseenheid." ; sh:path <http://www.w3.org/2004/02/skos/core#prefLabel> ; sh:nodeKind sh:Literal ; sh:minCount 1 ; sh:maxCount 1 ] ;
-    sh:property [ sh:name "werkingsgebied" ; sh:description "Geografische gebied waarbinnen de bestuurseenheid bepaalde verantwoordelijkheden heeft waarbinnen het bestuurshandelingen kan stellen." ; sh:path <http://data.vlaanderen.be/ns/besluit#werkingsgebied> ; sh:class <http://www.w3.org/ns/prov#Location> ; sh:minCount 1 ; sh:maxCount 1 ] ;
     sh:closed false .
 
 <https://data.vlaanderen.be/shacl/besluit-publicatie#RechtsgrondonderdeelShape> a sh:NodeShape ;
@@ -83,9 +80,6 @@
 
 <https://data.vlaanderen.be/shacl/besluit-publicatie#BestuursorgaanShape> a sh:NodeShape ;
     sh:targetClass <http://data.vlaanderen.be/ns/besluit#Bestuursorgaan> ;
-    sh:property [ sh:name "bestuurt" ; sh:description "De bestuurseenheid die door het orgaan bestuurd wordt." ; sh:path <http://data.vlaanderen.be/ns/besluit#bestuurt> ; sh:class <http://data.vlaanderen.be/ns/besluit#Bestuurseenheid> ; sh:minCount 1 ; sh:maxCount 1 ] ;
-    sh:property [ sh:name "classificatie" ; sh:description "Het type bestuursorgaan." ; sh:path <http://www.w3.org/ns/org#classification> ; sh:class <http://www.w3.org/2004/02/skos/core#Concept> ; sh:minCount 1 ; sh:maxCount 1 ] ;
-    sh:property [ sh:name "naam" ; sh:description "Naam van de eenheid." ; sh:path <http://www.w3.org/2004/02/skos/core#prefLabel> ; sh:nodeKind sh:Literal ; sh:minCount 1 ; sh:maxCount 1 ] ;
     sh:closed false .
 
 <https://data.vlaanderen.be/shacl/besluit-publicatie#AgendapuntShape> a sh:NodeShape ;
