@@ -12,6 +12,7 @@ services:
     environment:
       DEFAULT_MU_AUTH_ALLOWED_GROUPS_HEADER: '[{"variables":[],"name":"public"},{"variables":[],"name":"harvesting-public"},{"variables":[],"name":"clean"}]'
       DEFAULT_ACCESS_CONTROL_ALLOW_ORIGIN_HEADER: "*"
+      SESSION_COOKIE_SECURE: "true"
     labels:
       - "logging=true"
     restart: always
