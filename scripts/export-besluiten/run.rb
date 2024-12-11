@@ -167,7 +167,7 @@ WHERE {
  ?zitting  <http://data.europa.eu/eli/ontology#passedBy> | besluit:isGehoudenDoor ?orgaanInTijd.
  ?orgaanInTijd mandaat:isTijdspecialisatieVan ?org.
  ?org besluit:classificatie <http://data.vlaanderen.be/id/concept/BestuursorgaanClassificatieCode/5ab0e9b8a3b2ca7c5e000007>.
- ?zitting prov:startedAtTime ?date.d
+ ?zitting prov:startedAtTime ?date.
  FILTER(?date > "2024-12-01T18:30:27.495Z"^^xsd:dateTime)
  ?zitting besluit:behandelt / ^dct:subject / prov:generated ?besluit.
  ?besluit <http://data.europa.eu/eli/ontology#title> ?title.
