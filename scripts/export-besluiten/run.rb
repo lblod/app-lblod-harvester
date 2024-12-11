@@ -38,9 +38,9 @@ PREFIX mandaat: <http://data.vlaanderen.be/ns/mandaat#>
 PREFIX ext: <http://mu.semte.ch/vocabularies/ext/>
 CONSTRUCT {
   ?besluit ext:origin ?origin.
-  ?besluit ext:bekrachtigtMandatarissenVoor ?orgaanInT.
+  ?besluit ext:bekrachtigtMandatarissenVoor ?orgaanInTijd.
   ?besluit ext:title ?title.
-  ?besluit ext:forOrg ext:gemeenteraad.
+  ?besluit ext:forRole <http://data.vlaanderen.be/id/concept/BestuursfunctieCode/5ab0e9b8a3b2ca7c5e000011>.
 }
 WHERE {
  ?zitting a besluit:Zitting.
@@ -68,9 +68,9 @@ PREFIX mandaat: <http://data.vlaanderen.be/ns/mandaat#>
 PREFIX ext: <http://mu.semte.ch/vocabularies/ext/>
 CONSTRUCT {
   ?besluit ext:origin ?origin.
-  ?besluit ext:bekrachtigtMandatarissenVoor ?orgaanInT.
+  ?besluit ext:bekrachtigtMandatarissenVoor ?orgaanInTijd.
   ?besluit ext:title ?title.
-  ?besluit ext:forOrg ext:burgemeester.
+  ?besluit ext:forRole <http://data.vlaanderen.be/id/concept/BestuursfunctieCode/7b038cc40bba10bec833ecfe6f15bc7a>.
 }
 WHERE {
  ?zitting a besluit:Zitting.
@@ -98,9 +98,9 @@ PREFIX mandaat: <http://data.vlaanderen.be/ns/mandaat#>
 PREFIX ext: <http://mu.semte.ch/vocabularies/ext/>
 CONSTRUCT {
   ?besluit ext:origin ?origin.
-  ?besluit ext:bekrachtigtMandatarissenVoor ?orgaanInT.
+  ?besluit ext:bekrachtigtMandatarissenVoor ?orgaanInTijd.
   ?besluit ext:title ?title.
-  ?besluit ext:forOrg ext:voorzittergemeenteraad.
+  ?besluit ext:forRole <http://data.vlaanderen.be/id/concept/BestuursfunctieCode/5ab0e9b8a3b2ca7c5e000012>.
 }
 WHERE {
  ?zitting a besluit:Zitting.
@@ -127,9 +127,9 @@ PREFIX mandaat: <http://data.vlaanderen.be/ns/mandaat#>
 PREFIX ext: <http://mu.semte.ch/vocabularies/ext/>
 CONSTRUCT {
   ?besluit ext:origin ?origin.
-  ?besluit ext:bekrachtigtMandatarissenVoor ?orgaanInT.
+  ?besluit ext:bekrachtigtMandatarissenVoor ?orgaanInTijd.
   ?besluit ext:title ?title.
-  ?besluit ext:forOrg ext:schepenen.
+  ?besluit ext:forRole <http://data.vlaanderen.be/id/concept/BestuursfunctieCode/5ab0e9b8a3b2ca7c5e000014>, <http://data.vlaanderen.be/id/concept/BestuursfunctieCode/59a90e03-4f22-4bb9-8c91-132618db4b38> .
 }
 WHERE {
  ?zitting a besluit:Zitting.
@@ -157,9 +157,9 @@ PREFIX mandaat: <http://data.vlaanderen.be/ns/mandaat#>
 PREFIX ext: <http://mu.semte.ch/vocabularies/ext/>
 CONSTRUCT {
   ?besluit ext:origin ?origin.
-  ?besluit ext:bekrachtigtMandatarissenVoor ?orgaanInT.
+  ?besluit ext:bekrachtigtMandatarissenVoor ?orgaanInTijd.
   ?besluit ext:title ?title.
-  ?besluit ext:forOrg ext:bcsdlid.
+  ?besluit ext:forRole <http://data.vlaanderen.be/id/concept/BestuursfunctieCode/5ab0e9b8a3b2ca7c5e000019>.
 }
 WHERE {
  ?zitting a besluit:Zitting.
@@ -167,7 +167,7 @@ WHERE {
  ?zitting  <http://data.europa.eu/eli/ontology#passedBy> | besluit:isGehoudenDoor ?orgaanInTijd.
  ?orgaanInTijd mandaat:isTijdspecialisatieVan ?org.
  ?org besluit:classificatie <http://data.vlaanderen.be/id/concept/BestuursorgaanClassificatieCode/5ab0e9b8a3b2ca7c5e000007>.
- ?zitting prov:startedAtTime ?date.
+ ?zitting prov:startedAtTime ?date.d
  FILTER(?date > "2024-12-01T18:30:27.495Z"^^xsd:dateTime)
  ?zitting besluit:behandelt / ^dct:subject / prov:generated ?besluit.
  ?besluit <http://data.europa.eu/eli/ontology#title> ?title.
@@ -186,9 +186,9 @@ PREFIX mandaat: <http://data.vlaanderen.be/ns/mandaat#>
 PREFIX ext: <http://mu.semte.ch/vocabularies/ext/>
 CONSTRUCT {
   ?besluit ext:origin ?origin.
-  ?besluit ext:bekrachtigtMandatarissenVoor ?orgaanInT.
+  ?besluit ext:bekrachtigtMandatarissenVoor ?orgaanInTijd.
   ?besluit ext:title ?title.
-  ?besluit ext:forOrg ext:bcsdvoorzitter.
+  ?besluit ext:forRole <http://data.vlaanderen.be/id/concept/BestuursfunctieCode/5ab0e9b8a3b2ca7c5e00001a>.
 }
 WHERE {
  ?zitting a besluit:Zitting.
