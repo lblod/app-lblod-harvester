@@ -5,7 +5,6 @@ require 'yaml'
 require 'securerandom'
 require 'date'
 require 'rdf/vocab'
-require 'tty-prompt'
 require 'rdf/turtle'
 require 'rdf/reasoner'
 
