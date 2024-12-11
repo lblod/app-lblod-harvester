@@ -40,6 +40,7 @@ CONSTRUCT {
   ?besluit ext:origin ?origin.
   ?besluit ext:bekrachtigtMandatarissenVoor ?orgaanInTijd.
   ?besluit ext:title ?title.
+  ?besluit <http://www.w3.org/ns/prov#wasDerivedFrom> ?besluitOrigin.
   ?besluit ext:forRole <http://data.vlaanderen.be/id/concept/BestuursfunctieCode/5ab0e9b8a3b2ca7c5e000011>.
 }
 WHERE {
@@ -52,6 +53,7 @@ WHERE {
  FILTER(?date > "2024-12-01T18:30:27.495Z"^^xsd:dateTime)
  ?zitting besluit:behandelt / ^dct:subject / prov:generated ?besluit.
  ?besluit <http://data.europa.eu/eli/ontology#title> ?title.
+ ?besluit <http://www.w3.org/ns/prov#wasDerivedFrom> ?besluitOrigin.
  FILTER(CONTAINS(LCASE(?title), "eedaflegging"))
  FILTER(CONTAINS(LCASE(?title), "gemeenteraad"))
 }
@@ -69,6 +71,7 @@ PREFIX ext: <http://mu.semte.ch/vocabularies/ext/>
 CONSTRUCT {
   ?besluit ext:origin ?origin.
   ?besluit ext:bekrachtigtMandatarissenVoor ?orgaanInTijd.
+  ?besluit <http://www.w3.org/ns/prov#wasDerivedFrom> ?besluitOrigin.
   ?besluit ext:title ?title.
   ?besluit ext:forRole <http://data.vlaanderen.be/id/concept/BestuursfunctieCode/7b038cc40bba10bec833ecfe6f15bc7a>.
 }
@@ -82,6 +85,7 @@ WHERE {
  FILTER(?date > "2024-12-01T18:30:27.495Z"^^xsd:dateTime)
  ?zitting besluit:behandelt / ^dct:subject / prov:generated ?besluit.
  ?besluit <http://data.europa.eu/eli/ontology#title> ?title.
+ ?besluit <http://www.w3.org/ns/prov#wasDerivedFrom> ?besluitOrigin.
  FILTER(CONTAINS(LCASE(?title), "eedaflegging") || CONTAINS(LCASE(?title), "aanduid"))
  FILTER(CONTAINS(LCASE(?title), "burgemeester"))
 }
@@ -100,6 +104,7 @@ CONSTRUCT {
   ?besluit ext:origin ?origin.
   ?besluit ext:bekrachtigtMandatarissenVoor ?orgaanInTijd.
   ?besluit ext:title ?title.
+  ?besluit <http://www.w3.org/ns/prov#wasDerivedFrom> ?besluitOrigin.
   ?besluit ext:forRole <http://data.vlaanderen.be/id/concept/BestuursfunctieCode/5ab0e9b8a3b2ca7c5e000012>.
 }
 WHERE {
@@ -112,6 +117,7 @@ WHERE {
  FILTER(?date > "2024-12-01T18:30:27.495Z"^^xsd:dateTime)
  ?zitting besluit:behandelt / ^dct:subject / prov:generated ?besluit.
  ?besluit <http://data.europa.eu/eli/ontology#title> ?title.
+ ?besluit <http://www.w3.org/ns/prov#wasDerivedFrom> ?besluitOrigin.
  FILTER(CONTAINS(LCASE(?title), "voorzitter van de gemeenteraad"))
 }
 EOF
@@ -129,6 +135,7 @@ CONSTRUCT {
   ?besluit ext:origin ?origin.
   ?besluit ext:bekrachtigtMandatarissenVoor ?orgaanInTijd.
   ?besluit ext:title ?title.
+  ?besluit <http://www.w3.org/ns/prov#wasDerivedFrom> ?besluitOrigin.
   ?besluit ext:forRole <http://data.vlaanderen.be/id/concept/BestuursfunctieCode/5ab0e9b8a3b2ca7c5e000014>, <http://data.vlaanderen.be/id/concept/BestuursfunctieCode/59a90e03-4f22-4bb9-8c91-132618db4b38> .
 }
 WHERE {
@@ -141,6 +148,7 @@ WHERE {
  FILTER(?date > "2024-12-01T18:30:27.495Z"^^xsd:dateTime)
  ?zitting besluit:behandelt / ^dct:subject / prov:generated ?besluit.
  ?besluit <http://data.europa.eu/eli/ontology#title> ?title.
+ ?besluit <http://www.w3.org/ns/prov#wasDerivedFrom> ?besluitOrigin.
  FILTER(CONTAINS(LCASE(?title), "de schepenen"))
  FILTER(CONTAINS(LCASE(?title), "verkie"))
 }
@@ -159,6 +167,7 @@ CONSTRUCT {
   ?besluit ext:origin ?origin.
   ?besluit ext:bekrachtigtMandatarissenVoor ?orgaanInTijd.
   ?besluit ext:title ?title.
+  ?besluit <http://www.w3.org/ns/prov#wasDerivedFrom> ?besluitOrigin.
   ?besluit ext:forRole <http://data.vlaanderen.be/id/concept/BestuursfunctieCode/5ab0e9b8a3b2ca7c5e000019>.
 }
 WHERE {
@@ -171,6 +180,7 @@ WHERE {
  FILTER(?date > "2024-12-01T18:30:27.495Z"^^xsd:dateTime)
  ?zitting besluit:behandelt / ^dct:subject / prov:generated ?besluit.
  ?besluit <http://data.europa.eu/eli/ontology#title> ?title.
+ ?besluit <http://www.w3.org/ns/prov#wasDerivedFrom> ?besluitOrigin.
  FILTER(CONTAINS(LCASE(?title), "leden"))
 }
 EOF
@@ -188,6 +198,7 @@ CONSTRUCT {
   ?besluit ext:origin ?origin.
   ?besluit ext:bekrachtigtMandatarissenVoor ?orgaanInTijd.
   ?besluit ext:title ?title.
+  ?besluit <http://www.w3.org/ns/prov#wasDerivedFrom> ?besluitOrigin.
   ?besluit ext:forRole <http://data.vlaanderen.be/id/concept/BestuursfunctieCode/5ab0e9b8a3b2ca7c5e00001a>.
 }
 WHERE {
@@ -200,6 +211,7 @@ WHERE {
  FILTER(?date > "2024-12-01T18:30:27.495Z"^^xsd:dateTime)
  ?zitting besluit:behandelt / ^dct:subject / prov:generated ?besluit.
  ?besluit <http://data.europa.eu/eli/ontology#title> ?title.
+ ?besluit <http://www.w3.org/ns/prov#wasDerivedFrom> ?besluitOrigin.
  FILTER(CONTAINS(LCASE(?title), "voorzitter"))
 }
 EOF
