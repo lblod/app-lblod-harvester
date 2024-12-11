@@ -220,6 +220,6 @@ timestamp=`date +%Y%0m%0d%0H%0M%0S`.strip.to_i
 
 path = File.join(output_dir, "export-bekrachtigingen.ttl")
 File.open(path, 'w') do |file|
-  file.write repo.dump(:ttl)
+  file.write repo.dump(:ntriples)
 end
 puts("Exported #{repo.size} statements to #{path}")
