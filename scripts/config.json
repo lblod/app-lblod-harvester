@@ -12,6 +12,22 @@
         "interactive": true,
         "script": "generate-account/run.sh"
       }
+    },
+    {
+      "documentation": {
+        "command": "export-besluiten",
+        "description": "create exports of besluiten for 2024 period currently in the harvested data",
+        "arguments": []
+      },
+      "environment": {
+        "image": "nvdk/ruby-semantic-works-cli",
+        "interactive": true,
+        "script": "export-besluiten/run.rb",
+        "join_networks": true
+      },
+      "mounts": {
+        "app": "/app/"
+      }
     }
   ]
 }
