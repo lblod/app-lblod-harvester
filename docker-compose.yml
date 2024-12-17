@@ -190,11 +190,11 @@ services:
     volumes:
       - ./data/files:/share
   harvest_validate:
-    image: lblod/harvesting-validator:feature-remove-whitespace
+    image: lblod/harvesting-validator:0.3.6
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
       STRICT_MODE_FILTERING: "false"
-      LIMIT_SIZE: 1000
+      LIMIT_SIZE: 2000
     volumes:
       - ./data/files:/share
       - ./config/shacl:/config
@@ -204,11 +204,11 @@ services:
     logging: *default-logging
 
   harvest_diff:
-    image: lblod/harvesting-diff-service:0.2.2
+    image: lblod/harvesting-diff-service:0.2.5
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
       PUBLICATION_GRAPH: "http://mu.semte.ch/graphs/public"
-      LIMIT_SIZE: 1000
+      LIMIT_SIZE: 2000
     volumes:
       - ./data/files:/share
     labels:
