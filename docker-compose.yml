@@ -315,7 +315,7 @@ services:
     logging: *default-logging
 
   delta-producer-publication-graph-maintainer:
-    image: lblod/delta-producer-publication-graph-maintainer:1.0.3
+    image: lblod/delta-producer-publication-graph-maintainer:1.2.2
     environment:
       SUDO_QUERY_RETRY_FOR_HTTP_STATUS_CODES: "404,500,503"
       MAX_BODY_SIZE: "50mb"
@@ -331,7 +331,7 @@ services:
     logging: *default-logging
 
   delta-producer-background-jobs-initiator:
-    image: lblod/delta-producer-background-jobs-initiator:1.0.0
+    image: lblod/delta-producer-background-jobs-initiator:1.0.1
     volumes:
       - ./config/delta-producer/background-job-initiator/config.json:/config/config.json
     labels:
