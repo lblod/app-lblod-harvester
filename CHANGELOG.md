@@ -1,4 +1,17 @@
 # Changelog
+## 0.19.0 (2025-01-15)
+Changes since 0.18.1
+
+- added metrics endpoint with basic metrics
+- bumped sparql parser to 0.0.13 
+- bumped scraper to 1.2.0 (limits max amount of items scraped)
+- bumped harvest import service to 0.13.5
+- bumped harvest validator to 0.3.7
+- bumped diff service to 0.2.6
+- bumped sameas service to 4.5.1
+- bumped graph maintainer to 1.3.0 (limits the maximum amount of delta files returned in one call)
+- bumped delta-producer-background-jobs-initiator to 1.0.1
+
 ## 0.14.4 (2023-10-26)
 - bump dump file publisher
 ## 0.11.0 (2023-03-10)
