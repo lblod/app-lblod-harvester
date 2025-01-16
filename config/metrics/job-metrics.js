@@ -27,12 +27,19 @@ ORDER BY ?status
 `;
 
 async function updateJobsPerStatusGauge() {
+  const statusCounts = Object.fromEntries(
+    Object.values(STATUS_MAP).map(status => [status, 0])
+  );
+
   const response = await query(jobStatusQuery);
   if (response.results.bindings) {
     for (const binding of response.results.bindings) {
       const status = STATUS_MAP[binding.status?.value];
       const count = parseInt(binding.jobs.value);
-      jobStatusGuage.labels({status}).set(count);
+      if (status) statusCounts[status] = count;
+    }
+    for (const [status, count] of Object.entries(statusCounts)) {
+      jobStatusGuage.labels({status}).set(0);
     }
   }
 }
