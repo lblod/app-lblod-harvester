@@ -151,7 +151,7 @@ defmodule Dispatcher do
   #################
   # prometheus reporting
   #################
-  get "/metrics", %{ layer: :resources, accept: %{ any: true } } do
+  get "/metrics", %{ layer: :static, accept: %{ any: true } } do
     Proxy.forward conn, [], "http://metrics/metrics"
   end
 
