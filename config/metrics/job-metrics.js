@@ -39,7 +39,7 @@ async function updateJobsPerStatusGauge() {
       if (status) statusCounts[status] = count;
     }
     for (const [status, count] of Object.entries(statusCounts)) {
-      jobStatusGuage.labels({status}).set(0);
+      jobStatusGuage.labels({status}).set(count);
     }
   }
 }
