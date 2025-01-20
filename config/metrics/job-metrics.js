@@ -1,10 +1,15 @@
 import promClient from 'prom-client';
 import { querySudo as query } from '@lblod/mu-auth-sudo';
-const jobStatusGuage = new promClient.Gauge({
+const jobStatusGauge = new promClient.Gauge({
   name: 'semtech_job_status_count',
   help: 'jobs per status',
   labelNames: ['status']
 });
+const longRunningJobsGauge = new promClient.Gauge({
+  name: 'semtech_jobs_running_at_least_24_hours_count',
+  help: 'count of jobs that have been busy for more than 24 hours'
+});
+
 const register = promClient.register;
 
 const STATUS_MAP = {
@@ -26,6 +31,21 @@ GROUP BY ?status
 ORDER BY ?status
 `;
 
+const longRunningJobsQuery = `
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX cogs: <http://vocab.deri.ie/cogs#>
+PREFIX adms: <http://www.w3.org/ns/adms#>
+
+SELECT (COUNT(?job) as ?jobs) WHERE {
+       ?job a cogs:Job.
+        ?job adms:status <http://redpencil.data.gift/id/concept/JobStatus/busy>;
+             dct:created ?created.
+        BIND(NOW() - "P1D"^^xsd:duration AS ?yesterday)
+  FILTER(?created < ?yesterday)
+}
+`;
+
 async function updateJobsPerStatusGauge() {
   const statusCounts = Object.fromEntries(
     Object.values(STATUS_MAP).map(status => [status, 0])
@@ -39,8 +59,17 @@ async function updateJobsPerStatusGauge() {
       if (status) statusCounts[status] = count;
     }
     for (const [status, count] of Object.entries(statusCounts)) {
-      jobStatusGuage.labels({status}).set(count);
+      jobStatusGauge.labels({status}).set(count);
     }
+  }
+}
+
+async function updateLongRunningJobs() {
+  const response = await query(longRunningJobsQuery);
+  if (response.results.bindings) {
+    const binding = response.results.bindings[0];
+    const count = parseInt(binding.jobs.value);
+    jobStatusGauge.set(count);
   }
 }
 
@@ -48,7 +77,8 @@ export default {
   name: 'job statuses',
   cronPattern: '*/10 * * * *',
   async cronExecute() {
-    const data = await updateJobsPerStatusGauge();
+    await updateJobsPerStatusGauge();
+    await updateLongRunningJobs();
   },
   async metrics() {
     return await register.metrics();
