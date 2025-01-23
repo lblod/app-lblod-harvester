@@ -1,4 +1,13 @@
 # Changelog
+## 0.20.0 (2025-01-23)
+Changes since 0.19.0
+
+- bumped validation and diff service to add configurable sleep time
+- besluiten export script was improved and uses batching now
+- metric added to detect long running jobs
+- various fixes to metrics endpoint
+- bumped deltanotifier & enabled retry on delta's to job-controller
+
 ## 0.19.0 (2025-01-15)
 Changes since 0.18.1
 
