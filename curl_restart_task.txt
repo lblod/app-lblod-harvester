@@ -1,0 +1,15 @@
+# just a reminder on how to rerun a task. !!! ONLY LOCALLY
+drc exec harvest_gen_delta  curl --location --request POST 'localhost/delta' \
+--header 'Content-Type: application/vnd.api+json' \
+--data-raw '    [
+      {
+          "deletes": [],
+          "inserts": [
+              {
+                  "subject": { "type": "uri", "value": "http://redpencil.data.gift/id/task/5e2f11a0-95e0-11ee-9ce8-85f724782cfc" },
+                  "predicate": { "type": "uri", "value": "http://www.w3.org/ns/adms#status" },
+                  "object": { "type": "uri", "value": "http://redpencil.data.gift/id/concept/JobStatus/scheduled" }
+              }
+          ]
+      }
+]'
