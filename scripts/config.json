@@ -15,6 +15,22 @@
     },
     {
       "documentation": {
+        "command": "job-optimizer",
+        "description": "interactive job schedule optimizer",
+        "arguments": []
+      },
+      "environment": {
+        "image": "ruby:3.2-bookworm",
+        "interactive": true,
+        "script": "optimize-jobs/run.rb",
+        "join_networks": true
+      },
+      "mounts": {
+        "app": "/project"
+      }
+    },
+    {
+      "documentation": {
         "command": "export-besluiten",
         "description": "create exports of besluiten for 2024 period currently in the harvested data",
         "arguments": []
