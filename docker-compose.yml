@@ -183,11 +183,13 @@ services:
     logging: *default-logging
 
   harvest_cleanup:
-    image: lblod/harvesting-cleanup-previous-jobs-service:0.2.0
+    image: lblod/local-harvesting-cleanup-previous-jobs-service
     environment:
       MAX_DAYS_TO_KEEP_SUCCESSFUL_JOBS: 30
       MAX_DAYS_TO_KEEP_BUSY_JOBS: 7
       MAX_DAYS_TO_KEEP_FAILED_JOBS: 7
+      LOG_SPARQL_ALL: "false"
+      DEBUG_AUTH_HEADERS: "false"
     volumes:
       - ./data/files:/share
   harvest_validate:
