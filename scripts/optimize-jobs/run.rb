@@ -72,22 +72,14 @@ end
 
 hour_period_min = 6
 hour_period_max = 23
-# how many hours we can schedule in a day, related to hour_period
-hours_in_day = 18
 # how many minutes can a job run out (expressed in percentage of job time)
-percentage_buffer=0.1
+percentage_buffer=0.05
 
-time_required_minutes = scheduled_jobs.map{ |row| row[:time_in_minutes].to_i}.sum
 buffer_time = scheduled_jobs.map{ |row| row[:time_in_minutes].to_i * percentage_buffer}.sum.ceil
-hours_required = (time_required_minutes + buffer_time) / 60
-days_required = (hours_required / hours_in_day).ceil + 1
-prompt.say "#{time_required_minutes} minutes required to run all jobs + #{buffer_time} minutes buffer"
-prompt.say "this will require #{days_required} days to schedule all jobs"
-
 
 hour=hour_period_min
 minute = 0
-day_of_interval = 1 
+day_of_interval = 1
 scheduled_jobs.each do |job|
   if minute >= 60
     hour = hour + (minute/60).floor
@@ -98,13 +90,18 @@ scheduled_jobs.each do |job|
     hour = hour_period_min
     minute = 0
   end
-  job[:new_interval] = "#{minute} #{hour} #{day_of_interval}/#{days_required} * *"
+  job[:minute] = minute
+  job[:hour] = hour
+  job[:day] =  day_of_interval
   buffer_time = (job[:time_in_minutes].to_i * percentage_buffer).round
   minute = minute + job[:time_in_minutes].to_i + buffer_time
 end
+days_required = day_of_interval
+prompt.say "this will require #{days_required} days to schedule all jobs"
 table = Terminal::Table.new(headings: ["title", "old interval", "new interval"]) do |t|
-  scheduled_jobs.each { |row| t << [ row[:title], row[:interval], row[:new_interval]]}
+  scheduled_jobs.each { |row| t << [ row[:title], row[:interval],"#{row[:minute]} #{row[:hour]} #{row[:day_of_interval]}/#{days_required} * *" ]}
 end
+
 prompt.say(table)
 apply_schedule=prompt.yes?("apply the above schedule?")
 if apply_schedule
