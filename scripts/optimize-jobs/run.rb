@@ -99,7 +99,7 @@ end
 days_required = day_of_interval
 prompt.say "this will require #{days_required} days to schedule all jobs"
 table = Terminal::Table.new(headings: ["title", "old interval", "new interval"]) do |t|
-  scheduled_jobs.each { |row| t << [ row[:title], row[:interval],"#{row[:minute]} #{row[:hour]} #{row[:day_of_interval]}/#{days_required} * *" ]}
+  scheduled_jobs.each { |row| t << [ row[:title], row[:interval],"#{row[:minute]} #{row[:hour]} #{row[:day]}/#{days_required} * *" ]}
 end
 
 prompt.say(table)
@@ -111,7 +111,7 @@ if apply_schedule
     <<~EOF
 PREFIX cogs: <http://vocab.deri.ie/cogs#>
 DELETE { GRAPH ?g { ?schedule <http://schema.org/repeatFrequency> ?old_schedule}}
-INSERT { GRAPH ?g { ?schedule <http://schema.org/repeatFrequency> "#{job[:new_interval]}" }}
+INSERT { GRAPH ?g { ?schedule <http://schema.org/repeatFrequency> "#{job[:minute]} #{job[:hour]} #{job[:day]}/#{days_required} * *" }}
 WHERE {
   GRAPH ?g {
     <#{job[:job]}> a cogs:ScheduledJob;
