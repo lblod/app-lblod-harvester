@@ -69,7 +69,7 @@ async function updateLongRunningJobs() {
   if (response.results.bindings) {
     const binding = response.results.bindings[0];
     const count = parseInt(binding.jobs.value);
-    jobStatusGauge.set(count);
+    longRunningJobsGauge.set(count);
   }
 }
 
