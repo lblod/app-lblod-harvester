@@ -53,6 +53,7 @@ export default [
       resourceFormat: "v0.0.1",
       gracePeriod: 1000,
       ignoreFromSelf: true,
+      sendMatchesOnly: true,
     },
   },
   {
@@ -74,6 +75,7 @@ export default [
       resourceFormat: "v0.0.1",
       gracePeriod: 1000,
       ignoreFromSelf: true,
+      sendMatchesOnly: true,
     },
   },
   {
@@ -95,6 +97,7 @@ export default [
       resourceFormat: "v0.0.1",
       gracePeriod: 1000,
       ignoreFromSelf: true,
+      sendMatchesOnly: true,
     },
   },
   // {
@@ -115,7 +118,8 @@ export default [
   //   options: {
   //     resourceFormat: 'v0.0.1',
   //     gracePeriod: 1000,
-  //     ignoreFromSelf: true,
+  //     ignoreFromSelf: true
+  //     sendMatchesOnly: true,
   //   },
   // },
   {
@@ -137,6 +141,7 @@ export default [
       resourceFormat: "v0.0.1",
       gracePeriod: 1000,
       ignoreFromSelf: true,
+      sendMatchesOnly: true,
     },
   },
   {
@@ -158,6 +163,7 @@ export default [
       resourceFormat: "v0.0.1",
       gracePeriod: 1000,
       ignoreFromSelf: true,
+      sendMatchesOnly: true,
     },
   },
   {
@@ -179,6 +185,7 @@ export default [
       resourceFormat: "v0.0.1",
       gracePeriod: 1000,
       ignoreFromSelf: true,
+      sendMatchesOnly: true,
     },
   },
   {
@@ -200,6 +207,7 @@ export default [
       resourceFormat: "v0.0.1",
       gracePeriod: 1000,
       ignoreFromSelf: true,
+      sendMatchesOnly: true,
     },
   },
   {
@@ -221,6 +229,7 @@ export default [
       resourceFormat: "v0.0.1",
       gracePeriod: 1000,
       ignoreFromSelf: true,
+      sendMatchesOnly: true,
     },
   },
   {
@@ -239,6 +248,7 @@ export default [
       gracePeriod: 1000,
       ignoreFromSelf: true,
       retry: 3,
+      sendMatchesOnly: true,
     },
   },
   {
@@ -303,6 +313,7 @@ export default [
       resourceFormat: "v0.0.1",
       gracePeriod: 1000,
       ignoreFromSelf: true,
+      sendMatchesOnly: true,
     },
   },
   {
@@ -358,6 +369,7 @@ export default [
       resourceFormat: "v0.0.1",
       gracePeriod: 1000,
       ignoreFromSelf: true,
+      sendMatchesOnly: true,
     },
   },
   {
