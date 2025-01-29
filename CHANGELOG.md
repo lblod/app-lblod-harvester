@@ -1,4 +1,15 @@
 # Changelog
+
+## 0.21.0 (2025-01-29)
+Changes since 0.20.0
+
+- limit delta's sent to services
+- added script to optimize job schedules based on run times
+- bumped scraper to 1.3.0: 
+   - cleanup meetingburger dynamic urls
+   - only store pages with Notulen, Agenda, Besluitenlijst, Uiittreksel, besluit or behandelingvanagendapunt
+   - include scraping report as output of scraper
+   
 ## 0.20.0 (2025-01-23)
 Changes since 0.19.0
 
