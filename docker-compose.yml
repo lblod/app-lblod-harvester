@@ -319,6 +319,7 @@ services:
       MAX_BODY_SIZE: "50mb"
       PRETTY_PRINT_DIFF_JSON: "true"
       CONFIG_SERVICES_JSON_PATH: "/config/publication-graph-maintainer/config.json"
+      MAX_DELTA_FILES_PER_REQUEST: 100
     volumes:
       - ./config/delta-producer:/config
       - ./data/files/:/share
