@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.21.2 (2025-02-07)
+- Better handling of requests for delta files:
+  - limit delta files per request to 100
+  - increase default read timeout of sparql parser
+
 ## 0.21.0 (2025-01-29)
 Changes since 0.20.0
 
