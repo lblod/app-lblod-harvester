@@ -119,3 +119,5 @@
 (grant (read write)
        :to harvesting
        :for "logged-in")
+;; increase the default read timeout. this allows waiting heavier queries (like the one for delta files)
+(setf dexador.util:*default-read-timeout* 60)
