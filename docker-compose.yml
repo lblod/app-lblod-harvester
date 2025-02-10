@@ -54,7 +54,7 @@ services:
   database:
     image: semtech/sparql-parser:0.0.13
     environment:
-      MU_SPARQL_ENDPOINT: "http://virtuoso:8890/sparql"
+      LISP_DYNAMIC_SPACE_SIZE: "1024"
     volumes:
       - ./config/cl-authorization:/config
       - ./data/authorization:/data/
