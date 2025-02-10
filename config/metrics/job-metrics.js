@@ -81,6 +81,6 @@ export default {
     await updateLongRunningJobs();
   },
   async metrics() {
-    return await register.metrics();
+    // not returning anything
   }
 }
