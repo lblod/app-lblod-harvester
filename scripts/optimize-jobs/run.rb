@@ -91,7 +91,7 @@ scheduled_jobs.each do |job|
   job[:minute] = minute
   job[:hour] = hour
   job[:day] =  day_of_interval
-  buffer_time = [(job[:time_in_minutes].to_i * percentage_buffer).round, 5].min
+  buffer_time = [(job[:time_in_minutes].to_i * percentage_buffer).round, 5].max
   minute = minute + job[:time_in_minutes].to_i + buffer_time
 end
 days_required = day_of_interval
