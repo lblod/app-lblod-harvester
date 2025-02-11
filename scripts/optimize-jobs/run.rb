@@ -75,8 +75,6 @@ hour_period_max = 23
 # how many minutes can a job run out (expressed in percentage of job time)
 percentage_buffer=0.05
 
-buffer_time = scheduled_jobs.map{ |row| row[:time_in_minutes].to_i * percentage_buffer}.sum.ceil
-
 hour=hour_period_min
 minute = 0
 day_of_interval = 1
@@ -93,7 +91,7 @@ scheduled_jobs.each do |job|
   job[:minute] = minute
   job[:hour] = hour
   job[:day] =  day_of_interval
-  buffer_time = (job[:time_in_minutes].to_i * percentage_buffer).round
+  buffer_time = [(job[:time_in_minutes].to_i * percentage_buffer).round, 5].min
   minute = minute + job[:time_in_minutes].to_i + buffer_time
 end
 days_required = day_of_interval
