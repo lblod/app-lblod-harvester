@@ -340,3 +340,8 @@ services:
     volumes:
       - ./data/metrics:/external-metrics
       - ./config/metrics:/config
+  dbcleanup:
+    image: lblod/db-cleanup-service:0.5.1
+    environment:
+      MU_APPLICATION_GRAPH: 'http://mu.semte.ch/graphs/cleanup-jobs'
+      CRON_PATTERN: '0 20 1 * *'
