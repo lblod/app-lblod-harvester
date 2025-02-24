@@ -277,3 +277,9 @@ services:
     environment:
       MU_APPLICATION_GRAPH: 'http://mu.semte.ch/graphs/cleanup-jobs'
       CRON_PATTERN: '0 20 1 * *'
+
+  metrics:
+    image: lblod/metrics-service:0.1.0
+    volumes:
+      - ./data/metrics:/external-metrics
+      - ./config/metrics:/config
