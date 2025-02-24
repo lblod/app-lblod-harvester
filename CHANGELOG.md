@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.22.0 (2025-02-24)
+- bumped sparql-parser to 0.0.14 and set heap size to 1GB
+- updated metrics
+- db cleanup service to reschedule scheduled tasks
+- bumped scraper service to 1.3.1 (success status instead of failed for jobs that don't result in new files)
+- updated besluiten script
+- set up graph dumps through virtuoso instead of using delta producer related services 
+
 ## 0.21.2 (2025-02-07)
 - Better handling of requests for delta files:
   - limit delta files per request to 100
