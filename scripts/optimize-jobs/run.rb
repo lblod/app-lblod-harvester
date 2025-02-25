@@ -27,6 +27,7 @@ PREFIX cogs: <http://vocab.deri.ie/cogs#>
 SELECT distinct ?job ?title ?interval
 WHERE {
   ?job a cogs:ScheduledJob;
+  <http://redpencil.data.gift/vocabularies/tasks/operation> <http://lblod.data.gift/id/jobs/concept/JobOperation/lblodHarvestAndPublish>;
 <http://redpencil.data.gift/vocabularies/tasks/schedule>/<http://schema.org/repeatFrequency> ?interval;
    <http://purl.org/dc/terms/title> ?title.
 } ORDER BY ?title
@@ -91,7 +92,7 @@ scheduled_jobs.each do |job|
   job[:minute] = minute
   job[:hour] = hour
   job[:day] =  day_of_interval
-  buffer_time = [(job[:time_in_minutes].to_i * percentage_buffer).round, 5].max
+  buffer_time = [(job[:time_in_minutes].to_i * percentage_buffer).round, 10].max
   minute = minute + job[:time_in_minutes].to_i + buffer_time
 end
 days_required = day_of_interval
