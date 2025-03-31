@@ -39,7 +39,6 @@ services:
     image: lblod/frontend-harvesting-self-service:2.1.5
     volumes:
       - ./config/frontend:/config
-      - ./exports:/data/assets/exports
     labels:
       - "logging=true"
     restart: always
@@ -277,8 +276,8 @@ services:
   dbcleanup:
     image: lblod/db-cleanup-service:0.5.1
     environment:
-      MU_APPLICATION_GRAPH: 'http://mu.semte.ch/graphs/cleanup-jobs'
-      CRON_PATTERN: '0 20 1 * *'
+      MU_APPLICATION_GRAPH: "http://mu.semte.ch/graphs/cleanup-jobs"
+      CRON_PATTERN: "0 20 1 * *"
     restart: always
     logging: *default-logging
 
