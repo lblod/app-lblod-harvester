@@ -12,6 +12,7 @@ DELETE {
 INSERT DATA {
   GRAPH <http://mu.semte.ch/graphs/cleanup-jobs> {
     <http://localhost/cleanup-job-2> cleanup:randomQuery """
+    PREFIX adms: <http://www.w3.org/ns/adms#>
     INSERT  {
       GRAPH <http://mu.semte.ch/graphs/harvesting> {
       ?resource adms:status <http://redpencil.data.gift/id/concept/JobStatus/failed>;
