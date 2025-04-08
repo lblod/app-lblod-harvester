@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.23.0 (2025-04-08)
+- removed export besluiten workaround
+- bumped import service (add support for xml literal)
+- improvements to rescheduling script
+- bumped job-controller to 1.1.0 (higher max size for delta-messages + don't create task if it already exists)
+- make sure cleanup service restarts after failure
+
 ## 0.22.0 (2025-02-24)
 - bumped sparql-parser to 0.0.14 and set heap size to 1GB
 - updated metrics
