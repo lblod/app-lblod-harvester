@@ -181,6 +181,9 @@ services:
       DEBUG_AUTH_HEADERS: "false"
     volumes:
       - ./data/files:/share
+    restart: always
+    logging: *default-logging
+      
   harvest_validate:
     image: lblod/harvesting-validator:0.3.8
     environment:
