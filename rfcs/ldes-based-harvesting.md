@@ -39,7 +39,7 @@ The service would query the graphs each 10 minutes and
 
 Some extra intelligence my be required:
 - only creating a new job if another one is not already running
-- making sure jobs don't exist a given number of urls to visit
+- making sure jobs don't have over a given number of urls to visit
 
 This mostly to optimize initial ingest.
 
