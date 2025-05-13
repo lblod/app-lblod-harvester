@@ -14,7 +14,7 @@ This rfc describes how we could adapt the harvester for working based on an LDES
 Similar to the current setup, the entrypoints need to be manageable via a web interface. The main difference being that the entrypoint will be an LDES feed instead of the main webpage.
 
 ### existing process
-The harvesting process itself will be quite different, for comparison here's a short description of the existing process:
+The harvesting process itself will be a bit different, for comparison here's a short description of the existing process:
 An entrypoint is accompanied by a cron schedule. The cron task will follow the follow process:
 - a task is created to start the scraper
 - the collecting step: for scheduled jobs (with only one entrypoint), the scraper retrieves previously harvester urls of publications from the database, based on available metadata from previous tasks. Overview pages are not included, and a random 10% of the existing urls are dropped to make sure we revisit pages once in a while.
@@ -30,7 +30,7 @@ An entrypoint is accompanied by a cron schedule. The cron task will follow the f
 ### updated process
 In the updated process, a LDES client will be polling each feed continuously. Since the feeds are configurable through the frontend we need to spin up the clients dynamically. I'd propose using the existing [ldes-consumer-manager](https://github.com/redpencilio/ldes-consumer-manager) for this.
 
-The client will insert new publications into a specific graph for each ldes client / entrypoint. A second process would have to act on those insertions. I propose a service that monitors the graphs and creates new jobs and a fixed schedule. This allows for a generic approach, mostly compatible with the existing setup. 
+The client will insert new publications into a specific graph for each ldes client / entrypoint. A second process would have to act on those insertions. I propose a service that monitors the graphs and creates new jobs on a fixed schedule. This allows for a generic approach, mostly compatible with the existing setup. 
 
 The service would query the graphs each 10 minutes and 
 - search for any publications not linked to a job
