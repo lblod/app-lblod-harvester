@@ -1,5 +1,3 @@
-version: "3.7"
-
 services:
   identifier:
     restart: "no"
@@ -37,6 +35,7 @@ services:
 
   harvest_singleton-job:
     restart: "no"
+
   harvest_scraper:
     restart: "no"
 
@@ -63,25 +62,13 @@ services:
 
   scheduled-job-controller:
     restart: "no"
-
-  deliver-email:
+  login:
     restart: "no"
 
-  error-alert:
-    environment:
-      EMAIL_FROM: "noreply@lblod.info"
-      EMAIL_TO: "noreply@lblod.info"
+  dbcleanup:
     restart: "no"
 
-  delta-producer-report-generator:
-    restart: "no"
-
-  delta-producer-dump-file-publisher:
-    restart: "no"
-
-  delta-producer-background-jobs-initiator:
+  metrics:
     restart: "no"
   delta-producer-publication-graph-maintainer:
-    restart: "no"
-  login:
     restart: "no"

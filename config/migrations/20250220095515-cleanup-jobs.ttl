@@ -1,0 +1,57 @@
+PREFIX cleanup: <http://mu.semte.ch/vocabularies/ext/cleanup/>
+PREFIX mu:      <http://mu.semte.ch/vocabularies/core/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+
+<http://localhost/cleanup-job-1> a cleanup:Job ;
+  mu:uuid "10724bc2-c9d0-4a35-a499-91a8b7cb023b" ;
+  dcterms:title "reschedule scheduled tasks" ;
+  cleanup:randomQuery """
+  PREFIX adms: <http://www.w3.org/ns/adms#>
+    DELETE  {
+      GRAPH <http://mu.semte.ch/graphs/harvesting> {
+      ?resource adms:status <http://redpencil.data.gift/id/concept/JobStatus/scheduled>;
+      }
+      }
+    INSERT  {
+      GRAPH <http://mu.semte.ch/graphs/harvesting> {
+      ?resource adms:status <http://redpencil.data.gift/id/concept/JobStatus/scheduled>;
+      }
+    }
+    WHERE {
+    GRAPH <http://mu.semte.ch/graphs/harvesting> {
+      ?resource a <http://redpencil.data.gift/vocabularies/tasks/Task> ;
+        adms:status <http://redpencil.data.gift/id/concept/JobStatus/scheduled>;
+        <http://purl.org/dc/terms/modified> ?modified.
+        BIND(NOW() - xsd:dayTimeDuration(\"PT10M\") AS ?tenMinutesAgo)
+     FILTER(?modified <= ?tenMinutesAgo)
+    }
+    }
+    """ ;
+  cleanup:cronPattern "*/5 * * * *".
+
+<http://localhost/cleanup-job-2> a cleanup:Job ;
+  mu:uuid "10724bc2-c9d0-4a35-a499-91a8b7cb023b" ;
+  dcterms:title "fail long running busy tasks" ;
+  cleanup:randomQuery """
+    PREFIX adms: <http://www.w3.org/ns/adms#>
+    DELETE  {
+      GRAPH <http://mu.semte.ch/graphs/harvesting> {
+      ?resource adms:status <http://redpencil.data.gift/id/concept/JobStatus/failed>;
+      }
+      }
+    INSERT  {
+      GRAPH <http://mu.semte.ch/graphs/harvesting> {
+      ?resource adms:status <http://redpencil.data.gift/id/concept/JobStatus/busy>;
+      }
+    }
+    WHERE {
+    GRAPH <http://mu.semte.ch/graphs/harvesting> {
+      ?resource a <http://redpencil.data.gift/vocabularies/tasks/Task> ;
+        adms:status <http://redpencil.data.gift/id/concept/JobStatus/busy>;
+        <http://purl.org/dc/terms/modified> ?modified.
+        BIND(NOW() - xsd:dayTimeDuration(\"PT36H\") AS ?hoursAgo)
+     FILTER(?modified <= ?hoursAgo)
+    }
+    }
+    """ ;
+  cleanup:cronPattern "4 * * * *".
