@@ -14,6 +14,7 @@ services:
     restart: "no"
 
   virtuoso:
+    image: nbittich/virtuoso
     ports:
       - "8890:8890"
     restart: "no"
@@ -40,6 +41,7 @@ services:
     restart: "no"
 
   harvest_import:
+    image: lblod/harvesting-import-service:latest
     restart: "no"
 
   harvest_validate:
