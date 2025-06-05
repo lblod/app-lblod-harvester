@@ -1,4 +1,9 @@
-# services:
+services:
+  virtuoso:
+    environment:
+      # Allows for use of a web based UI for queries, such as Yasgui
+      ENABLE_CORS: "true"
+
 #   harvest_scraper:
 #     # Put the scraper on the same network as a local stack so that it can scrape from it
 #     # (needs accompanying network config)
