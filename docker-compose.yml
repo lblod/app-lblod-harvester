@@ -61,7 +61,7 @@ services:
     logging: *default-logging
 
   virtuoso:
-    image: redpencil/virtuoso:1.2.0
+    image: redpencil/feature-geosparql-support
     environment:
       SPARQL_UPDATE: "true"
       DEFAULT_GRAPH: "http://mu.semte.ch/graphs/public"
@@ -157,7 +157,7 @@ services:
   #   restart: always
   #   logging: *default-logging
   harvest_import:
-    image: lblod/harvesting-import-service:0.13.7
+    image: lblod/harvesting-import-service:0.13.8
     environment:
       VIRTUOSO_ENDPOINT: "http://virtuoso:8890/sparql"
       SUDO_QUERY_RETRY: "true"
