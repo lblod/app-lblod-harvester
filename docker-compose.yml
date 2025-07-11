@@ -213,19 +213,6 @@ services:
     restart: always
     logging: *default-logging
 
-  harvest_load:
-    image: semtech/mu-javascript-template:1.8.0
-    links:
-      - database:database
-    ports:
-      - "8888:80"
-      - "9229:9229"
-    environment:
-      NODE_ENV: "development"
-    volumes:
-      - "/home/nielsv/Code/lblod/harvesting-load-to-triplestore-service/:/app"
-
-
   harvest_sameas:
     image: lblod/import-with-sameas-service:4.5.1
     environment:
