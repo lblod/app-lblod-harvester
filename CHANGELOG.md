@@ -1,4 +1,10 @@
 # Changelog
+## 0.24.0 (2025-07-16)
+- bump import with sameas service
+- bump frontend to 2.3.0
+- bump scheduled jobs service (to limit max concurrent job)
+- rename import service to extract service
+- Citerra (#88): Geosparql support and  new allowed rdf types (1b36994)
 
 ## 0.23.0 (2025-04-08)
 - removed export besluiten workaround
