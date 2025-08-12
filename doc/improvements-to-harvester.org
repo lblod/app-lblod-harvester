@@ -29,7 +29,7 @@ This prevents some duplication, but:
 - We might have the same piece of knowledge represented twice in our system.
 - This can lead to extra storage, redundant processing, and potential confusion if the same entity has two URIs.
 - It’s not a critical error for functionality (the data is still correct), but it does reduce quality and could cause issues when deduplicating or aggregating data later.
-This means we can and up with bogus number of sessions (zittingen) and agendapoints for example
+This means we can end up with bogus number of sessions (zittingen) and agendapoints for example
 ** Next steps
 - Require publishers who use relative URIs to include a <base> tag in their HTML, so we can consistently resolve URLs to a single absolute form.
 - If no <base> tag is found and a relative URI is detected, throw an error and reject the page — forcing the publisher to fix it.
