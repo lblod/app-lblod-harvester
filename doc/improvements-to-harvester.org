@@ -1,0 +1,81 @@
+Known issues in the harvester (and next steps):
+
+* relative URIs in source and session based URLs (data quality)
+We have a scraping process that pulls RDF (linked data) from publication platforms by extracting RDFa embedded in HTML pages. This data becomes part of our knowledge graph.
+
+Some publishers don’t just use standard, absolute URLs — they sometimes:
+
+1. Use relative URIs in their RDFa (which is fine for us).
+2. Serve pages under URLs that change per session (often with jsessionid or similar Java session tracking in the path).
+
+That second point creates a problem:
+-  From our perspective, https://site.com/page;jsessionid=ABC123 and https://site.com/page;jsessionid=XYZ789 are different URLs, even though they serve the same content.
+-  As a result, we can accidentally scrape the same RDF data multiple times and store it under different resource URIs.
+
+** Current workaround
+We have a small piece of code that:
+
+-   Strips the jsessionid part from URLs.
+-   Removes URL fragments (the #... part).
+-   Handles another Java-session style URL format /(S(...))/.
+
+This prevents some duplication, but:
+-  It only catches the patterns we already know.
+-  If a publisher uses a different session pattern, we don’t detect it.
+-  That means duplicates can still appear in the knowledge graph, but linked to slightly different URIs.
+
+** Impact
+
+- We might have the same piece of knowledge represented twice in our system.
+- This can lead to extra storage, redundant processing, and potential confusion if the same entity has two URIs.
+- It’s not a critical error for functionality (the data is still correct), but it does reduce quality and could cause issues when deduplicating or aggregating data later.
+This means we can and up with bogus number of sessions (zittingen) and agendapoints for example
+** Next steps
+- Require publishers who use relative URIs to include a <base> tag in their HTML, so we can consistently resolve URLs to a single absolute form.
+- If no <base> tag is found and a relative URI is detected, throw an error and reject the page — forcing the publisher to fix it.
+- This shifts responsibility to the data source and removes the need for fragile URL-cleaning heuristics.
+
+* Large dumps not available through http(s) (operational, sync)
+Current daily dumps are often larger than 10GB, fetching these through https results in failures quite often. While there are workaround (using the `range` header to resume a download) or fetching the file through ssh these are not convenient nor supported out of the box.
+
+* Consumers can not be out of sync for a long period (operational, sync)
+Because of the amount of data generated we clean up old delta's after a certain time. This means if a consumer did not sync since a certain time it needs to reset from the latest daily dump and restart syncing from there.
+
+* Duplicated extractedDesicion files (operational, sync, dataQuality)
+
+* ExtractedDecision files not used at all (operational, sync, dataQuality)
+
+* Scraping and processing in the same pipeline (operational, sync)
+Right now, scraping (fetching pages and extracting RDFa) and processing (turning that data into our knowledge graph) happen in the same pipeline.
+
+This has drawbacks:
+
+- Slow sites slow everything down — for some sources, scraping can take more than 24 hours.
+- Even though we’ve added optimizations like:
+  - Limiting output to 50,000 files per run
+  -  Incremental scraping (only new or updated pages)
+- big processing changes still force us to reset and scrape everything again.
+- This wastes time and resources, especially when the data hasn’t changed but our processing logic has.
+
+Why this is a problem:
+- Every time we want to make a major change in processing (e.g. improved deduplication, new enrichment logic), we have to re-scrape all sites.
+- Sites with slow response times or rate limits turn a processing change into a multi-day operation.
+-  This limits how often we can safely improve processing, because of the operational cost.
+
+Proposed improvement:
+Split the workflow into two independent pipelines:
+1.  Scraping pipeline
+  - Fetch pages and extract RDFa.
+  -  Store the raw extracted data in a dataset (our “mirror”).
+2. Processing pipeline
+  - Work entirely from the stored dataset.
+  -  Can run multiple times, try different strategies, or combine pages in different ways without re-scraping. For example we could have a santized and raw data pipeline
+
+Benefits:
+-  Faster iteration: Processing improvements no longer require waiting for scraping.
+   -  More flexible processing:
+      -  Can combine pages in some cases, focus on individual pages in others.
+      -  Can try alternative processing strategies without touching the scraping pipeline.
+   - Smarter mirroring:
+      -  We can choose what and when to refresh in the mirror, instead of re-fetching everything.
+   - Better resilience: If a site is down, we can still process its most recent mirror.
