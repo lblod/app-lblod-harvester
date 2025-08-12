@@ -7,6 +7,9 @@ services:
   dispatcher:
     restart: "no"
 
+  login:
+    restart: "no"
+
   frontend:
     restart: "no"
 
@@ -42,6 +45,9 @@ services:
   harvest_extract:
     restart: "no"
 
+  harvest_cleanup:
+    restart: "no"
+
   harvest_validate:
     restart: "no"
     environment:
@@ -62,13 +68,15 @@ services:
 
   scheduled-job-controller:
     restart: "no"
-  login:
+
+  graph-dump-publisher:
     restart: "no"
 
   dbcleanup:
     restart: "no"
 
-  metrics:
-    restart: "no"
   delta-producer-publication-graph-maintainer:
+    restart: "no"
+
+  metrics:
     restart: "no"
