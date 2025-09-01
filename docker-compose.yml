@@ -218,7 +218,7 @@ services:
     environment:
       RENAME_DOMAIN: "http://data.lblod.info/id/"
       TARGET_GRAPH: "http://mu.semte.ch/graphs/public"
-      HIGH_LOAD_DATABASE_ENDPOINT: "http://virtuoso:8890/sparql"
+      HIGH_LOAD_DATABASE_ENDPOINT: "http://database:8890/sparql"
       ROLLBACK_ENABLED: "false"
       TASK_TIMEOUT_HOURS: "20"
       LOG_SPARQL_ALL: "false"
@@ -308,5 +308,30 @@ services:
     volumes:
       - ./data/metrics:/external-metrics
       - ./config/metrics:/config
+    restart: always
+    logging: *default-logging
+  search:
+    image: semtech/mu-search:0.10.0
+    volumes:
+      - ./config/search:/config
+    restart: always
+    logging: *default-logging
+    environment:
+      JAVA_OPTS: "-Xms1g -Xmx4g"    
+  elasticsearch:
+    image: semtech/mu-search-elastic-backend:1.0.0
+    volumes:
+      - ./data/elasticsearch/:/usr/share/elasticsearch/data
+    ulimits:
+      nproc: 65536
+      nofile:
+        soft: 65535
+        hard: 65535
+    environment:
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms1g -Xmx4g"
+      - "cluster.routing.allocation.disk.watermark.low=96%"
+      - "cluster.routing.allocation.disk.watermark.high=97%"
+      - "cluster.routing.allocation.disk.watermark.flood_stage=98%"
     restart: always
     logging: *default-logging
