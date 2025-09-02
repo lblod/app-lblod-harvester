@@ -1,4 +1,4 @@
-# `app-lblod-harvester`
+# `app-eli-dl-harvester`
 
 Mu-semtech stack for harvesting and processing Decisions from external sources.
 For the harvesting of Worship Decisions with focus on authentication, see
@@ -35,17 +35,21 @@ without errors you can visit the frontend in a browser on
 `http://localhost:80`.
 
 ## Delta's and dumps
+
 From a consumer perspective, the delta's and dumps are available similar to any other LBLOD application. Since this app generates a lot of data, we ended up with a somewhat optimized version of the delta producer. Delta's are generated using the [harvesting-generation-delta-service](https://github.com/lblod/harvesting-generation-delta-service). Dumps are generated using the [graph-dump-service](https://github.com/lblod/graph-dump-service). The sync endpoint is provided by the [delta-producer-publication-graph-maintainer](https://github.com/lblod/delta-producer-publication-graph-maintainer/).
 
 ### Delta's
+
 Delta's are generated as part of the harvesting pipeline. All inserted/deleted triples as listed by the [harvesting-diff-service](https://github.com/lblod/harvesting-diff-service/) will get converted to delta files. These files are listed by the delta-producer-publication-graph-maintainer and that is the only thing this particular service does in this app. This endpoint is available under `/sync/besluiten/files?since=<your-timestamp>`. It returns a maximum of 1000 files.
 
 ### Dumps
-Dumps are used by consumers as a snapshot to start from, this is faster than consuming all delta's. Dumps are provided by the graph-dump-service. There is a migration adding a scheduled job to create these. To disable dumps remove the scheduled job. 
+
+Dumps are used by consumers as a snapshot to start from, this is faster than consuming all delta's. Dumps are provided by the graph-dump-service. There is a migration adding a scheduled job to create these. To disable dumps remove the scheduled job.
 
 Dumps are registered as dcat:Dataset's. The dump can be queried on `/datasets?filter[subject]=http://data.lblod.info/datasets/delta-producer/dumps/lblod-harvester/BesluitenCacheGraphDump&filter[:has-no:next-version]=yes`.
 
 ### Authentication
+
 By default this application requires authentication. You can generate a migration to add a user account by using [mu-cli](https://github.com/mu-semtech/mu-cli) and running the included project script.
 
 ```sh
@@ -82,13 +86,16 @@ If you wish to run this application without authentication, this is also possibl
 +     EMBER_AUTHENTICATION_ENABLED: "false"
 ```
 
-
 ### Triggering the healing-job manually
+
 In some cases, you might want to trigger the healing job manually.
+
 ```
 drc exec delta-producer-background-jobs-initiator wget --post-data='' http://localhost/besluiten/healing-jobs
 ```
+
 ### Cleaning up delta related background jobs manually
+
 Trigger the debug endpoints in [delta-producer-background-jobs-initiator](https://github.com/lblod/delta-producer-background-jobs-initiator)
 
 ## Additional notes
@@ -108,7 +115,9 @@ virtuoso:
 ```
 
 ### Hosting large dump files
+
 You may need to update the nginx reverse proxy settings and add the following to support dump files > 1GB in size:
+
 ```
 client_max_body_size 10G;
 proxy_buffering off;
