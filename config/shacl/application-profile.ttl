@@ -21,7 +21,6 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix sh-old: <https://example.org/old/shacl/> .
 @prefix shp-bv: <https://data.vlaanderen.be/shacl/besluitvorming-ap#> .
 @prefix shp: <https://data.vlaanderen.be/shacl/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
@@ -82,19 +81,16 @@ shp-bv:AanleidingShape a sh:NodeShape ;
             sh:minCount 1 ;
             sh:name "beschrijving" ;
             sh:path dcterms:description ],
-        [ sh-old:class dossier:Stuk ;
-            sh:class eli:Work ;
+        [ sh:class eli:Work ;
             sh:node shp-bv:StukShape ;
             sh:description "Het stuk waarop de aanleiding zich baseert." ;
             sh:name "heeftOorsprongIn" ;
-            sh-old:path bv:heeftOorsprongIn ;
             sh:or (
                 [ sh:path eli-dl:based_on_a_realization_of ]
                 [ sh:path eli-dl:is_realized_by ]
             ) ] ,
         [ sh:hasValue bv:Aanleiding ;
             sh:path eli:work_type ] ;
-    sh-old:targetClass bv:Aanleiding ;
     sh:target shp:AanleidingTarget .
 
 shp-bv:ActiviteitShape a sh:NodeShape ;
@@ -106,12 +102,10 @@ shp-bv:ActiviteitShape a sh:NodeShape ;
             sh:minCount 1 ;
             sh:name "type" ;
             sh:path dcterms:type ],
-        [   sh-old:class dossier:Procedurestap ;
-            sh:class eli-dl:ProcessStage ;
+        [   sh:class eli-dl:ProcessStage ;
             sh:description "Een activiteit vindt plaats tijdens een procedurestap." ;
             sh:maxCount 1 ;
             sh:name "vindtPlaatsTijdens" ;
-            sh-old:path dossier:vindtPlaatsTijdens ;
             sh:path eli-dl:occured_at_stage ],
         [ sh:class dcterms:Agent ;
             sh:description "Een toewijzing van verantwoordelijkheid aan een agent voor een activiteit, wat aangeeft dat de agent een rol in de activiteit had." ;
@@ -123,14 +117,12 @@ shp-bv:ActiviteitShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:name "einddatum" ;
             sh:path dossier:Activiteit.einddatum ],
-        [ sh-old:class dossier:Stuk ;
-            sh:class eli:Work ;
+        [ sh:class eli:Work ;
             sh:node shp-bv:StukShape ;
             sh:description "De stukken die werden gebruikt voor de activiteit." ;
             sh:name "gebruikt" ;
             sh:path prov:used ],
-        [ sh-old:class dossier:Stuk ;
-            sh:class eli:Work ;
+        [ sh:class eli:Work ;
             sh:node shp-bv:StukShape ;
             sh:description "Een activiteit kan een stuk genereren." ;
             sh:name "genereert" ;
@@ -139,13 +131,10 @@ shp-bv:ActiviteitShape a sh:NodeShape ;
             sh:description "Het tijdstip waarop de activiteit gepland is om te beginnen." ;
             sh:maxCount 1 ;
             sh:name "geplandeStart" ;
-            sh-old:path generiek:geplandeStart ;
             sh:path eli-dl:activity_start_date ],
-        [ sh-old:class prov:Association ;
-            sh:class eli-dl:Participation ;
+        [ sh:class eli-dl:Participation ;
             sh:description "Persoon of organisatie die binnen een bepaalde rol een verantwoordelijkheid opneemt voor deze activiteit." ;
             sh:name "heeftDeelnemer" ;
-            sh-old:path prov:qualifiedAssociation ;
             sh:path eli-dl:hasParticipation
         ],
         [ sh:datatype xsd:string ;
@@ -159,7 +148,6 @@ shp-bv:ActiviteitShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:name "startdatum" ;
             sh:path dossier:Activiteit.startdatum ] ;
-    sh-old:targetClass prov:Activity ;
     sh:targetClass eli-dl:Activity .
 
 shp-bv:AgendaShape a sh:NodeShape ;
@@ -175,15 +163,13 @@ shp-bv:AgendaShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:name "agendaType" ;
             sh:path bv:agendaType ],
-        [ sh-old:class besluit:Vergaderactiviteit ;
-            sh:class eli-dl:Activity ;
+        [ sh:class eli-dl:Activity ;
             sh:description "De Vergaderactiviteit waarvoor de Agenda wordt voorbereid." ;
             sh:maxCount 1 ;
             sh:name "isAgendaVoor" ;
             sh:path bv:isAgendaVoor ] ,
         [ sh:hasValue <https://data.vlaanderen.be/doc/concept/BesluitDocumentType/13fefad6-a9d6-4025-83b5-e4cbee3a8965> ;
             sh:path eli:work_type ] ;
-    sh-old:targetClass bv:Agenda ;
     sh:target shp:AgendaTarget .
 
 shp-bv:AgendapuntShape a sh:NodeShape ;
@@ -193,8 +179,7 @@ shp-bv:AgendapuntShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:name "beschrijving" ;
             sh:path dcterms:description ],
-        [ sh-old:class dossier:Stuk ;
-            sh:class eli:Work ;
+        [ sh:class eli:Work ;
             sh:node shp-bv:StukShape ;
             sh:description "Een gerelateerd stuk waarnaar wordt verwezen, geciteerd of anderszins aangegeven in het agendapunt" ;
             sh:name "geagendeerdStuk" ;
@@ -205,8 +190,7 @@ shp-bv:AgendapuntShape a sh:NodeShape ;
             sh:minCount 1 ;
             sh:name "geplandOpenbaar" ;
             sh:path besluit:geplandOpenbaar ],
-        [ sh-old:class besluit:Agendapunt ;
-            sh:class eli-dl:ForeseenActivity ;
+        [ sh:class eli-dl:ForeseenActivity ;
             sh:node shp-bv:AgendapuntShape ;
             sh:description "Duidt aan dat een agendapunt na een ander agendapunt is aangebracht op een vergadering." ;
             sh:maxCount 1 ;
@@ -233,13 +217,11 @@ shp-bv:AgendapuntShape a sh:NodeShape ;
             sh:minCount 1 ;
             sh:name "type" ;
             sh:path besluit:Agendapunt.type ],
-        [ sh-old:class besluit:Agendapunt ;
-            sh:class eli-dl:ForeseenActivity ;
+        [ sh:class eli-dl:ForeseenActivity ;
             sh:node shp-bv:AgendapuntShape ;
             sh:description "Origineel agendapunt waarvan dit agendapunt een herziening is." ;
             sh:name "vervangt" ;
             sh:path prov:wasRevisionOf ] ;
-    sh-old:targetClass besluit:Agendapunt ;
     sh:target shp:AgendapuntTarget .
 
 shp-bv:AgenderingShape a sh:NodeShape ;
@@ -251,7 +233,6 @@ shp-bv:AgenderingShape a sh:NodeShape ;
             sh:path bv:genereertAgendapunt ] ,
         [ sh:hasValue bv:Agendering ;
             sh:path eli-dl:had_activity_type ] ;
-    sh-old:targetClass bv:Agendering ;
     sh:target eli-dl:Activity .
 
 shp-bv:AgentInRolShape a sh:NodeShape ;
@@ -261,7 +242,6 @@ shp-bv:AgentInRolShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:name "isRolspecialisatieVan" ;
-            sh-old:path prov:agent ;
             sh:or (
                 [ sh:path eli-dl:had_participant_person ]
                 [ sh:path eli-dl:had_participant_organization ]
@@ -271,9 +251,7 @@ shp-bv:AgentInRolShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:name "rol" ;
-            sh-old:path prov:hadRole ;
             sh:path eli-dl:ParticipationRole ] ;
-    sh-old:targetClass prov:Association ;
     sh:targetClass eli-dl:Participation .
 
 shp-bv:AgentShape a sh:NodeShape ;
@@ -285,22 +263,17 @@ shp-bv:BehandelingVanAgendapuntShape a sh:NodeShape ;
     sh:property
         [ sh:path eli-dl:had_activity_type 
             sh:hasValue besluit:BehandelingVanAgendapunt ],
-        [ sh-old:class besluit:BehandelingVanAgendapunt ;
-            sh:description "Verwijzing naar het voorgaand behandeld agendapunt binnen dezelfde vergadering. Laat toe om de volgorde van de behandelingen op te bouwen." ;
+        [ sh:description "Verwijzing naar het voorgaand behandeld agendapunt binnen dezelfde vergadering. Laat toe om de volgorde van de behandelingen op te bouwen." ;
             sh:name "gebeurtNa" ;
-            sh-old:path besluit:gebeurtNa ;
             sh:path eli-dl:activity_order ;
             sh:datatype xsd:decimal ],
-        [ sh-old:class bv:Verslag ;
-            sh:class eli:Work ;
+        [ sh:class eli:Work ;
             sh:node shp:VerslagShape ;
             sh:description "de schriftelijke neerslag van (een onderdeel) van deze behandeling van agendapunt." ;
             sh:name "genereertVerslag" ;
-            sh-old:path bv:genereertVerslag ;
             sh:path eli-dl:recorded_in_a_realization_of
         ],
-        [ sh-old:class bv:Beslissingsactiviteit ;
-            sh:class eli-dl:Decision ;
+        [ sh:class eli-dl:Decision ;
             sh:description "De Beslissing die volgt uit de Behandeling van het Agendapunt." ;
             sh:name "heeftBeslissing" ;
             sh:path bv:heeftBeslissing ],
@@ -311,16 +284,13 @@ shp-bv:BehandelingVanAgendapuntShape a sh:NodeShape ;
             sh:name "heeftOnderwerp" ;
             sh:path dcterms:subject ],
         [ sh:class eli-dl:Vote ;
-            sh-old:class besluit:Stemming ;
             sh:description "Een stemming die plaatsvond tijdens de behandeling van het agendapunt." ;
             sh:name "heeftStemming" ;
-            sh-old:path besluit:heeftStemming ;
             sh:or (
                 [ sh:path eli-dl:forms_part_of ]
                 [ sh:path eli-dl:consists_of ]
             )
-        [ sh-old:datatype xsd:boolean ;
-            sh:description "Geeft aan of de behandeling van het agendapunt publiek is." ;
+        [ sh:description "Geeft aan of de behandeling van het agendapunt publiek is." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:name "openbaar" ;
@@ -329,7 +299,6 @@ shp-bv:BehandelingVanAgendapuntShape a sh:NodeShape ;
                 <http://publications.europa.eu/resource/authority/access-right/NON_PUBLIC>
                 );
             sh:class skos:Concept ;
-            sh-old:path besluit:openbaar ;
             sh:path dcterms:accessRights ] ;
     sh:targetClass besluit:BehandelingVanAgendapunt .
 
@@ -337,7 +306,6 @@ shp-bv:BeslissingsactiviteitShape a sh:NodeShape ;
     sh:closed false ;
     sh:property [
             sh:class eli:LegalExpression ;
-            sh-old:class besluit:Besluit ;
             sh:description "Het Besluit dat werd goedgekeurd door deze beslissing" ;
             sh:name "geeftAanleidingTot" ;
             sh:path prov:generated ],
@@ -367,13 +335,11 @@ shp-bv:BesluitShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:name "inhoud" ;
-            sh-old:path prov:value ;
             sh:path epvoc:expressionContent ],
         [ sh:datatype xsd:string ;
             sh:description "Beschrijving van de juridische en feitelijke motivering achter de beslissing die wordt uitgedrukt in het besluit." ;
             sh:maxCount 1 ;
             sh:name "motivering" ;
-            sh-old:path besluit:motivering ;
             sh:path eli:based_on ;
             sh:class eli:Work ;
             sh:node [ a sh:NodeShape;
@@ -401,7 +367,6 @@ shp-bv:BesluitShape a sh:NodeShape ;
             sh:minCount 1 ;
             sh:name "titel" ;
             sh:path eli:title ] ;
-    sh-old:targetClass besluit:Besluit ;
     sh:targetClass eli:LegalExpression .
 
 shp-bv:BesluitvormingsaangelegenheidShape a sh:NodeShape ;
@@ -415,14 +380,12 @@ shp-bv:BesluitvormingsaangelegenheidShape a sh:NodeShape ;
             sh:minCount 1 ;
             sh:name "beleidsveld" ;
             sh:path bv:beleidsveld ],
-        [ sh-old:class dossier:Procedurestap ;
-            sh:class eli-dl:ProcessStage ;
+        [ sh:class eli-dl:ProcessStage ;
             sh:description "Een Besluitvormingsaangelegenheid doorloopt Procedurestappen." ;
             sh:minCount 1 ;
             sh:name "doorloopt" ;
             sh:path dossier:doorloopt ],
-        [ sh-old:class bv:Aanleiding ;
-            sh:class eli:Work ;
+        [ sh:class eli:Work ;
             sh:node eli-dl:AanleidingShape ;
             sh:description "De motivatie voor het opstarten van de Besluitvormingsaangelegenheid." ;
             sh:name "heeftAanleiding" ;
@@ -444,7 +407,6 @@ shp-bv:BesluitvormingsaangelegenheidShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:name "sluitingsdatum" ;
             sh:path dossier:sluitingsdatum ] ;
-    sh-old:targetClass bv:Besluitvormingsaangelegenheid ;
     sh:targetClass eli-dl:LegislativeProcess .
 
 shp-bv:BestuurseenheidShape a sh:NodeShape ;
@@ -466,18 +428,14 @@ shp-bv:BestuurseenheidShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:name "werkingsgebied" ;
-            sh-old:path besluit:werkingsgebied ;
             sh:path eli:jurisdiction ] ;
-    sh-old:targetClass besluit:Bestuurseenheid ;
     sh:targetClass eli:AdministrativeArea .
 
 shp-bv:BestuursorgaanShape a sh:NodeShape ;
     sh:closed false ;
-    sh:property [ sh-old:class besluit:Bestuurseenheid ;
-            sh:class euvoc:Atu, eli:AdministrativeArea ;
+    sh:property [ sh:class euvoc:Atu, eli:AdministrativeArea ;
             sh:description "De bestuurseenheid die door het orgaan bestuurd wordt." ;
             sh:name "bestuurt" ;
-            sh-old:path besluit:bestuurt ;
             sh:path euvoc:represents ],
         [ sh:class skos:Concept ;
             sh:description "Het type bestuursorgaan." ;
@@ -491,13 +449,11 @@ shp-bv:BestuursorgaanShape a sh:NodeShape ;
             sh:minCount 1 ;
             sh:name "naam" ;
             sh:path skos:prefLabel ] ;
-    sh-old:targetClass besluit:Bestuursorgaan ;
     sh:targetClass eli:Organization .
 
 shp-bv:DossierShape a sh:NodeShape ;
     sh:closed false ;
-    sh:property [ sh-old:class dossier:Stuk ;
-            sh:class eli:Work ;
+    sh:property [ sh:class eli:Work ;
             sh:node shp-bv:StukShape ;
             sh:description "Een dossier bestaat uit dossierstukken." ;
             sh:name "bestaatUit" ;
@@ -507,8 +463,7 @@ shp-bv:DossierShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:name "informatieclassificatie" ;
             sh:path dossier:informatieclassificatie ],
-        [ sh-old:class bv:Besluitvormingsaangelegenheid ;
-            sh:class eli-dl:LegislativeProcess ;
+        [ sh:class eli-dl:LegislativeProcess ;
             sh:description "Een Dossier is een neerslag van een Besluitvormingsaangelegenheid" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
@@ -607,7 +562,6 @@ shp-bv:ProcedurestapShape a sh:NodeShape ;
             sh:minCount 1 ;
             sh:name "type" ;
             sh:path dcterms:type ] ;
-    sh-old:targetClass dossier:Procedurestap ;
     sh:targetClass eli-dl:ProcessStage .
 
 shp-bv:PubliekeOrganisatieShape a sh:NodeShape ;
@@ -647,21 +601,18 @@ shp-bv:StemmingShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:name "aantalOnthouders" ;
-            sh-old:path besluit:aantalOnthouders ;
             sh:path eli-dl:number_of_votes_abstention ],
         [ sh:datatype xsd:integer ;
             sh:description "Het aantal stemmers dat als tegenstander heeft gestemd." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:name "aantalTegenstanders" ;
-            sh-old:path besluit:aantalTegenstanders ;
             sh:path eli-dl:number_of_votes_against ],
         [ sh:datatype xsd:integer ;
             sh:description "Het aantal stemmers dat als voorstander heeft gestemd." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:name "aantalVoorstanders" ;
-            sh-old:path besluit:aantalVoorstanders ;
             sh:path eli-dl:number_of_votes_favor ],
         [ sh:datatype xsd:boolean ;
             sh:description "Geeft aan of de stemming geheim was. Bij een geheime stemming wordt niet individueel bekend gemaakt wie op wat heeft gestemd." ;
@@ -675,16 +626,13 @@ shp-bv:StemmingShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:name "gevolg" ;
-            sh-old:path besluit:gevolg ;
             sh:path eli-dl:decision_outcome ],
         [ sh:datatype rdf:langString ;
             sh:description "De beschrijving van het onderwerp waarover de stemming gaat." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:name "onderwerp" ;
-            sh-old:path besluit:onderwerp ;
             sh:path eli-dl:activity_label ] ;
-    sh-old:targetClass besluit:Stemming ;
     sh:targetClass eli-dl:Vote .
 
 shp-bv:StukShape a sh:NodeShape ;
@@ -703,8 +651,7 @@ shp-bv:StukShape a sh:NodeShape ;
             sh:minCount 1 ;
             sh:name "datum" ;
             sh:path dcterms:date ],
-        [ sh-old:class dossier:Stuk ;
-            sh:class eli-dl:LegislativeProcessWork ;
+        [ sh:class eli-dl:LegislativeProcessWork ;
             sh:description "Een gerelateerd Stuk dat vereist is om het stuk zijn functie of samenhang te ondersteunen." ;
             sh:name "heeftBijlage" ;
             sh:path bv:heeftBijlage ],
@@ -749,8 +696,7 @@ shp-bv:StukShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:name "vertrouwelijkheidsniveau" ;
             sh:path bv:vertrouwelijkheidsniveau ],
-        [ sh-old:class dossier:Stuk ;
-            sh:class eli-dl:DraftLegislativeWork ;
+        [ sh:class eli-dl:DraftLegislativeWork ;
             sh:description "Origineel stuk waarvan dit stuk een herziening is." ;
             sh:name "vervangt" ;
             sh:path dcterms:replaces ],
@@ -759,14 +705,12 @@ shp-bv:StukShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:name "volgnummer" ;
             sh:path bv:volgnummer ] ;
-    sh-old:targetClass dossier:Stuk ;
     # draft when it is a draft, legislative process work when it is an attachment for the process
     sh:targetClass eli-dl:LegislativeProcessWork, eli-dl:DraftLegislativeWork .
 
 shp-bv:VergaderactiviteitShape a sh:NodeShape ;
     sh:closed false ;
-    sh:property [ sh-old:class besluit:Bestuursorgaan ;
-            sh:class eli:Organization ;
+    sh:property [ sh:class eli:Organization ;
             sh:description "Duidt aan door welk orgaan de vergadering is gehouden." ;
             sh:name "isGehoudenDoor" ;
             sh:path bv:isGehoudenDoor ],
@@ -775,28 +719,21 @@ shp-bv:VergaderactiviteitShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:name "opLocatie" ;
             sh:path prov:atLocation ],
-        [ sh-old:class bv:Agenda ;
-            sh:class eli:Work ;
+        [ sh:class eli:Work ;
             sh:node shp-bv:AgendaShape ;
             sh:description "De Agenda die effectief wordt behandeld op de Vergaderactiviteit." ;
             sh:maxCount 1 ;
             sh:name "behandelt" ;
-            sh-old:path bv:behandelt ;
             sh:path eli-dl:executed ],
-        [ sh-old:class dcterms:Agent ;
-            sh:description "Een agent (bvb: mandataris) die aanwezig was tijdens (een deel van) de activiteit waar hij een zekere verantwoordelijkheid had." ;
+        [ sh:description "Een agent (bvb: mandataris) die aanwezig was tijdens (een deel van) de activiteit waar hij een zekere verantwoordelijkheid had." ;
             sh:name "heeftAanwezige" ;
-            sh-old:path besluit:heeftAanwezige ;
             sh:path eli-dl:had_participant_person ],
-        [ sh-old:class dossier:Stuk ;
-            sh:class eli:Work ;
+        [ sh:class eli:Work ;
             sh:node shp-bv:StukShape ;
             sh:description "De formele notulen van de vergadering." ;
             sh:maxCount 1 ;
             sh:name "heeftNotulen" ;
-            sh-old:path bv:heeftNotulen ;
             sh:path eli-dl:recorded_in_a_realization_of ] ;
-    sh-old:targetClass besluit:Vergaderactiviteit ;
     sh:target shp:VergaderactiviteitTarget .
 
 shp-bv:VerslagShape a sh:NodeShape ;
@@ -807,5 +744,4 @@ shp-bv:VerslagShape a sh:NodeShape ;
             sh:path bv:beschrijft ] ,
         [ sh:hasValue bv:Verslag ;
             sh:path eli:work_type ] ;
-    sh-old:targetClass bv:Verslag ;
     sh:target shp:VerslagTarget .
