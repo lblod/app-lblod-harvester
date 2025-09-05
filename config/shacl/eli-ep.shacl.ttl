@@ -17,8 +17,6 @@
 
 eli:ComplexWork a sh:NodeShape ;
     rdfs:label "Complex work"@en ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
     sh:nodeKind sh:IRI ;
     sh:property eli-dlsh:_date_document,
         eli-dlsh:_hasCurrentVersion,
@@ -34,8 +32,6 @@ eli:ComplexWork a sh:NodeShape ;
 
 eli-dlsh:Activity a sh:NodeShape ;
     rdfs:label "Activity"@en ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
     sh:nodeKind sh:IRI ;
     sh:property eli-dlsh:_activity_date,
         eli-dlsh:_activity_end_date,
@@ -64,15 +60,12 @@ eli-dlsh:Activity a sh:NodeShape ;
 
 eli-dlsh:ActivityType a sh:NodeShape ;
     rdfs:label "Activity Type"@en ;
-    sh:ignoredProperties ( rdf:type ) ;
     sh:nodeKind sh:IRI ;
     sh:property eli-dlsh:_inScheme-9,
         eli-dlsh:_type-2 .
 
 eli-dlsh:Decision a sh:NodeShape ;
     rdfs:label "Decision"@en ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
     sh:nodeKind sh:IRI ;
     sh:property eli-dlsh:_activity_date,
         eli-dlsh:_activity_id,
@@ -90,22 +83,18 @@ eli-dlsh:Decision a sh:NodeShape ;
 
 eli-dlsh:DecisionMethod a sh:NodeShape ;
     rdfs:label "Decision Method"@en ;
-    sh:ignoredProperties ( rdf:type ) ;
     sh:nodeKind sh:IRI ;
     sh:property eli-dlsh:_inScheme-10,
         eli-dlsh:_type-2 .
 
 eli-dlsh:DecisionOutcome a sh:NodeShape ;
     rdfs:label "Decision Outcome"@en ;
-    sh:ignoredProperties ( rdf:type ) ;
     sh:nodeKind sh:IRI ;
     sh:property eli-dlsh:_inScheme-12,
         eli-dlsh:_type-2 .
 
 eli-dlsh:ForeseenActivity a sh:NodeShape ;
     rdfs:label "ForeseenActivity"@en ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
     sh:nodeKind sh:IRI ;
     sh:property
         eli-dlsh:_activity_date,
@@ -122,15 +111,11 @@ eli-dlsh:ForeseenActivity a sh:NodeShape ;
 
 eli-dlsh:ParliamentaryTerm a sh:NodeShape ;
     rdfs:label "Parliamentary term"@en ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
     sh:nodeKind sh:IRI ;
     sh:property eli-dlsh:_type-1 .
 
 eli-dlsh:Participation a sh:NodeShape ;
     rdfs:label "Participation"@en ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
     sh:nodeKind sh:IRI ;
     sh:property eli-dlsh:_had_participant_organization,
         eli-dlsh:_had_participant_person,
@@ -139,7 +124,6 @@ eli-dlsh:Participation a sh:NodeShape ;
 
 eli-dlsh:ParticipationRole a sh:NodeShape ;
     rdfs:label "Participation Role"@en ;
-    sh:ignoredProperties ( rdf:type ) ;
     sh:nodeKind sh:IRI ;
     sh:property eli-dlsh:_inScheme-11,
         eli-dlsh:_type-2 .
@@ -147,8 +131,6 @@ eli-dlsh:ParticipationRole a sh:NodeShape ;
 eli-dlsh:Process a sh:NodeShape ;
     rdfs:label "Process"@en ;
     rdfs:comment "Remark: Process data will not be yet available. For now, this inverse relation will be provided only in adopted-texts dumps and APIs."@en ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
     sh:nodeKind sh:IRI ;
     sh:property eli-dlsh:_based_on-1,
         eli-dlsh:_consists_of,
@@ -163,22 +145,18 @@ eli-dlsh:Process a sh:NodeShape ;
 
 eli-dlsh:ProcessStage a sh:NodeShape ;
     rdfs:label "Process Stage"@en ;
-    sh:ignoredProperties ( rdf:type ) ;
     sh:nodeKind sh:IRI ;
     sh:property eli-dlsh:_inScheme-1,
         eli-dlsh:_type-2 .
 
 eli-dlsh:ProcessType a sh:NodeShape ;
     rdfs:label "Process Type"@en ;
-    sh:ignoredProperties ( rdf:type ) ;
     sh:nodeKind sh:IRI ;
     sh:property eli-dlsh:_inScheme-2,
         eli-dlsh:_type-2 .
 
 eli-dlsh:Vote a sh:NodeShape ;
     rdfs:label "Vote"@en ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
     sh:nodeKind sh:IRI ;
     sh:property eli-dlsh:_activity_date,
         eli-dlsh:_activity_id,
@@ -208,8 +186,6 @@ eli-dlsh:Vote a sh:NodeShape ;
 
 eli:Expression a sh:NodeShape ;
     rdfs:label "Expression"@en ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
     sh:nodeKind sh:IRI ;
     sh:property
         eli-dlsh:_is_embodied_by,
@@ -219,14 +195,10 @@ eli:Expression a sh:NodeShape ;
 
 eli:LegalResource a sh:NodeShape ;
     rdfs:label "Legal Resource"@en ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
     sh:nodeKind sh:IRI .
 
 eli:Manifestation a sh:NodeShape ;
     rdfs:label "Manifestation"@en ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
     sh:nodeKind sh:IRI ;
     sh:property eli-dlsh:_format,
         eli-dlsh:_is_exemplified_by,
@@ -235,15 +207,12 @@ eli:Manifestation a sh:NodeShape ;
 
 eli:SubdivisionType a sh:NodeShape ;
     rdfs:label "Subdivision Type"@en ;
-    sh:ignoredProperties ( rdf:type ) ;
     sh:nodeKind sh:IRI ;
     sh:property eli-dlsh:_inScheme-3,
         eli-dlsh:_type-2 .
 
 eli:WorkSubdivision a sh:NodeShape ;
     rdfs:label "Work Subdivision"@en ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
     sh:nodeKind sh:IRI ;
     sh:property eli-dlsh:_identifier,
         eli-dlsh:_is_part_of,
@@ -255,21 +224,18 @@ eli:WorkSubdivision a sh:NodeShape ;
 
 eli:WorkType a sh:NodeShape ;
     rdfs:label "Work type"@en ;
-    sh:ignoredProperties ( rdf:type ) ;
     sh:nodeKind sh:IRI ;
     sh:property eli-dlsh:_inScheme-4,
         eli-dlsh:_type-2 .
 
 dcterms:LinguisticSystem a sh:NodeShape ;
     rdfs:label "Linguistic System"@en ;
-    sh:ignoredProperties ( rdf:type ) ;
     sh:nodeKind sh:IRI ;
     sh:property eli-dlsh:_inScheme-5,
         eli-dlsh:_type-2 .
 
 dcterms:Location a sh:NodeShape ;
     rdfs:label "Place"@en ;
-    sh:ignoredProperties ( rdf:type ) ;
     sh:nodeKind sh:IRI ;
     sh:property eli-dlsh:_inScheme-7,
         eli-dlsh:_sfWithin,
@@ -277,14 +243,12 @@ dcterms:Location a sh:NodeShape ;
 
 dcterms:MediaType a sh:NodeShape ;
     rdfs:label "Media Type"@en ;
-    sh:ignoredProperties ( rdf:type ) ;
     sh:nodeKind sh:IRI ;
     sh:property eli-dlsh:_inScheme-6,
         eli-dlsh:_type-2 .
 
 dcterms:MediaTypeOrExtent a sh:NodeShape ;
     rdfs:label "Media Type or Extent"@en ;
-    sh:ignoredProperties ( rdf:type ) ;
     sh:nodeKind sh:IRI ;
     sh:property eli-dlsh:_inScheme-6,
         eli-dlsh:_type-2 .
@@ -993,7 +957,6 @@ eli-dlsh:_work_type a sh:PropertyShape ;
 
 skos:Concept a sh:NodeShape ;
     rdfs:label "Concept"@en ;
-    sh:ignoredProperties ( rdf:type ) ;
     sh:nodeKind sh:IRI ;
     sh:property eli-dlsh:_inScheme-8,
         eli-dlsh:_type-2 .
@@ -1056,7 +1019,6 @@ eli-dlsh:_parliamentary_term a sh:PropertyShape ;
 
 org:Organization a sh:NodeShape ;
     rdfs:label "Corporate Body (Organisation)"@en ;
-    sh:ignoredProperties ( rdf:type ) ;
     sh:nodeKind sh:IRI ;
     sh:property eli-dlsh:_type-1 .
 
@@ -1069,8 +1031,6 @@ eli-dlsh:_type-2 a sh:PropertyShape ;
 
 eli:Work a sh:NodeShape ;
     rdfs:label "Work"@en ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
     sh:nodeKind sh:IRI ;
     sh:property
         eli-dlsh:_adopts,
