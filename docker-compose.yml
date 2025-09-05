@@ -185,7 +185,7 @@ services:
     logging: *default-logging
 
   harvest_validate:
-    image: lblod/harvesting-validator:0.3.8
+    image: lblod/harvesting-validator:0.3.10
     environment:
       SLEEP_BETWEEN_JOB_MS: 100
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
@@ -200,7 +200,7 @@ services:
     logging: *default-logging
 
   harvest_diff:
-    image: lblod/harvesting-diff-service:0.2.7
+    image: lblod/harvesting-diff-service:0.2.9
     environment:
       SLEEP_BETWEEN_JOB_MS: 100
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
