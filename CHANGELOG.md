@@ -1,4 +1,13 @@
 # Changelog
+## 0.26.0 (2025-09-08)
+- bump services to write to subfolders
+- better error reporting in job controller service
+- delta rules cleanup
+
+## 0.25.0 (2025-08-12)
+- bump import w sameas service (cancel long running import jobs)
+- bump frontend: better scheduled job detail, auto refresh
+
 ## 0.24.0 (2025-07-16)
 - bump import with sameas service
 - bump frontend to 2.3.0
