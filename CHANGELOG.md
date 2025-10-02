@@ -1,4 +1,9 @@
 # Changelog
+
+## Unreleased
+- bump scraper to [1.5.0](https://github.com/lblod/scraper-service/blob/master/CHANGELOG.md#150---2025-09-29)
+- bump dump service to 1.1.0
+
 ## 0.26.0 (2025-09-08)
 - bump services to write to subfolders
 - better error reporting in job controller service
