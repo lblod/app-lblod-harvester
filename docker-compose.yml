@@ -185,9 +185,9 @@ services:
     logging: *default-logging
 
   harvest_validate:
-    image: lblod/harvesting-validator:0.3.11
+    image: lblod/harvesting-validator:0.4.0
     environment:
-      SLEEP_BETWEEN_JOB_MS: 100
+      # SLEEP_BETWEEN_JOB_MS: 100 --> replaced by a semaphore (max nbcpu conccurent tasks)
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
       STRICT_MODE_FILTERING: "false"
       LIMIT_SIZE: 2000
@@ -200,9 +200,9 @@ services:
     logging: *default-logging
 
   harvest_diff:
-    image: lblod/harvesting-diff-service:0.2.10
+    image: lblod/harvesting-diff-service:0.3.0
     environment:
-      SLEEP_BETWEEN_JOB_MS: 100
+      # SLEEP_BETWEEN_JOB_MS: 100 --> replaced by a semaphore (max nbcpu conccurent tasks)
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
       PUBLICATION_GRAPH: "http://mu.semte.ch/graphs/public"
       LIMIT_SIZE: 2000
