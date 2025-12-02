@@ -36,7 +36,7 @@ services:
     labels:
       - "logging=true"
   frontend:
-    image: lblod/frontend-harvesting-self-service:2.5.0
+    image: lblod/frontend-harvesting-self-service:2.6.0
     volumes:
       - ./config/frontend:/config
     labels:
@@ -291,7 +291,7 @@ services:
     logging: *default-logging
 
   delta-producer-publication-graph-maintainer:
-    image: lblod/delta-producer-publication-graph-maintainer:1.4.0
+    image: lblod/delta-producer-publication-graph-maintainer:1.4.2
     environment:
       SUDO_QUERY_RETRY_FOR_HTTP_STATUS_CODES: "404,500,503"
       MAX_BODY_SIZE: "50mb"
