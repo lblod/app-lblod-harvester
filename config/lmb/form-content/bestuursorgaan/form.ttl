@@ -1,0 +1,80 @@
+@prefix form: <http://lblod.data.gift/vocabularies/forms/>.
+@prefix sh: <http://www.w3.org/ns/shacl#>.
+@prefix mu: <http://mu.semte.ch/vocabularies/core/>.
+@prefix displayTypes: <http://lblod.data.gift/display-types/>.
+@prefix schema: <http://schema.org/>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix ext: <http://mu.semte.ch/vocabularies/ext/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix mandaat: <http://data.vlaanderen.be/ns/mandaat#>.
+@prefix besluit: <http://data.vlaanderen.be/ns/besluit#>.
+@prefix lmb: <http://lblod.data.gift/vocabularies/lmb/>.
+
+ext:naamF
+    a form:Field;
+    form:displayType displayTypes:defaultInput;
+    sh:group ext:bestuursorgaanPG;
+    sh:name "Naam";
+    sh:order 1;
+    sh:path skos:prefLabel;
+    form:validatedBy
+        [
+            a form:RequiredConstraint;
+            form:grouping form:Bag;
+            sh:path skos:prefLabel;
+            sh:resultMessage "Naam is verplicht."
+    ].
+ext:bestuursorgaanClassificatieCodeF
+    a form:Field;
+    form:displayType displayTypes:conceptSchemeSelectorWithoutMeta;
+    sh:group ext:bestuursorgaanPG;
+    sh:name "Type";
+    sh:order 2;
+    sh:path <http://data.vlaanderen.be/ns/besluit#classificatie>;
+    form:validatedBy
+        [
+            a form:RequiredConstraint;
+            form:grouping form:Bag;
+            sh:path <http://data.vlaanderen.be/ns/besluit#classificatie>;
+            sh:resultMessage "Type is verplicht."
+    ];
+    form:options """{"conceptScheme":"http://data.lblod.info/id/conceptscheme/LokaalOrgaanClassificatieCode","searchEnabled":true}""".
+ext:deactivatedAtF
+    a form:Field;
+    form:displayType displayTypes:archivedInput;
+    sh:group ext:bestuursorgaanPG;
+    sh:name "Actief";
+    sh:order 3;
+    sh:path lmb:deactivatedAt.
+ext:hiddenBestuurseenheidF
+    a form:Field;
+    sh:name "Bestuurseenheid [hidden input]";
+    sh:order 5000;
+    sh:path besluit:bestuurt.
+
+ext:bestuursorgaanPG
+    a form:PropertyGroup; sh:name ""; sh:order 1.
+
+<http://data.lblod.info/id/lmb/forms/bestuursorgaan>
+    a form:Form, form:TopLevelForm;
+    form:includes
+        ext:naamF,
+        ext:bestuursorgaanClassificatieCodeF,
+        ext:deactivatedAtF,
+        ext:hiddenBestuurseenheidF;
+    sh:group ext:bestuursorgaanPG;
+    form:initGenerator ext:bestuursorgaanG;
+    form:targetType besluit:Bestuursorgaan;
+    form:targetLabel skos:prefLabel;
+    ext:prefix <http://data.lblod.info/id/bestuursorganen/>;
+    mu:uuid "4c3d6cb3-328a-4c64-8bed-b1bc0e009e6a".
+
+ext:bestuursorgaanG a form:Generator;
+  form:prototype [
+    form:shape [
+      a besluit:Bestuursorgaan
+    ]
+  ];
+  form:dataGenerator form:addMuUuid.

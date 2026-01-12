@@ -1,0 +1,45 @@
+@prefix form: <http://lblod.data.gift/vocabularies/forms/>.
+@prefix sh: <http://www.w3.org/ns/shacl#>.
+@prefix mu: <http://mu.semte.ch/vocabularies/core/>.
+@prefix displayTypes: <http://lblod.data.gift/display-types/>.
+@prefix ext: <http://mu.semte.ch/vocabularies/ext/>.
+@prefix mandaat: <http://data.vlaanderen.be/ns/mandaat#>.
+@prefix lmb: <http://lblod.data.gift/vocabularies/lmb/>.
+
+ext:persoonF
+    a form:Field;
+    form:displayType displayTypes:personSelector;
+    ext:extendsGroup ext:editMandatarisPG;
+    sh:name "Persoon";
+    sh:order 200;
+    sh:path mandaat:isBestuurlijkeAliasVan;
+    form:validatedBy
+        [
+            a form:RequiredConstraint;
+            form:grouping form:Bag;
+            sh:path mandaat:isBestuurlijkeAliasVan;
+            sh:resultMessage "Persoon is verplicht."
+    ].
+
+ext:hiddenPublicationStatusF
+    a form:Field;
+    sh:name "Publication status [hidden input]";
+    sh:order 5001;
+    sh:path lmb:hasPublicationStatus.
+
+ext:hiddenEffectiefAtF
+    a form:Field;
+    sh:name "Effectief at [hidden input]";
+    sh:order 5002;
+    sh:path lmb:effectiefAt.
+
+<http://data.lblod.info/id/lmb/forms/mandataris-new>
+    a form:Extension;
+    form:includes
+        ext:persoonF,
+        ext:hiddenPublicationStatusF,
+        ext:hiddenEffectiefAtF;
+    ext:extendsForm <http://data.lblod.info/id/lmb/forms/mandataris-edit>;
+    ext:withHistory true;
+    mu:uuid "2522a2e2-5242-4b6d-98ee-c5bd709fceaa".
+

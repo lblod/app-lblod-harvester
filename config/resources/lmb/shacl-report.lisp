@@ -1,0 +1,53 @@
+(define-resource report ()
+  :class (s-prefix "sh:ValidationReport")
+  :properties `((:created :datetime ,(s-prefix "dct:created"))
+                (:conforms :boolean ,(s-prefix "sh:conforms")))
+  :has-many `((validationresult :via ,(s-prefix "sh:result")
+                              :as "validationresults"))
+  :resource-base (s-url "http://data.lblod.info/id/reports/")
+  :features '(include-uri)
+  :on-path "reports"
+)
+
+(define-resource report-status ()
+  :class (s-prefix "ext:ReportStatus")
+  :properties `((:started-at :datetime ,(s-prefix "dct:created"))
+                (:finished-at :datetime ,(s-prefix "dct:issued"))
+                (:is-flagged-as-crashed :datetime ,(s-prefix "ext:flaggedAsCrashed")))
+  :has-one `((report :via ,(s-prefix "ext:forReport")
+                          :as "report"))
+  :resource-base (s-url "http://data.lblod.info/id/report-statuses/")
+  :features '(include-uri)
+  :on-path "report-statuses"
+)
+
+(define-resource validationresult ()
+  :class (s-prefix "sh:ValidationResult")
+  :properties `((:focus-node :string ,(s-prefix "sh:focusNode"))
+                ;; else we would need a polymorphic relation of any type and I don't think resources can do that
+                (:focus-node-id :string ,(s-prefix "lmb:targetIdOfFocusNode"))
+                (:result-severity :string ,(s-prefix "sh:resultSeverity"))
+                (:source-constraint-component :string ,(s-prefix "sh:sourceConstraintComponent"))
+                (:source-shape :string ,(s-prefix "sh:sourceShape"))
+                (:result-message :string ,(s-prefix "sh:resultMessage"))
+                (:result-path :string ,(s-prefix "sh:resultPath"))
+                (:value :string ,(s-prefix "sh:value"))
+                (:target-class-of-focus-node :string ,(s-prefix "lmb:targetClassOfFocusNode"))
+                )
+  :resource-base (s-url "http://data.lblod.info/id/validationresults/")
+  :features '(include-uri)
+  :on-path "validationresults"
+)
+
+(define-resource silenced-validation () ;; Subclass of m8g:PublicOrganisation, which is a subclass of dct:Agent
+  :class (s-prefix "ext:SilencedValidation")
+  :properties `((:validation-key :string ,(s-prefix "ext:validationKey"))
+                (:focus-node-id :string ,(s-prefix "lmb:targetIdOfFocusNode"))
+                (:source-shape :string ,(s-prefix "sh:sourceShape"))
+                (:silenced-at :datetime ,(s-prefix "dct:created")))
+  :has-one `((bestuurseenheid :via ,(s-prefix "dct:creator")
+                                    :as "bestuurseenheid"))
+  :resource-base (s-url "http://data.lblod.info/id/silenced-validations/")
+  :features '(include-uri)
+  :on-path "silenced-validations"
+)

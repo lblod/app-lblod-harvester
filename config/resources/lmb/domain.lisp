@@ -1,4 +1,4 @@
-    (in-package :mu-cl-resources)
+(in-package :mu-cl-resources)
 
 (defparameter *cache-count-queries* nil)
 (defparameter *supply-cache-headers-p* t
@@ -7,28 +7,20 @@
 (defparameter *include-count-in-paginated-responses* t
   "when non-nil, all paginated listings will contain the number
    of responses in the result object's meta.")
-(defparameter *max-group-sorted-properties* t)
+(defparameter *max-group-sorted-properties* nil)
 (defparameter sparql:*experimental-no-application-graph-for-sudo-select-queries* t)
-
-;; from lmb
 (setf *fetch-all-types-in-construct-queries* t)
 
-(read-domain-file "master-harvest-domain.lisp")
-(read-domain-file "master-file-domain.lisp")
-(read-domain-file "master-job-domain.lisp")
-(read-domain-file "master-scheduled-domain.lisp")
-(read-domain-file "dcat.json")
-
-;; lmb
-(read-domain-file "lmb/concept-scheme.lisp")
-(read-domain-file "lmb/user.lisp")
-(read-domain-file "lmb/external-besluit.lisp")
-(read-domain-file "lmb/external-contact.lisp")
-(read-domain-file "lmb/external-mandaat.lisp")
-(read-domain-file "lmb/forms.lisp")
-(read-domain-file "lmb/verkiezingen.lisp")
-(read-domain-file "lmb/system-notification.lisp")
-(read-domain-file "lmb/shacl-report.lisp")
+(read-domain-file "concept-scheme.lisp")
+(read-domain-file "files.lisp")
+(read-domain-file "user.lisp")
+(read-domain-file "external-besluit.lisp")
+(read-domain-file "external-contact.lisp")
+(read-domain-file "external-mandaat.lisp")
+(read-domain-file "forms.lisp")
+(read-domain-file "verkiezingen.lisp")
+(read-domain-file "system-notification.lisp")
+(read-domain-file "shacl-report.lisp")
 
 ;; Extra security layer to return 403 on GET /files
 ;; It should be ok for mu-auth; but devs can make bugs and add files to the wrong graph (i.e. public)

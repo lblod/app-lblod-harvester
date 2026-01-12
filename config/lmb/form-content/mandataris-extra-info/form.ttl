@@ -1,0 +1,19 @@
+@prefix form: <http://lblod.data.gift/vocabularies/forms/> .
+@prefix sh: <http://www.w3.org/ns/shacl#>.
+@prefix mu: <http://mu.semte.ch/vocabularies/core/> .
+@prefix displayTypes: <http://lblod.data.gift/display-types/> .
+@prefix ext: <http://mu.semte.ch/vocabularies/ext/> .
+@prefix mandaat: <http://data.vlaanderen.be/ns/mandaat#> .
+@prefix org: <http://www.w3.org/ns/org#> .
+
+ext:editMandatarisPG
+    a form:PropertyGroup; sh:name ""; sh:order 1.
+
+<http://data.lblod.info/id/lmb/forms/mandataris-extra-info>
+    a form:Form, form:TopLevelForm;
+    sh:group ext:editMandatarisPG;
+    form:targetType mandaat:Mandataris;
+    form:targetLabel mu:uuid;
+    ext:prefix <http://data.lblod.info/id/mandatarissen/>;
+    ext:withHistory true;
+    mu:uuid "6a37b8c1-5b37-4a39-b61e-5a7ff259361e".

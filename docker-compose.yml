@@ -61,7 +61,7 @@ services:
     logging: *default-logging
 
   virtuoso:
-    image: redpencil/virtuoso:feature-geosparql-support
+    image: redpencil/virtuoso:1.3.0-rc.1 # TODO dump and import lmb data and put original version
     environment:
       SPARQL_UPDATE: "true"
       DEFAULT_GRAPH: "http://mu.semte.ch/graphs/public"
@@ -317,7 +317,7 @@ services:
     restart: always
     logging: *default-logging
     environment:
-      JAVA_OPTS: "-Xms1g -Xmx4g"    
+      JAVA_OPTS: "-Xms1g -Xmx4g"
   elasticsearch:
     image: semtech/mu-search-elastic-backend:1.0.0
     volumes:

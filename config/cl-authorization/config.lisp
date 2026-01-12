@@ -31,25 +31,48 @@
 (defparameter *rights* nil
   "All known GRANT instances connecting ACCESS-SPECIFICATION to GRAPH.")
 
+;; increase the default read timeout. this allows waiting heavier queries (like the one for delta files)
+(setf dexador.util:*default-read-timeout* 60)
+
+(type-cache::add-type-for-prefix "http://mu.semte.ch/sessions/" "http://mu.semte.ch/vocabularies/session/Session")
+
+;; keep these prefixes sorted alphabetically, it's easier to spot duplicates when merging with other projects
 (define-prefixes
+  :adms "http://www.w3.org/ns/adms#"
+  :astreams "http://www.w3.org/ns/activitystreams#"
   :besluit "http://data.vlaanderen.be/ns/besluit#"
   :cogs "http://vocab.deri.ie/cogs#"
+  :contacthub "http://data.lblod.info/vocabularies/contacthub/"
   :core "http://open-services.net/ns/core#"
-  :skos "http://www.w3.org/2004/02/skos/core#"
   :dcat "http://www.w3.org/ns/dcat#"
   :dct "http://purl.org/dc/terms/"
   :eli "http://data.europa.eu/eli/ontology#"
+  :euvoc "http://publications.europa.eu/ontology/euvoc#"
+  :ext "http://mu.semte.ch/vocabularies/ext/"
+  :extlmb "http://mu.semte.ch/vocabularies/ext/lmb/"
   :foaf "http://xmlns.com/foaf/0.1/"
+  :form "http://lblod.data.gift/vocabularies/forms/"
   :generiek "https://data.vlaanderen.be/ns/generiek#"
   :harvesting "http://lblod.data.gift/vocabularies/harvesting/"
+  :lblodlg "http://data.lblod.info/vocabularies/leidinggevenden/"
+  :lmb "http://lblod.data.gift/vocabularies/lmb/"
+  :locn "http://www.w3.org/ns/locn#"
+  :m8g "http://data.europa.eu/m8g/"
   :mandaat "http://data.vlaanderen.be/ns/mandaat#"
+  :musession "http://mu.semte.ch/vocabularies/session/"
   :ndo "http://oscaf.sourceforge.net/ndo.html#"
   :nfo "http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#"
+  :org "http://www.w3.org/ns/org#"
   :person "http://www.w3.org/ns/person#"
+  :persoon "http://data.vlaanderen.be/ns/persoon#"
+  :prov "http://www.w3.org/ns/prov#"
   :schema "http://schema.org/"
   :security "http://lblod.data.gift/vocabularies/security/"
+  :sh "http://www.w3.org/ns/shacl#"
+  :skos "http://www.w3.org/2004/02/skos/core#"
   :tasks "http://redpencil.data.gift/vocabularies/tasks/"
-  :wot "https://www.w3.org/2019/wot/security#")
+  :wot "https://www.w3.org/2019/wot/security#"
+)
 
 (define-graph harvesting ("http://mu.semte.ch/graphs/harvesting")
   ("tasks:Task" -> _ )
@@ -79,36 +102,39 @@
   ("nfo:RemoteDataObject" -> _)
   ("nfo:FileDataObject" -> _))
 
-(define-graph public ("http://mu.semte.ch/graphs/public")
-  ("besluit:Besluit" -> _)
-  ("besluit:Zitting" -> _)
-  ("besluit:Bestuursorgaan" -> _)
-  ("foaf:Document" -> _)
-  ("besluit:Agendapunt" -> _)
-  ("skos:Concept" -> _)
-  ("dct:Agent" -> _)
-  ("besluit:Artikel" -> _)
-  ("besluit:BehandelingVanAgendapunt" -> _)
-  ("besluit:Bestuurseenheid" -> _)
-  ("generiek:DocumentOnderdeel" -> _)
-  ("eli:LegalExpression" -> _)
-  ("mandaat:Mandataris" -> _)
-  ("eli:LegalResource" -> _)
-  ("eli:LegalResourceSubdivision" -> _)
-  ("besluit:Stemming" -> _)
-  ("besluit:Vergaderactiviteit" -> _)
-  ("mandaat:Mandaat" -> _)
-  ("person:Person" -> _))
+;; TODO harvesting (core local source) public graph. We'll use a separate graph for lmb, but what if there are types that are shared?
+;; this goes not just for public (usually read-only) but also for 'organization graphs' which can be read/write.
+;; This will result in duplicate data best case and different, inconsistent data in the different graphs when reading worst case.
+; (define-graph public ("http://mu.semte.ch/graphs/public")
+;   ("besluit:Besluit" -> _)
+;   ("besluit:Zitting" -> _)
+;   ("besluit:Bestuursorgaan" -> _)
+;   ("foaf:Document" -> _)
+;   ("besluit:Agendapunt" -> _)
+;   ("skos:Concept" -> _)
+;   ("dct:Agent" -> _)
+;   ("besluit:Artikel" -> _)
+;   ("besluit:BehandelingVanAgendapunt" -> _)
+;   ("besluit:Bestuurseenheid" -> _)
+;   ("generiek:DocumentOnderdeel" -> _)
+;   ("eli:LegalExpression" -> _)
+;   ("mandaat:Mandataris" -> _)
+;   ("eli:LegalResource" -> _)
+;   ("eli:LegalResourceSubdivision" -> _)
+;   ("besluit:Stemming" -> _)
+;   ("besluit:Vergaderactiviteit" -> _)
+;   ("mandaat:Mandaat" -> _)
+;   ("person:Person" -> _))
 
-(supply-allowed-group "public")
+; (supply-allowed-group "public")
 
-(grant (read)
-       :to public
-       :for "public")
+; (grant (read)
+;        :to public
+;        :for "public")
 
-(grant (read)
-       :to harvesting-public
-       :for "public")
+; (grant (read)
+;        :to harvesting-public
+;        :for "public")
 
 (supply-allowed-group "logged-in"
   :query "PREFIX session: <http://mu.semte.ch/vocabularies/session/>
@@ -119,5 +145,276 @@
 (grant (read write)
        :to harvesting
        :for "logged-in")
-;; increase the default read timeout. this allows waiting heavier queries (like the one for delta files)
-(setf dexador.util:*default-read-timeout* 60)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; LMB Config
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(supply-allowed-group "lmb-public")
+
+(define-graph lmb-public ("http://mu.semte.ch/graphs/lmb/public")
+  ("ext:FileAddress" -> _)
+  ("nfo:FileDataObject" -> _)
+  ("prov:Location" -> _)
+  ("besluit:Bestuurseenheid" -> _)
+  ("ext:BestuurseenheidClassificatieCode" -> _)
+  ("ext:BestuursorgaanClassificatieCode" -> _)
+  ("lmb:Bestuursperiode" -> _)
+  ("ext:Fractietype" -> _)
+  ("ext:BestuursfunctieCode" -> _)
+  
+  ("ext:MandatarisStatusCode" -> _)
+  ("ext:BeleidsdomeinCode" -> _)
+  ("ext:GeslachtCode" -> _)
+  ("euvoc:Country" -> _)
+  ("mandaat:RechtstreekseVerkiezing" -> _)
+  ("mandaat:Verkiezingsresultaat" -> _)
+  ("ext:VerkiezingsresultaatGevolgCode" -> _)
+  ("org:Role" -> _)
+  ("skos:ConceptScheme" -> _)
+  ("skos:Concept" -> _)
+  ("foaf:Document" -> _)
+  ("ext:DisplayType" -> _)
+  ("ext:FormLibraryEntry" -> _)
+  ("ext:FormLibrary" -> _)
+  ("form:ValidPhoneNumber" -> _)
+  ("form:RequiredConstraint" -> _)
+  ("lmb:MandatarisPublicationStatusCode" -> _))
+
+  (grant (read)
+       :to lmb-public
+       :for "lmb-public")
+
+
+(define-graph sessions ("http://mu.semte.ch/graphs/sessions")
+  ("musession:Session" -> _))
+
+(define-graph impersonating-sessions ("http://mu.semte.ch/graphs/sessions/")
+  ("musession:Session" -> _))
+
+
+(define-graph view-only-modules ("http://mu.semte.ch/graphs/authenticated/public")
+  ("besluit:Bestuurseenheid" -> "ext:viewOnlyModules"))
+
+(define-graph organization ("http://mu.semte.ch/graphs/organizations/")
+  ("foaf:Person" -> _)
+  ("foaf:OnlineAccount" -> _)
+  ("adms:Identifier" -> _))
+
+(define-graph common-over-application ("http://mu.semte.ch/graphs/common/")
+  ("ext:GlobalSystemMessage" -> _))
+
+(define-graph organization-mandatendatabank ("http://mu.semte.ch/graphs/organizations/")
+  ("contacthub:AgentInPositie" -> _)
+  ("mandaat:Fractie" -> _)
+  ("persoon:Geboorte" -> _)
+  ("persoon:Overlijden" -> _)
+  ("org:Membership" -> _)
+  ("besluit:Besluit" -> _)
+  ("besluit:Artikel" -> _)
+  ("eli:LegalResource" -> _)
+  ("besluit:Bestuursorgaan" -> _)
+  ("mandaat:Mandataris" -> _)
+  ("mandaat:Mandaat" -> _)
+  ("ext:BeleidsdomeinCode" -> _)
+  ("org:Post" -> _)
+  ("person:Person" -> _)
+  ("adms:Identifier" -> _)
+  ("form:Form" -> _)
+  ("form:PropertyGroup" -> _)
+  ("ext:CustomFormType" -> _)
+  ("ext:GeneratedForm" -> _)
+  ("form:TopLevelForm" -> _)
+  ("form:Extension" -> _)
+  ("form:Field" -> _)
+  ("form:ValidPhoneNumber" -> _)
+  ("form:RequiredConstraint" -> _)
+  ("ext:ValidUri" -> _)
+  ("lmb:Installatievergadering" -> _)
+  ("lmb:InstallatievergaderingStatus" -> _)
+  ("mandaat:RechtstreekseVerkiezing" -> _)
+  ("mandaat:Kandidatenlijst" -> _)
+  ("ext:KandidatenlijstLijsttype" -> _)
+  ("mandaat:Verkiezingsresultaat" -> _)
+  ("ext:SystemNotification" -> _)
+  ("astreams:Tombstone" -> _)
+  ("ext:BestuurseenheidContact" -> _)
+  ("ext:VerkiezingsresultaatGevolgCode" -> _)
+  ("schema:ContactPoint" -> _)
+  ("locn:Address" -> _)
+  ("skos:ConceptScheme" -> _)
+  ("skos:Concept" -> _)
+  ("sh:ValidationResult" -> _)
+  ("sh:ValidationReport" -> _)
+  ("ext:SilencedValidation" -> _)
+  ("ext:ReportStatus" -> _))
+
+(define-graph besluiten ("http://mu.semte.ch/graphs/besluiten-consumed")
+  ("eli:LegalResource" -> _)
+  ("besluit:Artikel" -> _)
+  ("besluit:Besluit" -> _))
+
+(supply-allowed-group "vendor"
+  :parameters ("session_group" "session_role")
+  :query "PREFIX ext: <http://mu.semte.ch/vocabularies/ext/>
+          PREFIX muAccount: <http://mu.semte.ch/vocabularies/account/>
+          PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
+          SELECT DISTINCT ?session_group ?session_role WHERE {
+            VALUES ?session {
+              <SESSION_ID>
+            }
+            {{
+              ?session muAccount:canActOnBehalfOf/mu:uuid ?session_group;
+                           muAccount:account/ext:sessionRole ?session_role.
+            } UNION {
+              ?session muAccount:account ?account.
+              ?session muAccount:canActOnBehalfOf/ext:isOCMWVoor/mu:uuid ?session_group ;
+                                      muAccount:account/ext:sessionRole ?session_role.
+              ?session muAccount:canActOnBehalfOf/ext:isOCMWVoor/^<http://lblod.data.gift/vocabularies/lmb/heeftBestuurseenheid>/<http://lblod.data.gift/vocabularies/lmb/hasStatus> <http://data.lblod.info/id/concept/InstallatievergaderingStatus/a40b8f8a-8de2-4710-8d9b-3fc43a4b740e> .
+              VALUES ?account {
+                <http://data.lblod.info/vendors/14db001d-ea0f-4a8a-8453-c48547347588> # Cipal
+                <http://data.lblod.info/vendors/42edb420-08c7-4ede-9961-bc0e527d0f3b> # Green Valley
+                <http://data.lblod.info/vendors/dc62419e-1267-44e7-9562-0114e2708b6f> # Remmicom
+              }
+            }}
+          }")
+
+(supply-allowed-group "admin"
+  :parameters ()
+  :query "PREFIX ext: <http://mu.semte.ch/vocabularies/ext/>
+      PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
+      SELECT DISTINCT ?session_role ?session_group WHERE {
+        VALUES ?session_role {
+          \"LoketLB-admin\"
+        }
+        VALUES ?session_id {
+          <SESSION_ID>
+        }
+        {
+          ?session_id ext:sessionRole ?session_role ;
+            ext:sessionGroup/mu:uuid ?session_group .
+        } UNION {
+          ?session_id ext:originalSessionRole ?session_role ;
+            ext:originalSessionGroup ?session_group.
+        }
+      }
+      LIMIT 1"
+)
+
+(supply-allowed-group "logged-in-or-impersonating"
+  :parameters ("session_group")
+  :query "PREFIX ext: <http://mu.semte.ch/vocabularies/ext/>
+    PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
+    SELECT DISTINCT ?session_group WHERE {
+      {
+        <SESSION_ID> ext:sessionGroup/mu:uuid ?session_group.
+      } UNION {
+        <SESSION_ID> ext:originalSessionGroup/mu:uuid ?session_group.
+      }
+    }")
+
+(grant (read)
+  :to (organization)
+  :for "logged-in-or-impersonating")
+
+(grant (read)
+       :to organization-mandatendatabank
+       :for "vendor")
+
+(grant (read write)
+       :to sessions
+       :for "admin")
+
+(grant (read write)
+       :to common-over-application
+       :for "admin")
+
+(grant (read)
+       :to common-over-application
+       :for "lmb-public")
+
+(supply-allowed-group "authenticated"
+  :parameters ()
+  :query "PREFIX ext: <http://mu.semte.ch/vocabularies/ext/>
+          PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
+          SELECT DISTINCT ?session_group ?session_role WHERE {
+            <SESSION_ID> ext:sessionGroup/mu:uuid ?session_group;
+                         ext:sessionRole ?session_role.
+          }")
+
+(supply-allowed-group "impersonating-authenticated"
+  :parameters ("session_group")
+  :query "PREFIX ext: <http://mu.semte.ch/vocabularies/ext/>
+          PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
+          SELECT DISTINCT ?session_group ?session_role WHERE {
+            <SESSION_ID> ext:sessionGroup/mu:uuid ?current_session_group;
+                         ext:sessionRole ?current_session_role;
+                         ext:originalSessionGroup/mu:uuid ?session_group;
+                         ext:originalSessionRole ?session_role.
+
+          }")
+
+
+(grant (read)                           ; you already can from "public"
+       :to lmb-public
+       :for "authenticated")
+
+(grant (read)
+       :to besluiten
+       :for "authenticated")
+
+(grant (read)
+       :to sessions
+       :for "authenticated")
+
+(grant (read)
+       :to impersonating-sessions
+       :for "impersonating-authenticated")
+
+(grant (read)
+       :to view-only-modules
+       :for "authenticated")
+
+(supply-allowed-group "organization-member"
+  :parameters ("session_group")
+  :query "PREFIX ext: <http://mu.semte.ch/vocabularies/ext/>
+          PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
+          SELECT ?session_group ?session_role WHERE {
+            <SESSION_ID> ext:sessionGroup/mu:uuid ?session_group.
+          }")
+
+(grant (read)
+       :to organization
+       :for "organization-member")
+
+(supply-allowed-group "mandaat-gebruiker"
+  :parameters ("session_group" "session_role")
+  :query "PREFIX ext: <http://mu.semte.ch/vocabularies/ext/>
+          PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
+          SELECT DISTINCT ?session_group ?session_role WHERE {
+            <SESSION_ID> ext:sessionGroup/mu:uuid ?session_group;
+                         ext:sessionRole ?session_role.
+            FILTER( ?session_role = \"LoketLB-mandaatGebruiker\" )
+          }")
+
+(supply-allowed-group "politieraad-lezer"
+  :parameters ("session_group" "session_role")
+  :query "PREFIX ext: <http://mu.semte.ch/vocabularies/ext/>
+          PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
+          SELECT DISTINCT ?session_group ?session_role WHERE {
+            <SESSION_ID> ext:sessionGroup ?original_session_group;
+                         ext:sessionRole ?session_role.
+            ?original_session_group ext:deeltBestuurVan/mu:uuid ?session_group.
+
+            FILTER( ?session_role = \"LoketLB-mandaatGebruiker\" )
+          }")
+
+(grant (read)
+        :to organization-mandatendatabank
+        :for "politieraad-lezer")
+
+
+(grant (read write)
+       :to organization-mandatendatabank
+       :for "mandaat-gebruiker")

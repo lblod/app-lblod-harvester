@@ -1,4 +1,9 @@
 services:
+  mocklogin:
+    image: lblod/mock-login-service:0.5.0
+    environment:
+      MU_APPLICATION_GRAPH: "http://mu.semte.ch/graphs/lmb/public"
+
   identifier:
     restart: "no"
     ports:

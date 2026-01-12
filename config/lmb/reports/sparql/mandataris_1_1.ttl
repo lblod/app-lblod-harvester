@@ -1,0 +1,27 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ext: <http://mu.semte.ch/vocabularies/ext/> .
+
+<http://example.org/mandataris_1_1_shape>
+a ext:SparqlShape ;
+sh:targetClass <http://data.vlaanderen.be/ns/mandaat#Mandataris> ;
+sh:prefixes [ sh:declare [
+        a sh:PrefixDeclaration ;
+        sh:namespace "http://data.vlaanderen.be/ns/mandaat#"^^xsd:anyURI ;
+        sh:prefix "mandaat" ;
+    ] ];
+sh:sparql [
+    sh:select """
+    PREFIX mandaat: <http://data.vlaanderen.be/ns/mandaat#>
+
+    select distinct $this ?value
+    where {
+        $this a mandaat:Mandataris .
+        FILTER NOT EXISTS {
+            $this mandaat:status ?mandatarisStatusCode .
+        }
+
+        BIND ("De bestuurlijke status (e.g. effectief, verhinderd, ...) is niet ingevuld voor deze mandataris." as ?value)
+    }""" ;
+        sh:message "Mandataris heeft geen status."
+] .
