@@ -105,36 +105,36 @@
 ;; TODO harvesting (core local source) public graph. We'll use a separate graph for lmb, but what if there are types that are shared?
 ;; this goes not just for public (usually read-only) but also for 'organization graphs' which can be read/write.
 ;; This will result in duplicate data best case and different, inconsistent data in the different graphs when reading worst case.
-; (define-graph public ("http://mu.semte.ch/graphs/public")
-;   ("besluit:Besluit" -> _)
-;   ("besluit:Zitting" -> _)
-;   ("besluit:Bestuursorgaan" -> _)
-;   ("foaf:Document" -> _)
-;   ("besluit:Agendapunt" -> _)
-;   ("skos:Concept" -> _)
-;   ("dct:Agent" -> _)
-;   ("besluit:Artikel" -> _)
-;   ("besluit:BehandelingVanAgendapunt" -> _)
-;   ("besluit:Bestuurseenheid" -> _)
-;   ("generiek:DocumentOnderdeel" -> _)
-;   ("eli:LegalExpression" -> _)
-;   ("mandaat:Mandataris" -> _)
-;   ("eli:LegalResource" -> _)
-;   ("eli:LegalResourceSubdivision" -> _)
-;   ("besluit:Stemming" -> _)
-;   ("besluit:Vergaderactiviteit" -> _)
-;   ("mandaat:Mandaat" -> _)
-;   ("person:Person" -> _))
+(define-graph public ("http://mu.semte.ch/graphs/public")
+  ("besluit:Besluit" -> _)
+  ("besluit:Zitting" -> _)
+  ("besluit:Bestuursorgaan" -> _)
+  ("foaf:Document" -> _)
+  ("besluit:Agendapunt" -> _)
+  ("skos:Concept" -> _)
+  ("dct:Agent" -> _)
+  ("besluit:Artikel" -> _)
+  ("besluit:BehandelingVanAgendapunt" -> _)
+  ("besluit:Bestuurseenheid" -> _)
+  ("generiek:DocumentOnderdeel" -> _)
+  ("eli:LegalExpression" -> _)
+  ("mandaat:Mandataris" -> _)
+  ("eli:LegalResource" -> _)
+  ("eli:LegalResourceSubdivision" -> _)
+  ("besluit:Stemming" -> _)
+  ("besluit:Vergaderactiviteit" -> _)
+  ("mandaat:Mandaat" -> _)
+  ("person:Person" -> _))
 
-; (supply-allowed-group "public")
+(supply-allowed-group "public")
 
-; (grant (read)
-;        :to public
-;        :for "public")
+(grant (read)
+       :to public
+       :for "public")
 
-; (grant (read)
-;        :to harvesting-public
-;        :for "public")
+(grant (read)
+       :to harvesting-public
+       :for "public")
 
 (supply-allowed-group "logged-in"
   :query "PREFIX session: <http://mu.semte.ch/vocabularies/session/>
@@ -151,8 +151,6 @@
 ;; LMB Config
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(supply-allowed-group "lmb-public")
-
 (define-graph lmb-public ("http://mu.semte.ch/graphs/lmb/public")
   ("ext:FileAddress" -> _)
   ("nfo:FileDataObject" -> _)
@@ -163,7 +161,6 @@
   ("lmb:Bestuursperiode" -> _)
   ("ext:Fractietype" -> _)
   ("ext:BestuursfunctieCode" -> _)
-  
   ("ext:MandatarisStatusCode" -> _)
   ("ext:BeleidsdomeinCode" -> _)
   ("ext:GeslachtCode" -> _)
@@ -184,7 +181,7 @@
 
   (grant (read)
        :to lmb-public
-       :for "lmb-public")
+       :for "public")
 
 
 (define-graph sessions ("http://mu.semte.ch/graphs/sessions")
@@ -332,7 +329,7 @@
 
 (grant (read)
        :to common-over-application
-       :for "lmb-public")
+       :for "public")
 
 (supply-allowed-group "authenticated"
   :parameters ()

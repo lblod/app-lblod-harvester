@@ -1,7 +1,7 @@
-import resource from './resource';
 import ldes from './ldes';
 import modified from './modified';
 import politiezones from './politiezones';
+import decisions from './decisions';
 import devRules from './core-dev';
 import prodRules from './core';
 
@@ -16,8 +16,8 @@ if (useDevRules) {
   rules.push(...prodRules);
 }
 
-rules.push(...resource);
 rules.push(...ldes);
+rules.push(...decisions);
 rules.push(...modified);
 rules.push(...politiezones);
 

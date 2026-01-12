@@ -11,45 +11,45 @@ import {
   getNamedGraphsForBestuurseenheidId,
   quadsToTtl,
   handleQuadsInBatch,
-} from "./helpers.js";
-import env from "env-var";
+} from './helpers.js';
+import env from 'env-var';
 import {
   insertReportStatusInGraphs,
   updateReportStatusWithReport,
-} from "./report-status.js";
-import { app, uuid, query, sparqlEscapeString } from "mu";
-import { querySudo } from "@lblod/mu-auth-sudo";
-import { DataFactory } from "n3";
+} from './report-status.js';
+import { app, uuid, query, sparqlEscapeString } from 'mu';
+import { querySudo } from '@lblod/mu-auth-sudo';
+import { DataFactory } from 'n3';
 const { quad, literal, namedNode } = DataFactory;
 
 const ONLY_KEEP_LATEST_REPORT =
   process.env.ONLY_KEEP_LATEST_REPORT != undefined
-    ? env.get("ONLY_KEEP_LATEST_REPORT").asBool()
+    ? env.get('ONLY_KEEP_LATEST_REPORT').asBool()
     : false;
 const DIRECT_DATABASE_CONNECTION =
-  process.env.DIRECT_DATABASE_CONNECTION || "http://virtuoso:8890/sparql";
-const BESTUURSEENHEID_URI = env.get("BESTUURSEENHEID_URI").asString();
+  process.env.DIRECT_DATABASE_CONNECTION || 'http://virtuoso:8890/sparql';
+const BESTUURSEENHEID_URI = env.get('BESTUURSEENHEID_URI').asString();
 
 const TARGET_BESTUURSPERIODE =
   process.env.TARGET_BESTUURSPERIODE != undefined
-    ? env.get("TARGET_BESTUURSPERIODE").asString()
-    : "http://data.lblod.info/id/concept/Bestuursperiode/96efb929-5d83-48fa-bfbb-b98dfb1180c7";
+    ? env.get('TARGET_BESTUURSPERIODE').asString()
+    : 'http://data.lblod.info/id/concept/Bestuursperiode/96efb929-5d83-48fa-bfbb-b98dfb1180c7';
 
-const SHAPE_URI = env.get("SHAPE_URI").asString();
+const SHAPE_URI = env.get('SHAPE_URI').asString();
 
-const reportName = "ShaclReport";
+const reportName = 'ShaclReport';
 
 const cronFunction = async (bestuurseenheidUri = null) => {
-  console.log("report starts");
+  console.log('report starts');
   const reportInfo = {
     title: reportName,
-    description: "SHACL validatie per bestuur (gemeente en OCMW)",
-    filePrefix: "report-shacl",
+    description: 'SHACL validatie per bestuur (gemeente en OCMW)',
+    filePrefix: 'report-shacl',
   };
 
   // Configure here the bestuurseenheidclassificaties (gemeente, OCMW) to validate
   const interestedBestuurseenheidClassificaties = [
-    "http://data.vlaanderen.be/id/concept/BestuurseenheidClassificatieCode/5ab0e9b8a3b2ca7c5e000001",
+    'http://data.vlaanderen.be/id/concept/BestuurseenheidClassificatieCode/5ab0e9b8a3b2ca7c5e000001',
     // since we also include the ocmw data when validating the gemeente, we don't need to validate ocmw separately
     // "http://data.vlaanderen.be/id/concept/BestuurseenheidClassificatieCode/5ab0e9b8a3b2ca7c5e000002",
   ];
@@ -74,8 +74,8 @@ const cronFunction = async (bestuurseenheidUri = null) => {
   }
 
   // Read all SHACL files in the shacl folder
-  const shape = await mergeFilesContent("./config/shacl");
-  const sparqlShapes = await mergeFilesContent("./config/sparql");
+  const shape = await mergeFilesContent('./config/shacl');
+  const sparqlShapes = await mergeFilesContent('./config/sparql');
   const shapesDataset = await parseTurtleString(shape);
   const sparqlShapeDataset = await parseTurtleString(sparqlShapes);
   const sparqlValidationObjects = await getSparqlValidationObjects(
@@ -136,7 +136,7 @@ const cronFunction = async (bestuurseenheidUri = null) => {
         await deletePreviousReports(namedGraphs);
       }
     } catch (error) {
-      console.error("Error:", error);
+      console.error('Error:', error);
     }
     console.log(
       `SHACL validation for bestuurseenheid ${uriAndUuid.uuid} done.`
@@ -148,8 +148,8 @@ const cronFunction = async (bestuurseenheidUri = null) => {
 async function getSparqlValidationObjects(shapesDataset) {
   const shapes = shapesDataset
     .getSubjects(
-      namedNode("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"),
-      namedNode("http://mu.semte.ch/vocabularies/ext/SparqlShape")
+      namedNode('http://www.w3.org/1999/02/22-rdf-syntax-ns#type'),
+      namedNode('http://mu.semte.ch/vocabularies/ext/SparqlShape')
     )
     .map((subject) => subject.value);
   console.log(`Found ${shapes.length} sparql shapes`);
@@ -158,19 +158,19 @@ async function getSparqlValidationObjects(shapesDataset) {
     try {
       const sparql = shapesDataset.getQuads(
         shapeSubject,
-        namedNode("http://www.w3.org/ns/shacl#sparql"),
+        namedNode('http://www.w3.org/ns/shacl#sparql'),
         null,
         null
       )[0];
       const query = shapesDataset.getQuads(
         sparql.object,
-        namedNode("http://www.w3.org/ns/shacl#select"),
+        namedNode('http://www.w3.org/ns/shacl#select'),
         null,
         null
       )[0].object.value;
       const message = shapesDataset.getQuads(
         sparql.object,
-        namedNode("http://www.w3.org/ns/shacl#message"),
+        namedNode('http://www.w3.org/ns/shacl#message'),
         null,
         null
       )[0].object.value;
@@ -209,7 +209,7 @@ async function runSparqlValidations(graph, sparqlValidationObjects) {
   for (const sparqlValidationObject of Object.values(sparqlValidationObjects)) {
     const insertPos = sparqlValidationObject.query
       .toLowerCase()
-      .indexOf("where");
+      .indexOf('where');
     const query =
       sparqlValidationObject.query.substring(0, insertPos) +
       `FROM <${graph}>\n` +
@@ -241,8 +241,8 @@ async function addResultsToReport(
 ) {
   const [reportUri] = reportDataset.match(
     null,
-    namedNode("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"),
-    namedNode("http://www.w3.org/ns/shacl#ValidationReport"),
+    namedNode('http://www.w3.org/1999/02/22-rdf-syntax-ns#type'),
+    namedNode('http://www.w3.org/ns/shacl#ValidationReport'),
     null
   );
 
@@ -253,7 +253,7 @@ async function addResultsToReport(
       const errorUri = `http://data.lblod.info/id/validationresults/${id}`;
       const targetClass = dataDataset.match(
         namedNode(error.target),
-        namedNode("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"),
+        namedNode('http://www.w3.org/1999/02/22-rdf-syntax-ns#type'),
         null,
         null
       );
@@ -263,7 +263,7 @@ async function addResultsToReport(
           quad(
             namedNode(errorUri),
             namedNode(
-              "http://lblod.data.gift/vocabularies/lmb/targetClassOfFocusNode"
+              'http://lblod.data.gift/vocabularies/lmb/targetClassOfFocusNode'
             ),
             namedNode(targetClassQuad.object.value)
           )
@@ -271,7 +271,7 @@ async function addResultsToReport(
       }
       const targetId = dataDataset.match(
         namedNode(error.target),
-        namedNode("http://mu.semte.ch/vocabularies/core/uuid"),
+        namedNode('http://mu.semte.ch/vocabularies/core/uuid'),
         null,
         null
       );
@@ -281,7 +281,7 @@ async function addResultsToReport(
           quad(
             namedNode(errorUri),
             namedNode(
-              "http://lblod.data.gift/vocabularies/lmb/targetIdOfFocusNode"
+              'http://lblod.data.gift/vocabularies/lmb/targetIdOfFocusNode'
             ),
             literal(targetIdQuad.object.value)
           )
@@ -290,21 +290,21 @@ async function addResultsToReport(
       reportDataset.add(
         quad(
           reportUri.subject,
-          namedNode("http://www.w3.org/ns/shacl#result"),
+          namedNode('http://www.w3.org/ns/shacl#result'),
           namedNode(errorUri)
         )
       );
       reportDataset.add(
         quad(
           namedNode(errorUri),
-          namedNode("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"),
-          namedNode("http://www.w3.org/ns/shacl#ValidationResult")
+          namedNode('http://www.w3.org/1999/02/22-rdf-syntax-ns#type'),
+          namedNode('http://www.w3.org/ns/shacl#ValidationResult')
         )
       );
       reportDataset.add(
         quad(
           namedNode(errorUri),
-          namedNode("http://mu.semte.ch/vocabularies/core/uuid"),
+          namedNode('http://mu.semte.ch/vocabularies/core/uuid'),
           literal(id)
         )
       );
@@ -313,7 +313,7 @@ async function addResultsToReport(
         reportDataset.add(
           quad(
             namedNode(errorUri),
-            namedNode("http://www.w3.org/ns/shacl#resultMessage"),
+            namedNode('http://www.w3.org/ns/shacl#resultMessage'),
             literal(error.message)
           )
         );
@@ -321,21 +321,21 @@ async function addResultsToReport(
       reportDataset.add(
         quad(
           namedNode(errorUri),
-          namedNode("http://www.w3.org/ns/shacl#focusNode"),
+          namedNode('http://www.w3.org/ns/shacl#focusNode'),
           namedNode(error.target)
         )
       );
       reportDataset.add(
         quad(
           namedNode(errorUri),
-          namedNode("http://www.w3.org/ns/shacl#sourceShape"),
+          namedNode('http://www.w3.org/ns/shacl#sourceShape'),
           namedNode(validationUri)
         )
       );
       reportDataset.add(
         quad(
           namedNode(errorUri),
-          namedNode("http://www.w3.org/ns/shacl#sourceConstraintComponent"),
+          namedNode('http://www.w3.org/ns/shacl#sourceConstraintComponent'),
           namedNode(validationUri)
         )
       );
@@ -343,7 +343,7 @@ async function addResultsToReport(
         reportDataset.add(
           quad(
             namedNode(errorUri),
-            namedNode("http://www.w3.org/ns/shacl#value"),
+            namedNode('http://www.w3.org/ns/shacl#value'),
             literal(error.value)
           )
         );
@@ -351,8 +351,8 @@ async function addResultsToReport(
       reportDataset.add(
         quad(
           namedNode(errorUri),
-          namedNode("http://www.w3.org/ns/shacl#resultSeverity"),
-          namedNode("http://www.w3.org/ns/shacl#Error")
+          namedNode('http://www.w3.org/ns/shacl#resultSeverity'),
+          namedNode('http://www.w3.org/ns/shacl#Error')
         )
       );
     });
@@ -367,7 +367,7 @@ async function dropTempGraph(graph) {
   );
   await querySudo(
     `DELETE DATA {
-      GRAPH <http://mu.semte.ch/graphs/public> {
+      GRAPH <http://mu.semte.ch/graphs/lmb/public> {
         <${graph}> a <http://mu.semte.ch/vocabularies/ext/ValidationWorkingGraph> .
       }
     } `,
@@ -384,7 +384,7 @@ async function loadDatasetToTempGraph(dataset) {
     await querySudo(
       `INSERT DATA {
       GRAPH <${graph}> { ${ttl} }
-      GRAPH <http://mu.semte.ch/graphs/public> {
+      GRAPH <http://mu.semte.ch/graphs/lmb/public> {
         <${graph}> a <http://mu.semte.ch/vocabularies/ext/ValidationWorkingGraph> .
       }
     }`,
@@ -398,17 +398,17 @@ async function loadDatasetToTempGraph(dataset) {
 }
 
 export default {
-  cronPattern: "0 3 * * *",
+  cronPattern: '0 3 * * *',
   name: reportName,
   execute: cronFunction,
 };
 
 if (process.env.RUN_REPORT_NOW) {
-  console.log("Running report in 10 seconds");
+  console.log('Running report in 10 seconds');
   setTimeout(() => cronFunction(), 10000);
 }
 
-app.post("/reports/generate", async (req, res) => {
+app.post('/reports/generate', async (req, res) => {
   const bestuurseenheidUri = req.body.bestuurseenheidUri;
   if (!bestuurseenheidUri) {
     console.log(
@@ -425,7 +425,7 @@ app.post("/reports/generate", async (req, res) => {
   res.status(204).send();
 });
 
-app.get("/reports/:id/:eenheidId/issues", async (req, res) => {
+app.get('/reports/:id/:eenheidId/issues', async (req, res) => {
   const reportId = req.params.id;
   const eenheidId = req.params.eenheidId;
 
@@ -484,7 +484,7 @@ app.get("/reports/:id/:eenheidId/issues", async (req, res) => {
   if (!issues.results.bindings) {
     res
       .status(500)
-      .send("Er ging iets fout bij het opghalen van de validatie resultaten.");
+      .send('Er ging iets fout bij het opghalen van de validatie resultaten.');
     return;
   }
   const transformedIssues = issues.results.bindings.map((issue) => {

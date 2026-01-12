@@ -120,27 +120,28 @@ export default [
       ignoreFromSelf: true,
     },
   },
-  {
-    match: {
-      predicate: {
-        type: "uri",
-        value: "http://www.w3.org/ns/adms#status",
-      },
-      object: {
-        type: "uri",
-        value: "http://redpencil.data.gift/id/concept/JobStatus/scheduled",
-      },
-    },
-    callback: {
-      method: "POST",
-      url: "http://harvest_import/delta",
-    },
-    options: {
-      resourceFormat: "v0.0.1",
-      gracePeriod: 1000,
-      ignoreFromSelf: true,
-    },
-  },
+  // {
+  //   match: {
+  //     predicate: {
+  //       type: "uri",
+  //       value: "http://www.w3.org/ns/adms#status",
+  //     },
+  //     object: {
+  //       type: "uri",
+  //       value: "http://redpencil.data.gift/id/concept/JobStatus/scheduled",
+  //     },
+  //   },
+  //   callback: {
+  //     // TODO service not found?
+  //     method: "POST",
+  //     url: "http://harvest_import/delta",
+  //   },
+  //   options: {
+  //     resourceFormat: "v0.0.1",
+  //     gracePeriod: 1000,
+  //     ignoreFromSelf: true,
+  //   },
+  // },
   {
     match: {
       predicate: {
@@ -183,27 +184,28 @@ export default [
       ignoreFromSelf: true,
     },
   },
-  {
-    match: {
-      predicate: {
-        type: "uri",
-        value: "http://www.w3.org/ns/adms#status",
-      },
-      object: {
-        type: "uri",
-        value: "http://redpencil.data.gift/id/concept/JobStatus/scheduled",
-      },
-    },
-    callback: {
-      method: "POST",
-      url: "http://harvest_check-url/delta",
-    },
-    options: {
-      resourceFormat: "v0.0.1",
-      gracePeriod: 1000,
-      ignoreFromSelf: true,
-    },
-  },
+  // {
+  //   match: {
+  //     predicate: {
+  //       type: "uri",
+  //       value: "http://www.w3.org/ns/adms#status",
+  //     },
+  //     object: {
+  //       type: "uri",
+  //       value: "http://redpencil.data.gift/id/concept/JobStatus/scheduled",
+  //     },
+  //   },
+  //   callback: {
+  //     method: "POST",
+  //     // TODO can't find a service with this name?
+  //     url: "http://harvest_check-url/delta",
+  //   },
+  //   options: {
+  //     resourceFormat: "v0.0.1",
+  //     gracePeriod: 1000,
+  //     ignoreFromSelf: true,
+  //   },
+  // },
   {
     match: {
       predicate: {
@@ -285,25 +287,26 @@ export default [
       ignoreFromSelf: true,
     },
   },
-  {
-    match: {
-      predicate: {
-        type: "uri",
-        value: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
-      },
-      object: {
-        type: "uri",
-        value: "http://open-services.net/ns/core#Error",
-      },
-    },
-    callback: {
-      url: "http://error-alert/delta",
-      method: "POST",
-    },
-    options: {
-      resourceFormat: "v0.0.1",
-      gracePeriod: 1000,
-      ignoreFromSelf: true,
-    },
-  },
+  // {
+  //   match: {
+  //     predicate: {
+  //       type: "uri",
+  //       value: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+  //     },
+  //     object: {
+  //       type: "uri",
+  //       value: "http://open-services.net/ns/core#Error",
+  //     },
+  //   },
+  //   callback: {
+  //     // TODO service not found?
+  //     url: "http://error-alert/delta",
+  //     method: "POST",
+  //   },
+  //   options: {
+  //     resourceFormat: "v0.0.1",
+  //     gracePeriod: 1000,
+  //     ignoreFromSelf: true,
+  //   },
+  // },
 ];
