@@ -21,6 +21,19 @@ defmodule Dispatcher do
   # STATIC
   ###############
 
+  # lmb (simulate locally by adding an lmb.localhost entry to your /etc/hosts file)
+  match "/index.html", %{reverse_host: ["lmb" | _rest], layer: :static} do
+    forward(conn, [], "http://lmbfrontend/index.html")
+  end
+
+  get "/assets/*path", %{reverse_host: ["lmb" | _rest], layer: :static} do
+    forward(conn, path, "http://lmbfrontend/assets/")
+  end
+
+  get "/@appuniversum/*path", %{reverse_host: ["lmb" | _rest], layer: :static} do
+    forward(conn, path, "http://lmbfrontend/@appuniversum/")
+  end
+
   # self-service
   match "/index.html", %{ layer: :static } do
     forward conn, [], "http://frontend/index.html"
@@ -32,19 +45,6 @@ defmodule Dispatcher do
 
   get "/@appuniversum/*path", %{ layer: :static } do
     forward conn, path, "http://frontend/@appuniversum/"
-  end
-
-  # lmb
-  match "/index.html", %{reverse_host: ["lmb" | _rest], layer: :static} do
-    forward(conn, [], "http://lmbfrontend/index.html")
-  end
-
-  get "/assets/*path", %{reverse_host: ["lmb" | _rest], layer: :static} do
-    forward(conn, path, "http://lmbfrontend/assets/")
-  end
-
-  get "/@appuniversum/*path", %{reverse_host: ["lmb" | _rest], layer: :static} do
-    forward(conn, path, "http://lmbfrontend/@appuniversum/")
   end
 
   ###############
@@ -59,17 +59,18 @@ defmodule Dispatcher do
   # FRONTEND PAGES
   #################
 
+  # lmb
+  match "/*path", %{ reverse_host: ["lmb" | _rest], layer: :frontend_fallback, accept: %{ html: true } } do
+    # we don't forward the path, because the app should take care of this in the browser.
+    forward conn, [], "http://lmbfrontend/index.html"
+  end
+
   # self-service
   match "/*path", %{ layer: :frontend_fallback, accept: %{ html: true } } do
     # we don't forward the path, because the app should take care of this in the browser.
     forward conn, [], "http://frontend/index.html"
   end
 
-  # lmb
-  match "/*path", %{ reverse_host: ["lmb" | _rest], layer: :frontend_fallback, accept: %{ html: true } } do
-    # we don't forward the path, because the app should take care of this in the browser.
-    forward conn, [], "http://lmbfrontend/index.html"
-  end
 
   # match "/favicon.ico", @any do
   #   send_resp( conn, 404, "" )
