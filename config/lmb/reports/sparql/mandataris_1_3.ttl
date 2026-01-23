@@ -1,0 +1,104 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ext: <http://mu.semte.ch/vocabularies/ext/> .
+
+<http://example.org/mandataris_1_3_shape>
+a ext:SparqlShape ;
+sh:targetClass <http://data.vlaanderen.be/ns/besluit#Bestuursorgaan> ;
+sh:prefixes [ sh:declare [
+        a sh:PrefixDeclaration ;
+        sh:namespace "http://data.vlaanderen.be/ns/besluit#"^^xsd:anyURI ;
+        sh:prefix "besluit" ;
+    ] ], [ sh:declare [
+        a sh:PrefixDeclaration ;
+        sh:namespace "http://data.vlaanderen.be/ns/mandaat#"^^xsd:anyURI ;
+        sh:prefix "mandaat" ;
+    ] ], [ sh:declare [
+        a sh:PrefixDeclaration ;
+        sh:namespace "http://www.w3.org/ns/org#"^^xsd:anyURI ;
+        sh:prefix "org" ;
+    ] ], [ sh:declare [
+        a sh:PrefixDeclaration ;
+        sh:namespace "http://lblod.data.gift/vocabularies/lmb/"^^xsd:anyURI ;
+        sh:prefix "lmb" ;
+    ] ], [ sh:declare [
+        a sh:PrefixDeclaration ;
+        sh:namespace "http://www.w3.org/2004/02/skos/core#"^^xsd:anyURI ;
+        sh:prefix "skos" ;
+    ] ], [ sh:declare [
+        a sh:PrefixDeclaration ;
+        sh:namespace "http://www.w3.org/2001/XMLSchema#"^^xsd:anyURI ;
+        sh:prefix "xsd" ;
+    ] ];
+sh:sparql [
+    sh:select """
+  PREFIX besluit: <http://data.vlaanderen.be/ns/besluit#>
+  PREFIX mandaat: <http://data.vlaanderen.be/ns/mandaat#>
+  PREFIX org: <http://www.w3.org/ns/org#>
+  PREFIX lmb: <http://lblod.data.gift/vocabularies/lmb/>
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+  PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+  select distinct $this ?value
+  where {
+    $this a besluit:Bestuursorgaan .
+    # pick one date where the count is not between min and max (inclusive)
+    { select distinct $this ?mandaat ?mandatarisCount ?mandaatLabel ?min ?max ?processedDateToCheck where {
+      {
+        # count all persons per mandate for each of these 'edge' dates
+        SELECT $this ?mandaat ?simplifiedDateToCheck (COUNT(DISTINCT(?person)) AS ?mandatarisCount) WHERE {
+          # find possible 'edge' dates where mandataris changes happen for each mandate
+          { SELECT DISTINCT $this ?mandaat ?simplifiedDateToCheck WHERE {
+
+            $this org:hasPost ?mandaat.
+
+            $this mandaat:isTijdspecialisatieVan / besluit:bestuurt ?eenheid.
+
+            ?s a mandaat:Mandataris.
+            ?s org:holds ?mandaat.
+            ?mandaat mandaat:aantalHouders ?max.
+            ?mandaat lmb:minAantalHouders ?min.
+
+
+
+            { { ?s mandaat:start|mandaat:einde ?dateToCheck } UNION { ?s mandaat:start ?start. BIND("2030-12-31"^^xsd:dateTime AS ?dateToCheck) } }
+            BIND(strdt(substr(str(?dateToCheck), 1, 10), xsd:date) AS ?simplifiedDateToCheck)
+          } }
+
+          ?s a mandaat:Mandataris.
+          ?s org:holds ?mandaat.
+
+          VALUES ?mandatarisStatus {
+
+            <http://data.vlaanderen.be/id/concept/MandatarisStatusCode/e1ca6edd-55e1-4288-92a5-53f4cf71946a> # waarnemend
+            <http://data.vlaanderen.be/id/concept/MandatarisStatusCode/21063a5b-912c-4241-841c-cc7fb3c73e75> # effectief
+          }
+          ?s mandaat:status ?mandatarisStatus.
+          ?s mandaat:start ?start.
+          OPTIONAL {
+            ?s mandaat:einde ?einde.
+            BIND(strdt(substr(str(?einde), 1, 10), xsd:date) AS ?simplifiedEinde)
+          }
+          BIND(-24 AS ?offsetEinde)
+          BIND(IF(MINUTES(?start) = 59, -24, 0) AS ?offsetStart)
+          BIND(IF(BOUND(?simplifiedEinde), bif:dateadd('hour', ?offsetEinde, ?simplifiedEinde), "2030-12-30"^^xsd:dateTime) AS ?safeEinde)
+          BIND(bif:dateadd('hour', ?offsetStart, strdt(substr(str(?start), 1, 10), xsd:date)) AS ?simplifiedStart)
+          ?s mandaat:isBestuurlijkeAliasVan ?person.
+          FILTER (?simplifiedStart <= ?simplifiedDateToCheck && ?safeEinde > ?simplifiedDateToCheck)
+        } GROUP BY $this ?mandaat ?simplifiedDateToCheck
+      }
+      ?mandaat mandaat:aantalHouders ?max.
+      ?mandaat lmb:minAantalHouders ?min.
+      ?mandaat org:role / skos:prefLabel ?mandaatLabel.
+
+
+      # # our dates are UTC 23, so we need to add a day
+      BIND(bif:dateadd('hour', 24, strdt(substr(str(?simplifiedDateToCheck), 1, 10), xsd:date)) as ?processedDateToCheck)
+      FILTER(?min > ?mandatarisCount || ?max < ?mandatarisCount)
+
+    } }
+    BIND(concat(str(?mandatarisCount), " mandataris(sen) voor '",str(?mandaatLabel), "' gevonden op ", DAY(?processedDateToCheck),"-",MONTH(?processedDateToCheck),"-", YEAR(?processedDateToCheck), " - minimum: ", str(?min), " - maximum: ", str(?max)) as ?value)
+  }
+    """ ;
+        sh:message "Verkeerd aantal mandatarissen."
+] .

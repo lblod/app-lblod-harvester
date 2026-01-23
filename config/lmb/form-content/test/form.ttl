@@ -1,0 +1,129 @@
+@prefix form: <http://lblod.data.gift/vocabularies/forms/>.
+@prefix sh: <http://www.w3.org/ns/shacl#>.
+@prefix mu: <http://mu.semte.ch/vocabularies/core/>.
+@prefix displayTypes: <http://lblod.data.gift/display-types/>.
+@prefix schema: <http://schema.org/>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix ext: <http://mu.semte.ch/vocabularies/ext/>.
+@prefix person: <http://www.w3.org/ns/person#>.
+
+ext:testFieldF
+    a form:Field;
+    form:displayType displayTypes:defaultInput;
+    sh:group ext:testPG;
+    sh:name "Test";
+    sh:order 2;
+    sh:path ext:test.
+ext:testNumericalF
+    a form:Field;
+    form:displayType displayTypes:numericalInput;
+    sh:group ext:testPG;
+    sh:name "TestNumber with clear";
+    sh:order 2;
+    sh:path ext:testNumber;
+    form:options """{"allowClear":true}""".
+ext:testNumerical2F
+    a form:Field;
+    form:displayType displayTypes:numericalInput;
+    sh:group ext:testPG;
+    sh:name "TestNumber without clear";
+    sh:order 2;
+    sh:path ext:testNumber2.
+ext:testInstanceSelectorF
+    a form:Field;
+    form:displayType displayTypes:instanceSelector;
+    form:instanceApiUrl "/fracties";
+    form:instanceLabelProperty "naam";
+    sh:group ext:testPG;
+    sh:name "testInstanceSelector";
+    sh:order 3;
+    sh:path ext:testInstanceSelector.
+ext:testInstanceMultiSelectorF
+    a form:Field;
+    form:displayType displayTypes:instanceMultiSelector;
+    form:instanceApiUrl "/fracties";
+    form:instanceLabelProperty "naam";
+    sh:group ext:testPG;
+    sh:name "testInstanceMultiSelector";
+    sh:order 4;
+    sh:path ext:testInstanceMultiSelector.
+ext:testConceptSchemeSelectorF
+    a form:Field;
+    form:displayType displayTypes:conceptSchemeSelector;
+    sh:group ext:testPG;
+    sh:name "testConceptSchemeSelector";
+    sh:order 5;
+    sh:path ext:testConceptSchemeSelector;
+    form:options """{"conceptScheme":"http://data.vlaanderen.be/id/conceptscheme/MandatarisStatusCode","searchEnabled":true}""".
+ext:testConceptSchemeMultiSelectorF
+    a form:Field;
+    form:displayType displayTypes:conceptSchemeMultiSelector;
+    sh:group ext:testPG;
+    sh:name "testConceptSchemeMultiSelector";
+    sh:order 6;
+    sh:path ext:testConceptSchemeMultiSelector;
+    form:options """{"conceptScheme":"http://data.vlaanderen.be/id/conceptscheme/BeleidsdomeinCode","searchEnabled":true}""".
+ext:testConceptSchemeSelector2F
+    a form:Field;
+    form:displayType displayTypes:conceptSchemeMultiSelectCheckboxes;
+    sh:group ext:testPG;
+    sh:name "testConceptSchemeSelectorCheckboxes";
+    sh:order 7;
+    sh:path ext:testConceptSchemeSelector2;
+    form:options """{"conceptScheme":"http://data.vlaanderen.be/id/conceptscheme/BestuursorgaanClassificatieCode","searchEnabled":true}""".
+ext:testConceptSchemeMultiSelector2F
+    a form:Field;
+    form:displayType displayTypes:conceptSchemeRadioButtons;
+    sh:group ext:testPG;
+    sh:name "testConceptSchemeRadioButtons";
+    sh:order 8;
+    sh:path ext:testConceptSchemeMultiSelector2;
+    form:options """{"conceptScheme":"http://publications.europa.eu/resource/authority/human-sex","searchEnabled":true}""".
+ext:testConceptSchemeSelectorWithCreateF
+    a form:Field;
+    form:displayType displayTypes:conceptSchemeSelectorWithCreate;
+    sh:group ext:testPG;
+    sh:name "testConceptSchemeSelectorWithCreate";
+    sh:order 9;
+    sh:path ext:testConceptSchemeSelectorWithCreate;
+    form:options """{"conceptScheme":"http://data.vlaanderen.be/id/conceptscheme/BeleidsdomeinCode","searchEnabled":true, "type":"beleidsdomein-code"}""".
+ext:testConceptSchemeSelectorWithCreate2F
+    a form:Field;
+    form:displayType displayTypes:conceptSchemeMultiSelectorWithCreate;
+    sh:group ext:testPG;
+    sh:name "testConceptSchemeMultiSelectorWithCreate";
+    sh:order 10;
+    sh:path ext:testConceptSchemeSelectorWithCreate2;
+    form:options """{"conceptScheme":"http://data.vlaanderen.be/id/conceptscheme/BeleidsdomeinCode","searchEnabled":true, "type":"beleidsdomein-code"}""".
+ext:testPG
+    a form:PropertyGroup; sh:name "Test"; sh:order 1.
+
+<http://data.lblod.info/id/lmb/forms/test>
+    a form:Form, form:TopLevelForm;
+    form:includes
+        ext:testFieldF,
+        ext:testNumericalF,
+        ext:testNumerical2F,
+        ext:testInstanceSelectorF,
+        ext:testInstanceMultiSelectorF,
+        ext:testConceptSchemeSelectorF,
+        ext:testConceptSchemeMultiSelectorF,
+        ext:testConceptSchemeSelector2F,
+        ext:testConceptSchemeMultiSelector2F,
+        ext:testConceptSchemeSelectorWithCreateF,
+        ext:testConceptSchemeSelectorWithCreate2F;
+    sh:group ext:testPG;
+    form:initGenerator ext:testG;
+    form:targetType person:Person;
+    form:targetLabel ext:test;
+    mu:uuid "59605cf4-49e7-4813-a619-7481fc313026".
+
+ext:testG a form:Generator;
+  form:prototype [
+    form:shape [
+      a person:Person
+    ]
+  ];
+  form:dataGenerator form:addMuUuid.

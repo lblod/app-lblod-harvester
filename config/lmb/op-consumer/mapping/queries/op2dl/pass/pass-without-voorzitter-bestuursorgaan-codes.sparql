@@ -1,0 +1,38 @@
+CONSTRUCT {
+  ?bestuursorgaan ?p ?o .
+  ?bestuursorgaan <http://data.vlaanderen.be/ns/besluit#classificatie> ?classificationCode .
+}
+WHERE {
+  ?bestuursorgaan a <http://data.vlaanderen.be/ns/besluit#Bestuursorgaan> .
+  ?bestuursorgaan <http://data.vlaanderen.be/ns/besluit#classificatie> ?classificationCode .
+  ?bestuursorgaan ?p ?o .
+
+  FILTER(?classificationCode NOT IN(
+      <http://data.vlaanderen.be/id/concept/BestuursorgaanClassificatieCode/e14fe683-e061-44a2-b7c8-e10cab4e6ed9>, # Voorzitter RMW 
+      <http://data.vlaanderen.be/id/concept/BestuursorgaanClassificatieCode/4c38734d-2cc1-4d33-b792-0bd493ae9fc2>, # Voorzitter GR 
+      <http://data.vlaanderen.be/id/concept/BestuursorgaanClassificatieCode/53c0d8cd-f3a2-411d-bece-4bd83ae2bbc9> # Voorzitter BCSD 
+    )
+  )
+
+  # Got these properties from file 'pass-without-lmb-properties.sparql'
+  FILTER (?p NOT IN (
+    <http://data.vlaanderen.be/ns/besluit#classificatie>, # Not an LMB property added this for only this query
+    <http://www.w3.org/ns/adms#identifier>,
+    <http://www.w3.org/ns/org#classification>,
+    <http://mu.semte.ch/vocabularies/ext/voorbereidingVerborgen>,
+    <http://mu.semte.ch/vocabularies/ext/isLokaalBeheerd>,
+    <http://mu.semte.ch/vocabularies/ext/isOCMWVoor>,
+    <http://www.w3.org/ns/org#linkedTo>,
+    <http://mu.semte.ch/vocabularies/ext/origineleBestuurseenheid>,
+    <http://mu.semte.ch/vocabularies/ext/isTijdelijkOrgaanIn>,
+    <http://mu.semte.ch/vocabularies/ext/origineleBestuursorgaan>,
+    <http://lblod.data.gift/vocabularies/lmb/heeftBestuursperiode>,
+    <http://data.vlaanderen.be/ns/mandaat#aantalHouders>, # <- this property on Mandaat is gone after initial load
+    <http://lblod.data.gift/vocabularies/lmb/minAantalHouders>, # <- but this property remains on Mandaat
+    <http://mu.semte.ch/vocabularies/ext/deeltBestuurVan>,
+    <http://lblod.data.gift/vocabularies/lmb/faciliteitenGemeente>,
+    <http://data.vlaanderen.be/ns/mandaat#bindingStart>, # Adding bindingStart & bindingEinde to this list as these values.. 
+    <http://data.vlaanderen.be/ns/mandaat#bindingEinde> # are set by the first mandataris start date in the period
+  ))
+}
+

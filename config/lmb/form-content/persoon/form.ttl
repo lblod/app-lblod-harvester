@@ -1,0 +1,143 @@
+@prefix form: <http://lblod.data.gift/vocabularies/forms/>.
+@prefix sh: <http://www.w3.org/ns/shacl#>.
+@prefix mu: <http://mu.semte.ch/vocabularies/core/>.
+@prefix displayTypes: <http://lblod.data.gift/display-types/>.
+@prefix schema: <http://schema.org/>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix ext: <http://mu.semte.ch/vocabularies/ext/>.
+@prefix person: <http://www.w3.org/ns/person#>.
+@prefix persoon: <http://data.vlaanderen.be/ns/persoon#>.
+@prefix adms: <http://www.w3.org/ns/adms#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix org: <http://www.w3.org/ns/org#>.
+@prefix fieldOption: <http://lblod.data.gift/vocabularies/form-field-options/> .
+
+ext:gebruikteVoornaamF
+    a form:Field;
+    form:displayType displayTypes:defaultInput;
+    sh:group ext:persoonPG;
+    sh:name "Voornaam";
+    sh:order 2;
+    sh:path persoon:gebruikteVoornaam;
+    form:validatedBy
+        [
+            a form:RequiredConstraint;
+            form:grouping form:Bag;
+            sh:path persoon:gebruikteVoornaam;
+            sh:resultMessage "Voornaam is verplicht."
+    ].
+ext:achternaamF
+    a form:Field;
+    form:displayType displayTypes:defaultInput;
+    sh:group ext:persoonPG;
+    sh:name "Achternaam";
+    sh:order 3;
+    sh:path foaf:familyName;
+    form:validatedBy
+        [
+            a form:RequiredConstraint;
+            form:grouping form:Bag;
+            sh:path foaf:familyName;
+            sh:resultMessage "Achternaam is verplicht."
+    ].
+ext:identificatorF
+    a form:Field;
+    form:displayType displayTypes:rijksregisterInput;
+    sh:group ext:persoonPG;
+    sh:name "Rijksregisternummer";
+    sh:order 5;
+    sh:path ( adms:identifier skos:notation );
+    form:validatedBy [
+      a ext:ValidRijksregisternummer;
+      form:grouping form:MatchSome;
+      sh:resultMessage "Vul een geldig rijksregisternummer in";
+      sh:path ( adms:identifier skos:notation )
+    ],
+    [
+      a ext:RijksregisternummerIsDuplicate;
+      form:grouping form:Bag ;
+      sh:path ( adms:identifier skos:notation ) ;
+      sh:resultMessage "Er bestaat al een persoon met dit rijksregisternummer"
+    ],
+    [
+      a form:RequiredConstraint;
+      form:grouping form:Bag;
+      sh:path ( adms:identifier skos:notation );
+      sh:resultMessage "Rijksregisternummer is verplicht."
+    ].
+ext:geboorteF
+    a form:Field;
+    form:displayType displayTypes:birthDateInput;
+    sh:group ext:persoonPG;
+    sh:name "Geboortedatum";
+    sh:order 6;
+    sh:path ( persoon:heeftGeboorte persoon:datum );
+    form:validatedBy [
+      a form:RequiredConstraint;
+      form:grouping form:Bag;
+      sh:path ( persoon:heeftGeboorte persoon:datum );
+      sh:resultMessage "Geboortedatum is verplicht."
+    ].
+ext:geslachtCodeF
+    a form:Field;
+    form:displayType displayTypes:genderSelector;
+    sh:group ext:persoonPG;
+    sh:name "Geslacht";
+    sh:order 7;
+    sh:path persoon:geslacht;
+    form:options """{"conceptScheme":"http://publications.europa.eu/resource/authority/human-sex","searchEnabled":false}""";
+    form:validatedBy [
+      a form:RequiredConstraint;
+      form:grouping form:Bag;
+      sh:path persoon:geslacht;
+      sh:resultMessage "Geslacht is verplicht."
+    ].
+ext:persoonPG
+    a form:PropertyGroup; sh:name ""; sh:order 1.
+
+ext:possibleDuplicateF
+    a form:Field;
+    sh:name "Possible duplicate [hidden input]";
+    sh:order 5001;
+    sh:path ext:possibleDuplicate.
+
+<http://data.lblod.info/id/lmb/forms/persoon>
+    a form:Form, form:TopLevelForm;
+    form:includes
+        ext:gebruikteVoornaamF,
+        ext:achternaamF,
+        ext:identificatorF,
+        ext:geboorteF,
+        ext:geslachtCodeF,
+        ext:possibleDuplicateF;
+    sh:group ext:persoonPG;
+    form:initGenerator ext:personG;
+    form:targetType person:Person;
+    form:targetLabel foaf:familyName;
+    form:targetLabel persoon:gebruikteVoornaam;
+    ext:prefix <http://data.lblod.info/id/personen/>;
+    mu:uuid "4632bf99-2348-4145-9f2b-c1141b0c545d".
+
+ext:personG a form:Generator;
+  form:prototype [
+    form:shape ext:personShape
+  ];
+  form:dataGenerator form:addMuUuid.
+
+  ext:personShape a person:Person;
+      persoon:heeftGeboorte [
+        a persoon:Geboorte
+      ] ;
+      adms:identifier [
+        a adms:Identifier
+      ] .
+
+ext:geboorteUriG a form:UriGenerator;
+  form:prefix "http://data.lblod.info/id/geboortes/";
+  form:forType persoon:Geboorte.
+
+ext:identifierUriG a form:UriGenerator;
+  form:prefix "http://data.lblod.info/id/identificatoren/";
+  form:forType adms:Identifier.

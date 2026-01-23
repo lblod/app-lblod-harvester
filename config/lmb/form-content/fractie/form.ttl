@@ -1,0 +1,69 @@
+@prefix form: <http://lblod.data.gift/vocabularies/forms/>.
+@prefix sh: <http://www.w3.org/ns/shacl#>.
+@prefix mu: <http://mu.semte.ch/vocabularies/core/>.
+@prefix displayTypes: <http://lblod.data.gift/display-types/>.
+@prefix schema: <http://schema.org/>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix ext: <http://mu.semte.ch/vocabularies/ext/>.
+@prefix mandaat: <http://data.vlaanderen.be/ns/mandaat#> .
+@prefix regorg: <https://www.w3.org/ns/regorg#>.
+@prefix org: <http://www.w3.org/ns/org#>.
+
+ext:requiredLegalNameValidationNode a form:RequiredConstraint;
+  form:grouping form:Bag;
+  sh:path regorg:legalName;
+  sh:resultMessage "Naam is verplicht.".
+
+ext:naamF
+    a form:Field;
+    form:displayType displayTypes:defaultInput;
+    form:validations ext:requiredLegalNameValidationNode;
+    form:partOf ext:fractieSection;
+    sh:name "Naam";
+    sh:order 2;
+    sh:path regorg:legalName;
+    form:showInSummary true.
+ext:fractieSection
+    a form:Section; sh:name "Fractie"; sh:order 1.
+
+ext:hiddenFractietypeF
+    a form:Field;
+    sh:name "Fractietype [hidden input]";
+    sh:order 5001;
+    sh:path ext:isFractietype.
+ext:hiddenBestuursorgaanF
+    a form:Field;
+    sh:name "Bestuursorganen in de tijd [hidden input]";
+    sh:order 5002;
+    sh:path org:memberOf.
+ext:hiddenBestuurseenheidF
+    a form:Field;
+    sh:name "Bestuurseenheid [hidden input]";
+    sh:order 5003;
+    sh:path org:linkedTo.
+
+<http://data.lblod.info/id/lmb/forms/fractie>
+    a form:Form, form:TopLevelForm;
+    ext:withHistory true;
+    form:includes
+      ext:naamF,
+      ext:hiddenFractietypeF,
+      ext:hiddenBestuursorgaanF,
+      ext:fractieSection,
+      ext:hiddenBestuurseenheidF;
+    sh:group ext:fractieSection;
+    form:initGenerator ext:fractieG;
+    form:targetType mandaat:Fractie;
+    form:targetLabel regorg:legalName;
+    ext:prefix <http://data.lblod.info/id/fracties/>;
+    mu:uuid "a2362cb2-e63c-4b06-99c4-988867609246".
+
+ext:fractieG a form:Generator;
+  form:prototype [
+    form:shape [
+      a mandaat:Fractie
+    ]
+  ];
+  form:dataGenerator form:addMuUuid.
