@@ -11,7 +11,7 @@
 - bump mu-migrations-service to 0.9.0
 - bump mu-cl-resources to 1.27.2
 - bump mu-file-service to 3.4.0
-
+- bump import-with-sameas-service to 4.9.0
 ## 0.27.0 (2025-10-02)
 - bump scraper to [1.5.0](https://github.com/lblod/scraper-service/blob/master/CHANGELOG.md#150---2025-09-29)
 - bump graph-dump-service to 1.1.0 (add support for gzipped dumps)
