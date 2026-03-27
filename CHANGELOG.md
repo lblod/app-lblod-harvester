@@ -1,8 +1,20 @@
 # Changelog
 
 ## Unreleased
+- bump delta-notifier to 1.0.0 (was on feature branch tag)
+- bump sparql-parser to 0.0.15
+- bump harvesting-validator to 0.4.0 (semaphore replaces SLEEP_BETWEEN_JOB_MS)
+- bump harvesting-diff-service to 0.3.0 (semaphore replaces SLEEP_BETWEEN_JOB_MS)
+- bump delta-producer-publication-graph-maintainer to 1.4.2
+- bump frontend to 2.6.0
+- bump mu-identifier to 1.11.0
+- bump mu-migrations-service to 0.9.0
+- bump mu-cl-resources to 1.27.2
+- bump mu-file-service to 3.4.0
+
+## 0.27.0 (2025-10-02)
 - bump scraper to [1.5.0](https://github.com/lblod/scraper-service/blob/master/CHANGELOG.md#150---2025-09-29)
-- bump dump service to 1.1.0
+- bump graph-dump-service to 1.1.0 (add support for gzipped dumps)
 
 ## 0.26.0 (2025-09-08)
 - bump services to write to subfolders
