@@ -100,6 +100,28 @@ export default [
       sendMatchesOnly: true,
     },
   },
+  {
+    match: {
+      predicate: {
+        type: "uri",
+        value: "http://www.w3.org/ns/adms#status",
+      },
+      object: {
+        type: "uri",
+        value: "http://redpencil.data.gift/id/concept/JobStatus/scheduled",
+      },
+    },
+    callback: {
+      method: "POST",
+      url: "http://harvest_cleanup_single_job/delta",
+    },
+    options: {
+      resourceFormat: "v0.0.1",
+      gracePeriod: 1000,
+      ignoreFromSelf: true,
+      foldEffectiveChanges: true,
+    },
+  },
   // {
   //   match: {
   //     predicate: {
@@ -232,24 +254,24 @@ export default [
   {
     match: {
       predicate: {
-        type: 'uri',
-        value: 'http://www.w3.org/ns/adms#status'
+        type: "uri",
+        value: "http://www.w3.org/ns/adms#status",
       },
       object: {
-        type: 'uri',
-        value: 'http://redpencil.data.gift/id/concept/JobStatus/scheduled'
-      }
+        type: "uri",
+        value: "http://redpencil.data.gift/id/concept/JobStatus/scheduled",
+      },
     },
     callback: {
-      url: 'http://graph-dump-publisher/delta',
-      method: 'POST'
+      url: "http://graph-dump-publisher/delta",
+      method: "POST",
     },
     options: {
-      resourceFormat: 'v0.0.1',
+      resourceFormat: "v0.0.1",
       gracePeriod: 1000,
       ignoreFromSelf: true,
-      sendMatchesOnly: true
-    }
+      sendMatchesOnly: true,
+    },
   },
   {
     match: {
