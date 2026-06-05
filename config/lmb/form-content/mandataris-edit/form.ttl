@@ -1,0 +1,179 @@
+@prefix form: <http://lblod.data.gift/vocabularies/forms/> .
+@prefix sh: <http://www.w3.org/ns/shacl#>.
+@prefix mu: <http://mu.semte.ch/vocabularies/core/> .
+@prefix displayTypes: <http://lblod.data.gift/display-types/> .
+@prefix schema: <http://schema.org/>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix ext: <http://mu.semte.ch/vocabularies/ext/> .
+@prefix mandaat: <http://data.vlaanderen.be/ns/mandaat#> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix lmb: <http://lblod.data.gift/vocabularies/lmb/> .
+@prefix fieldOption: <http://lblod.data.gift/vocabularies/form-field-options/> .
+
+ext:mandaatF
+    a form:Field;
+    form:displayType displayTypes:mandatarisMandaatSelector;
+    sh:group ext:editMandatarisPG;
+    sh:name "Mandaat";
+    sh:order 100;
+    sh:path org:holds;
+    form:validatedBy
+        [
+            a form:RequiredConstraint;
+            form:grouping form:Bag;
+            sh:path org:holds;
+            sh:resultMessage "Mandaat is verplicht."
+    ].
+ext:mandatarisStatusCodeF
+    a form:Field;
+    form:displayType displayTypes:mandatarisStatusCodeSelector;
+    sh:group ext:editMandatarisPG;
+    sh:name "Status";
+    sh:order 300;
+    sh:path mandaat:status;
+    form:options """{"conceptScheme":"http://data.vlaanderen.be/id/conceptscheme/MandatarisStatusCode","searchEnabled":true}""";
+    form:validatedBy
+        [
+            a form:RequiredConstraint;
+            form:grouping form:Bag;
+            sh:path mandaat:status;
+            sh:resultMessage "Status is verplicht."
+    ].
+ext:replacementF
+    a form:Field;
+    form:displayType displayTypes:mandatarisReplacement;
+    sh:group ext:editMandatarisPG;
+    sh:name "Tijdelijk vervangen door";
+    sh:order 400;
+    sh:path mandaat:isTijdelijkVervangenDoor.
+ext:beleidsdomeinCodeF
+    a form:Field;
+    form:displayType displayTypes:mandatarisBeleidsdomein;
+    sh:group ext:editMandatarisPG;
+    sh:name "Beleidsdomein";
+    form:help "Enkel voor schepenen en burgemeester";
+    sh:order 500;
+    sh:path mandaat:beleidsdomein;
+    form:options """{"conceptScheme":"http://data.vlaanderen.be/id/conceptscheme/BeleidsdomeinCode","searchEnabled":true, "type":"beleidsdomein-code"}""".
+ext:rangordeF
+    a form:Field;
+    form:displayType displayTypes:mandatarisRangorde;
+    sh:group ext:editMandatarisPG;
+    sh:name "Rangorde";
+    sh:order 600;
+    sh:path mandaat:rangorde;
+    form:showInSummary true;
+    form:validatedBy [
+      a ext:ValidRangorde;
+      form:grouping form:MatchSome;
+      sh:severity sh:Warning;
+      sh:resultMessage "Er werd geen geldige rangorde herkend";
+      sh:path mandaat:rangorde
+    ].
+ext:startF
+    a form:Field;
+    form:displayType displayTypes:dateInput;
+    sh:group ext:editMandatarisPG;
+    sh:name "Start";
+    sh:order 700;
+    sh:path mandaat:start;
+    form:showInSummary true;
+    form:validatedBy
+        [
+            a form:RequiredConstraint;
+            form:grouping form:Bag;
+            sh:path mandaat:start;
+            sh:resultMessage "Startdatum is verplicht."
+        ],
+        [
+            a ext:ValidMandatarisDate;
+            form:grouping form:Bag;
+            sh:path mandaat:start;
+            sh:severity sh:Warning
+            # sh:resultMessage "Startdatum ligt niet in de bestuursperiode."
+        ],
+        [
+            a ext:LessThan;
+            form:grouping form:Bag;
+            sh:path mandaat:start;
+            sh:datatype xsd:dateTime;
+            ext:ValueToCompare mandaat:einde;
+            sh:resultMessage "De startdatum kan niet na de einddatum liggen."
+        ].
+ext:eindeF
+    a form:Field;
+    form:displayType displayTypes:dateInput;
+    sh:group ext:editMandatarisPG;
+    sh:name "Einde";
+    sh:order 800;
+    sh:path mandaat:einde;
+    fieldOption:endOfDay true;
+    form:showInSummary true;
+    form:validatedBy
+        [
+            a ext:ValidMandatarisDate;
+            form:grouping form:Bag;
+            sh:path mandaat:einde;
+            sh:severity sh:Warning
+            # sh:resultMessage "Einddatum ligt niet in de bestuursperiode."
+        ],
+        [
+            a ext:GreaterThan;
+            form:grouping form:Bag;
+            sh:path mandaat:einde;
+            sh:datatype xsd:dateTime;
+            ext:ValueToCompare mandaat:start;
+            sh:resultMessage "De einddatum kan niet voor de startdatum liggen."
+        ].
+ext:fractieF
+    a form:Field;
+    form:displayType displayTypes:mandatarisFractieSelector;
+    sh:group ext:editMandatarisPG;
+    sh:name "Fractie";
+    sh:order 900;
+    sh:path ( org:hasMembership org:organisation );
+    form:validatedBy
+        [
+            a ext:RequiredForBestuursorganen;
+            form:grouping form:Bag;
+            sh:path ( org:hasMembership org:organisation );
+            sh:resultMessage "Dit veld is verplicht."
+    ].
+ext:editMandatarisPG
+    a form:PropertyGroup; sh:name ""; sh:order 1.
+
+<http://data.lblod.info/id/lmb/forms/mandataris-edit>
+    a form:Form, form:TopLevelForm;
+    form:includes
+        ext:mandaatF,
+        ext:mandatarisStatusCodeF,
+        ext:beleidsdomeinCodeF,
+        ext:rangordeF,
+        ext:startF,
+        ext:eindeF,
+        ext:replacementF,
+        ext:fractieF;
+    sh:group ext:editMandatarisPG;
+    form:initGenerator ext:mandatarisG;
+    form:targetType mandaat:Mandataris;
+    form:targetLabel mu:uuid;
+    ext:prefix <http://data.lblod.info/id/mandatarissen/>;
+    ext:withHistory true;
+    mu:uuid "fe64eb54-3539-4e55-bccb-a75eeed30e9d".
+
+ext:mandatarisG a form:Generator;
+  form:prototype [
+    form:shape ext:mandatarisShape
+  ];
+  form:dataGenerator form:addMuUuid.
+
+ext:mandatarisShape a mandaat:Mandataris;
+  org:hasMembership [
+    a org:Membership
+  ].
+
+  ext:membershipUriG a form:UriGenerator;
+  form:prefix "http://data.lblod.info/id/lidmaatschappen/";
+  form:forType org:Membership.

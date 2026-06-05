@@ -1,0 +1,53 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ext: <http://mu.semte.ch/vocabularies/ext/> .
+
+<http://example.org/mandataris_1_2_shape>
+a ext:SparqlShape ;
+sh:targetClass <http://data.vlaanderen.be/ns/mandaat#Mandataris> ;
+sh:prefixes [ sh:declare [
+        a sh:PrefixDeclaration ;
+        sh:namespace "http://data.vlaanderen.be/ns/mandaat#"^^xsd:anyURI ;
+        sh:prefix "mandaat" ;
+    ] ], [ sh:declare [
+        a sh:PrefixDeclaration ;
+        sh:namespace "http://www.w3.org/ns/org#"^^xsd:anyURI ;
+        sh:prefix "org" ;
+    ] ];
+sh:sparql [
+    sh:select """
+    PREFIX mandaat: <http://data.vlaanderen.be/ns/mandaat#>
+    PREFIX org: <http://www.w3.org/ns/org#>
+
+    select distinct $this ?value
+    where {
+        $this a mandaat:Mandataris ;
+            org:holds/^org:hasPost ?bestuursorgaanInTijd ;
+            mandaat:start ?startMandataris .
+        OPTIONAL {
+            $this mandaat:einde ?eindeMandataris .
+        }
+
+        ?bestuursorgaanInTijd mandaat:bindingStart ?startBestuursorgaan .
+        OPTIONAL {
+            ?bestuursorgaanInTijd mandaat:bindingEinde ?eindeBestuursorgaan .
+        }
+
+        BIND(IF(!bound(?eindeBestuursorgaan), "2030-12-31"^^xsd:dateTime, ?eindeBestuursorgaan) AS ?safeEindeBestuursorgaan)
+        BIND((?startMandataris >= ?startBestuursorgaan && ?startMandataris <= ?eindeBestuursorgaan) AS ?startValid)
+        BIND(if(!bound(?eindeMandataris), true, ?eindeMandataris >= ?startBestuursorgaan && ?eindeMandataris <= ?safeEindeBestuursorgaan) as ?eindeValid)
+
+        BIND(CONCAT(DAY(?startMandataris) + 1, "-", MONTH(?startMandataris), "-", YEAR(?startMandataris)) AS ?startStr)
+        BIND(IF(BOUND(?eindeMandataris), CONCAT(DAY(?eindeMandataris), "-", MONTH(?eindeMandataris), "-", YEAR(?eindeMandataris)), "?") AS ?eindeStr)
+        BIND(CONCAT(DAY(?startBestuursorgaan) + 1, "-", MONTH(?startBestuursorgaan), "-", YEAR(?startBestuursorgaan)) AS ?startStrOrg)
+        BIND(IF(BOUND(?eindeBestuursorgaan), CONCAT(DAY(?eindeBestuursorgaan), "-", MONTH(?eindeBestuursorgaan), "-", YEAR(?eindeBestuursorgaan)), "?") AS ?eindeStrOrg)
+
+        FILTER(!?startValid || !?eindeValid)
+
+        BIND (concat("Periode mandataris: (", ?startStr, " - ", ?eindeStr, "). Periode bestuursorgaan: (", ?startStrOrg, " - ", ?eindeStrOrg,"). Pas de start- of einddatum van de mandataris aan.") as ?value)
+    }
+    """ ;
+        sh:message "Datum mandataris buiten periode van orgaan."
+] .
+
+

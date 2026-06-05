@@ -1,0 +1,60 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ext: <http://mu.semte.ch/vocabularies/ext/> .
+
+<http://example.org/mandataris_1_13_shape>
+a ext:SparqlShape ;
+sh:targetClass <http://data.vlaanderen.be/ns/mandaat#Mandataris> ;
+sh:prefixes [ sh:declare [
+        a sh:PrefixDeclaration ;
+        sh:namespace "http://data.vlaanderen.be/ns/besluit#"^^xsd:anyURI ;
+        sh:prefix "besluit" ;
+    ] ], [ sh:declare [
+        a sh:PrefixDeclaration ;
+        sh:namespace "http://data.vlaanderen.be/ns/mandaat#"^^xsd:anyURI ;
+        sh:prefix "mandaat" ;
+    ] ], [ sh:declare [
+        a sh:PrefixDeclaration ;
+        sh:namespace "http://www.w3.org/ns/org#"^^xsd:anyURI ;
+        sh:prefix "org" ;
+    ] ], [ sh:declare [
+        a sh:PrefixDeclaration ;
+        sh:namespace "http://data.vlaanderen.be/ns/generiek#"^^xsd:anyURI ;
+        sh:prefix "generiek" ;
+    ] ];
+sh:sparql [
+    sh:select """
+        PREFIX besluit: <http://data.vlaanderen.be/ns/besluit#>
+        PREFIX mandaat: <http://data.vlaanderen.be/ns/mandaat#>
+        PREFIX org: <http://www.w3.org/ns/org#>
+        PREFIX generiek: <https://data.vlaanderen.be/ns/generiek#>
+
+        select distinct $this ?value
+        where {
+            ?collegeInTijd generiek:isTijdspecialisatieVan|mandaat:isTijdspecialisatieVan/besluit:classificatie <http://data.vlaanderen.be/id/concept/BestuursorgaanClassificatieCode/5ab0e9b8a3b2ca7c5e000006> ;
+                                org:hasPost ?mandaatCollege .
+
+            $this a mandaat:Mandataris ;
+                org:holds ?mandaatCollege ;
+                mandaat:isBestuurlijkeAliasVan ?persoon .
+
+            FILTER NOT EXISTS {
+                ?collegeInTijd mandaat:isTijdspecialisatieVan / besluit:bestuurt / <http://lblod.data.gift/vocabularies/lmb/faciliteitenGemeente> true.
+            }
+
+            FILTER NOT EXISTS {
+                ?vastBureauInTijd generiek:isTijdspecialisatieVan|mandaat:isTijdspecialisatieVan/besluit:classificatie <http://data.vlaanderen.be/id/concept/BestuursorgaanClassificatieCode/5ab0e9b8a3b2ca7c5e000008> ;
+                                    org:hasPost ?mandaatVastBureau .
+
+                ?alsMandatarisVastBureau a mandaat:Mandataris ;
+                    org:holds ?mandaatVastBureau ;
+                    mandaat:isBestuurlijkeAliasVan ?persoon .
+        }
+
+        BIND ("Mandataris in college van burgemeester en schepenen zetelt niet in vast bureau" as ?value)
+        }
+    """ ;
+    sh:message "Mandataris niet in OCMW"
+] .
+
+
