@@ -12,6 +12,43 @@
 - bump mu-cl-resources to 1.27.2
 - bump mu-file-service to 3.4.0
 - bump import-with-sameas-service to 4.9.0
+- added vendor-management-consumer
+
+### deploy notes
+#### For the vendor-management-consumer
+Per environment a slightly different configuration is needed. Update the `docker-compose.override.yml` accordingly.
+##### development
+```
+  vendor-management-consumer:
+    environment:
+      DCR_SYNC_BASE_URL: "https://dev.loket.lblod.info/"
+      DCR_SYNC_LOGIN_ENDPOINT: "https://dev.loket.lblod.info/sync/vendor-management/login" # Add DCR_SECRET_KEY in docker-compose.override.yml
+      DCR_SECRET_KEY: "SECRECT KEY TO ASK"
+```
+##### qa
+```
+  vendor-management-consumer:
+    environment:
+      DCR_SYNC_BASE_URL: "https://loket.lblod.info/"
+      DCR_SYNC_LOGIN_ENDPOINT: "https://loket.lblod.info/sync/vendor-management/login" # Add DCR_SECRET_KEY in docker-compose.override.yml
+      DCR_SECRET_KEY: "SECRECT KEY TO ASK"
+```
+##### production
+```
+  vendor-management-consumer:
+    environment:
+      DCR_SYNC_BASE_URL: "https://loket.lokaalbestuur.vlaanderen.be/"
+      DCR_SYNC_LOGIN_ENDPOINT: "https://loket.lokaalbestuur.vlaanderen.be/sync/vendor-management/login" # Add DCR_SECRET_KEY in docker-compose.override.yml
+      DCR_SECRET_KEY: "SECRECT KEY TO ASK"
+```
+#### Deploy command
+```
+drc up -d vendor-management-consumer
+```
+
+
+
+
 ## 0.27.0 (2025-10-02)
 - bump scraper to [1.5.0](https://github.com/lblod/scraper-service/blob/master/CHANGELOG.md#150---2025-09-29)
 - bump graph-dump-service to 1.1.0 (add support for gzipped dumps)
@@ -45,7 +82,7 @@
 - db cleanup service to reschedule scheduled tasks
 - bumped scraper service to 1.3.1 (success status instead of failed for jobs that don't result in new files)
 - updated besluiten script
-- set up graph dumps through virtuoso instead of using delta producer related services 
+- set up graph dumps through virtuoso instead of using delta producer related services
 
 ## 0.21.2 (2025-02-07)
 - Better handling of requests for delta files:
@@ -57,11 +94,11 @@ Changes since 0.20.0
 
 - limit delta's sent to services
 - added script to optimize job schedules based on run times
-- bumped scraper to 1.3.0: 
+- bumped scraper to 1.3.0:
    - cleanup meetingburger dynamic urls
    - only store pages with Notulen, Agenda, Besluitenlijst, Uiittreksel, besluit or behandelingvanagendapunt
    - include scraping report as output of scraper
-   
+
 ## 0.20.0 (2025-01-23)
 Changes since 0.19.0
 
@@ -75,7 +112,7 @@ Changes since 0.19.0
 Changes since 0.18.1
 
 - added metrics endpoint with basic metrics
-- bumped sparql parser to 0.0.13 
+- bumped sparql parser to 0.0.13
 - bumped scraper to 1.2.0 (limits max amount of items scraped)
 - bumped harvest import service to 0.13.5
 - bumped harvest validator to 0.3.7
