@@ -120,6 +120,7 @@ export default [
       gracePeriod: 1000,
       ignoreFromSelf: true,
       foldEffectiveChanges: true,
+     sendMatchesOnly: true,
     },
   },
   // {
