@@ -47,13 +47,12 @@ services:
 
   harvest_cleanup:
     restart: "no"
-
+  harvest_cleanup_single_job:
+    restart: "no"
   harvest_validate:
     restart: "no"
     environment:
       LOGGING_LEVEL: "INFO" # optionals
-  # harvest_compression:
-  #   restart: "no"
   harvest_gen_delta:
     restart: "no"
 

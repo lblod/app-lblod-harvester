@@ -182,7 +182,14 @@ services:
       - ./data/files:/share
     restart: always
     logging: *default-logging
-
+  harvest_cleanup_single_job:
+   image: lblod/cleanup-single-job-service
+   logging: *default-logging
+   restart: always
+   volumes:
+      - ./data/files:/share
+   links:
+       - database:database
   harvest_validate:
     image: lblod/harvesting-validator:0.4.0
     environment:
