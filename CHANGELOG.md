@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 0.29.0 (2026-06-23)
+- bump frontend to 2.7.0
+- bump local-harvesting-cleanup-previous-jobs-service to 0.3.0
+
 ## 0.28.0 (2026-06-19)
 - bump delta-notifier to 1.0.0 (was on feature branch tag)
 - bump sparql-parser to 0.0.15
