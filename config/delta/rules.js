@@ -272,6 +272,7 @@ export default [
       gracePeriod: 1000,
       ignoreFromSelf: true,
       sendMatchesOnly: true,
+      retry: 3
     },
   },
   {

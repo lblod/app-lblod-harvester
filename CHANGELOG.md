@@ -2,6 +2,7 @@
 
 ## Unreleased
 - bump local-harvesting-cleanup-previous-jobs-service to 0.3.1: batched delete of file metadata
+- add retry for delta delivery to graph dump service 
 
 ## 0.29.0 (2026-06-23)
 - bump frontend to 2.7.0
