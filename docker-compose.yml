@@ -35,7 +35,7 @@ services:
     labels:
       - "logging=true"
   frontend:
-    image: lblod/frontend-harvesting-self-service:2.7.0
+    image: lblod/frontend-harvesting-self-service:feature-delete-sensitive
     volumes:
       - ./config/frontend:/config
     labels:
@@ -206,7 +206,7 @@ services:
     logging: *default-logging
 
   harvest_diff:
-    image: lblod/harvesting-diff-service:0.3.0
+    image: lblod/harvesting-diff-service:feature-delete-sensitive
     environment:
       # SLEEP_BETWEEN_JOB_MS: 100 --> replaced by a semaphore (max nbcpu conccurent tasks)
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"

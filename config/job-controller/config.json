@@ -86,7 +86,25 @@
       }
     ]
   },
-  
+  "http://lblod.data.gift/id/jobs/concept/JobOperation/cleanup-sensitive-data": {
+    "tasksConfiguration": [
+      {
+        "currentOperation": null,
+        "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/singleton-job",
+        "nextIndex": "0"
+      },
+      {
+        "currentOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/singleton-job",
+        "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/cleanup-sensitive-data",
+        "nextIndex": "1"
+      },
+       {
+        "currentOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/cleanup-sensitive-data",
+        "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/generatingDelta",
+        "nextIndex": "2"
+      }
+    ]
+  },
   "http://lblod.data.gift/id/jobs/concept/JobOperation/cleanup-single-job": {
     "tasksConfiguration": [
       {
