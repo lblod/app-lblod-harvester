@@ -2,6 +2,7 @@
   :class (s-prefix "cogs:Job")
   :properties `((:created :datetime ,(s-prefix "dct:created"))
                 (:modified :datetime ,(s-prefix "dct:modified"))
+                (:subject :url ,(s-prefix "dct:subject"))
                 (:creator :url ,(s-prefix "dct:creator")) ;;Later consider using proper relation in domain.lisp
                 (:status :url ,(s-prefix "adms:status")) ;;Later consider using proper relation in domain.lisp
                 (:operation :url ,(s-prefix "task:operation")) ;;Later consider using proper relation in domain.lisp
