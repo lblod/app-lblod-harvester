@@ -5,6 +5,7 @@
 - add retry for delta delivery to graph dump service 
 - bump dump service to 1.2.0: cron based scheduler for delta fallback
 - Add dct:subject to jobs and scheduled jobs
+- bump scheduled job service and frontend to allow editing the dct:subject
 
 ## 0.29.0 (2026-06-23)
 - bump frontend to 2.7.0
