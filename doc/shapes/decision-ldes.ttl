@@ -1,0 +1,76 @@
+@prefix sh:      <http://www.w3.org/ns/shacl#> .
+@prefix eli:     <http://data.europa.eu/eli/ontology#> .
+@prefix besluit: <http://data.vlaanderen.be/ns/besluit#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix mu:      <http://mu.semte.ch/vocabularies/core/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+# Root of the member = the versioned decision.
+<https://data.lblod.info/shacl/ldes-besluit#BesluitMemberShape> a sh:NodeShape ;
+    sh:targetClass besluit:Besluit ;
+    sh:closed true ;
+
+    # --- LDES version metadata (producer-added)
+    sh:property [ sh:path dct:isVersionOf ;       sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path prov:generatedAtTime ; sh:datatype xsd:dateTime ; sh:minCount 1 ; sh:maxCount 1 ] ;
+
+    # --- Actual decision data
+    sh:property [ sh:path rdf:type ; sh:nodeKind sh:IRI ; sh:minCount 1 ;
+              sh:hasValue besluit:Besluit ] ;
+    sh:property [ sh:path eli:title ;
+                  sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:maxCount 1 ] ;
+    sh:property [ sh:path eli:description ;
+                  sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:maxCount 1 ] ;
+    sh:or ( [ sh:property [ sh:path eli:title ; sh:minCount 1 ] ]
+              [ sh:property [ sh:path eli:description ; sh:minCount 1 ] ] ) ;
+
+    sh:property [ sh:path prov:value ; sh:nodeKind sh:Literal ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path besluit:motivering ; sh:nodeKind sh:Literal ; sh:maxCount 1 ] ;
+    sh:property [ sh:path eli:title_short ;
+                  sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:maxCount 1 ] ;
+
+    sh:property [ sh:path eli:date_publication ;          sh:datatype xsd:date ; sh:maxCount 1 ] ;
+    sh:property [ sh:path eli:first_date_entry_in_force ;  sh:datatype xsd:date ; sh:maxCount 1 ] ;
+    sh:property [ sh:path eli:date_no_longer_in_force ;    sh:datatype xsd:date ; sh:maxCount 1 ] ;
+    sh:property [ sh:path eli:language ; sh:nodeKind sh:IRI ;
+                  sh:hasValue <http://publications.europa.eu/resource/authority/language/NLD> ;
+                  sh:maxCount 1 ] ;   #  normalize missing→NLD
+
+
+    sh:property [ sh:path eli:cites ;     sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path eli:corrects ;  sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path eli:consolidates ;     sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path eli:repeals ;          sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path eli:jurisdiction ;     sh:nodeKind sh:IRI ; sh:maxCount 1 ] ;
+    sh:property [ sh:path eli:changes ;   sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path eli:related_to ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path eli:type_document ; sh:nodeKind sh:IRI ] ;
+
+    sh:property [ sh:path prov:wasGeneratedBy ; sh:nodeKind sh:IRI ; sh:maxCount 1 ] ;
+
+    sh:property [ sh:path eli:passed_by ;       sh:nodeKind sh:IRI ; sh:maxCount 1 ] ;  # derive from meeting if necessary, standardize on the bestuursorgaan in tijd
+    sh:property [ sh:path <https://data.vlaanderen.be/ns/slimmeraadpleegomgeving#bekrachtigt> ; sh:nodeKind sh:IRI ] ; #links to a public service
+    sh:property [ sh:path dct:subject ; sh:nodeKind sh:IRI ] ;  # thema
+    sh:property [ sh:path prov:atLocation ; sh:nodeKind sh:IRI ] ; # location
+    sh:property [ sh:path eli:has_part ; sh:node <https://data.lblod.info/shacl/ldes-besluit#ArtikelShape> ];
+
+    # harvester metadata
+    sh:property [ sh:path mu:uuid ; sh:nodeKind sh:Literal ; sh:maxCount 1 ] ;
+    sh:property [ sh:path prov:wasDerivedFrom ; sh:nodeKind sh:IRI ; sh:minCount 1 ] .
+
+
+# Artikel — target objects of the link
+<https://data.lblod.info/shacl/ldes-besluit#ArtikelShape> a sh:NodeShape ;
+    sh:targetObjectsOf eli:has_part ;
+    sh:closed true ;
+    sh:property [ sh:path rdf:type ; sh:nodeKind sh:IRI ; sh:hasValue besluit:Artikel ] ;
+    sh:property [ sh:path prov:value ; sh:nodeKind sh:Literal ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path eli:number ;
+                  sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:maxCount 1 ] ;
+    sh:property [ sh:path eli:language ; sh:nodeKind sh:IRI ;
+                  sh:hasValue <http://publications.europa.eu/resource/authority/language/NLD> ;
+                  sh:maxCount 1 ] ;   #  normalize missing→NLD
+    sh:property [ sh:path prov:wasDerivedFrom ; sh:nodeKind sh:IRI ; sh:minCount 1 ];
+    sh:property [ sh:path mu:uuid ; sh:nodeKind sh:Literal ; sh:maxCount 1 ] .

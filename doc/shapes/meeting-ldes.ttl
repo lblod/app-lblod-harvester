@@ -1,0 +1,108 @@
+@prefix sh:      <http://www.w3.org/ns/shacl#> .
+@prefix eli:     <http://data.europa.eu/eli/ontology#> .
+@prefix besluit: <http://data.vlaanderen.be/ns/besluit#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix mu:      <http://mu.semte.ch/vocabularies/core/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix schema:  <https://schema.org/>.
+@prefix dossier: <https://data.omgeving.vlaanderen.be/ns/dossier#>.
+@prefix adms: <http://www.w3.org/ns/adms#>.
+
+<https://data.lblod.info/shacl/ldes-zitting#ZittingMemberShape> a sh:NodeShape ;
+    sh:targetClass besluit:Zitting ;
+    sh:closed true ;
+    sh:property [ sh:path dct:isVersionOf ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path prov:generatedAtTime ; sh:datatype xsd:dateTime ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path besluit:isGehoudenDoor ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:maxCount 1 ] ;   # ~100%
+    sh:property [ sh:path besluit:geplandeStart ; sh:datatype xsd:dateTime ; sh:maxCount 1 ] ;
+    sh:property [ sh:path prov:startedAtTime ;  sh:datatype xsd:dateTime ; sh:maxCount 1 ] ;
+    sh:property [ sh:path prov:endedAtTime ;    sh:datatype xsd:dateTime ; sh:maxCount 1 ] ;
+    sh:property [ sh:path prov:atLocation ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path besluit:heeftAanwezigeBijStart ; sh:nodeKind sh:IRI ] ;   # mandataris URIs
+    sh:property [ sh:path besluit:heeftVoorzitter ; sh:nodeKind sh:IRI ; sh:maxCount 1 ] ;
+    sh:property [ sh:path besluit:heeftSecretaris ; sh:nodeKind sh:IRI ; sh:maxCount 1 ] ;
+    sh:property [ sh:path besluit:behandelt ; sh:node <https://data.lblod.info/shacl/ldes-zitting#AgendapuntShape> ] ;
+    sh:property [ sh:path besluit:heeftNotulen ;         sh:node <https://data.lblod.info/shacl/ldes-zitting#DocumentShape> ] ;
+    sh:property [ sh:path besluit:heeftBesluitenlijst ;   sh:node <https://data.lblod.info/shacl/ldes-zitting#DocumentShape> ] ;
+    sh:property [ sh:path besluit:heeftZittingsverslag ; sh:node <https://data.lblod.info/shacl/ldes-zitting#DocumentShape> ] ;
+    # harvester metadata
+    sh:property [ sh:path mu:uuid ; sh:nodeKind sh:Literal ; sh:maxCount 1 ] ;
+    sh:property [ sh:path prov:wasDerivedFrom ; sh:nodeKind sh:IRI ; sh:minCount 1 ] .
+
+
+
+<https://data.lblod.info/shacl/ldes-zitting#AgendapuntShape> a sh:NodeShape ;
+    sh:targetObjectsOf besluit:behandelt ;
+    sh:targetClass besluit:Agendapunt;
+    sh:closed true ;
+    sh:property [ sh:path dct:title ;
+                  sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:minCount 1 ] ;
+    sh:property [ sh:path dct:description ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:maxCount 1 ] ;
+    sh:property [ sh:path besluit:geplandOpenbaar ; sh:datatype xsd:boolean ; sh:maxCount 1 ] ;
+    sh:property [ sh:path besluit:Agendapunt.type ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path besluit:aangebrachtNa ; sh:nodeKind sh:IRI ; sh:maxCount 1 ] ;
+    sh:property [ sh:path besluit:heeftOntwerpbesluit ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path dct:references ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path [ sh:inversePath dct:subject ] ;
+              sh:node <https://data.lblod.info/shacl/ldes-zitting#BehandelingShape> ; sh:maxCount 1 ] ;
+    # harvester metadata
+    sh:property [ sh:path mu:uuid ; sh:nodeKind sh:Literal ; sh:maxCount 1 ] ;
+    sh:property [ sh:path prov:wasDerivedFrom ; sh:nodeKind sh:IRI ; sh:minCount 1 ] .
+
+<https://data.lblod.info/shacl/ldes-zitting#BehandelingShape> a sh:NodeShape ;
+    sh:targetClass besluit:BehandelingVanAgendapunt ;
+    sh:closed true ;
+    sh:property [ sh:path rdf:type ; sh:nodeKind sh:IRI ; sh:hasValue besluit:BehandelingVanAgendapunt ] ;
+    sh:property [ sh:path dct:subject ;        sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:maxCount 1 ] ; # agendapunt
+    sh:property [ sh:path besluit:openbaar ;   sh:datatype xsd:boolean ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path besluit:gebeurtNa ;  sh:nodeKind sh:IRI ; sh:maxCount 1 ] ;
+    sh:property [ sh:path besluit:heeftAanwezige ;    sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path besluit:heeftVoorzitter ;   sh:nodeKind sh:IRI ; sh:maxCount 1 ] ;
+    sh:property [ sh:path besluit:heeftSecretaris ;   sh:nodeKind sh:IRI ; sh:maxCount 1 ] ;
+    sh:property [ sh:path besluit:heeftUittreksel ; sh:node <https://data.lblod.info/shacl/ldes-zitting#DocumentShape> ] ;
+    sh:property [ sh:path besluit:heeftStemming ;
+                  sh:node <https://data.lblod.info/shacl/ldes-zitting#StemmingShape> ];
+    # harvester metadata
+    sh:property [ sh:path mu:uuid ; sh:nodeKind sh:Literal ;  sh:maxCount 1 ] ;
+    sh:property [ sh:path prov:wasDerivedFrom ; sh:nodeKind sh:IRI ; sh:minCount 1 ] .
+
+
+# --- Stemming
+<https://data.lblod.info/shacl/ldes-zitting#StemmingShape> a sh:NodeShape ;
+    sh:targetObjectsOf besluit:heeftStemming ;
+    sh:targetClass besluit:Stemming;
+    sh:closed true ;
+    sh:property [ sh:path besluit:onderwerp ;
+                  sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ;
+                  sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path besluit:gevolg ;
+                  sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ;
+                  sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path besluit:geheim ; sh:datatype xsd:boolean ; sh:maxCount 1 ] ;
+    sh:property [ sh:path besluit:aantalVoorstanders ; sh:datatype xsd:integer ; sh:maxCount 1 ] ;
+    sh:property [ sh:path besluit:aantalTegenstanders ; sh:datatype xsd:integer ; sh:maxCount 1 ] ;
+    sh:property [ sh:path besluit:aantalOnthouders ;  sh:datatype xsd:integer ; sh:maxCount 1 ] ;
+    sh:property [ sh:path besluit:heeftStemmer ;     sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path besluit:heeftVoorstander ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path besluit:heeftTegenstander ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path besluit:heeftOnthouder ;    sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path besluit:heeftAanwezige ;     sh:nodeKind sh:IRI ];
+    # harvester metadata
+    sh:property [ sh:path mu:uuid ; sh:nodeKind sh:Literal ; sh:maxCount 1 ] ;
+    sh:property [ sh:path prov:wasDerivedFrom ; sh:nodeKind sh:IRI ; sh:minCount 1 ] .
+
+<https://data.lblod.info/shacl/ldes-zitting#DocumentShape>  a sh:NodeShape ;
+    sh:targetObjectsOf prov:wasDerivedFrom, besluit:heeftNotulen, besluit:heeftBesluitenlijst,
+                       besluit:heeftZittingsverslag, besluit:heeftUittreksel ;
+    sh:closed true ;
+    sh:property [ sh:path rdf:type ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path dct:title ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:maxCount 1 ] ;
+    sh:property [ sh:path prov:value ; sh:nodeKind sh:Literal ; sh:maxCount 1 ] ;
+    sh:property [ sh:path dct:date ; sh:datatype xsd:date ; sh:maxCount 1 ] ;
+    sh:property [ sh:path schema:keywords ; sh:nodeKind sh:Literal ] ;
+    sh:property [ sh:path dct:subject ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path dossier:informatieclassificatie ; sh:nodeKind sh:IRI ; sh:maxCount 1 ] ;
+    sh:property [ sh:path adms:identifier ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path mu:uuid ; sh:nodeKind sh:Literal ; sh:maxCount 1 ] .
