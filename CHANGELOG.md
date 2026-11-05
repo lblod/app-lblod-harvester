@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- add harvesting-generation-ldes-service (task `gen-ldes` after generatingDelta): LDES feeds of zittingen and besluiten per bestuurseenheid
 - bump local-harvesting-cleanup-previous-jobs-service to 0.3.1: batched delete of file metadata
 - add retry for delta delivery to graph dump service 
 - bump dump service to 1.2.0: cron based scheduler for delta fallback
