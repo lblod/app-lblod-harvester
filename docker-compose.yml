@@ -264,6 +264,17 @@ services:
     restart: always
     logging: *default-logging
 
+  ldes-serve-feed:
+    image: lblod/ldes-serve-feed-service:feature-debug-endpoint
+    environment:
+      BASE_URL: "http://localhost/ldes/"
+    volumes:
+      - ./data/ldes:/data:ro
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
+
   job-controller:
     image: lblod/job-controller-service:1.2.0
     volumes:

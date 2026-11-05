@@ -133,8 +133,8 @@ defmodule Dispatcher do
   #################################################################
   # lblod-harvester ldes (zittingen and besluiten per bestuurseenheid)
   #################################################################
-  get "/ldes/*path", %{ layer: :resources, accept: %{ any: true } } do
-    Proxy.forward conn, path, "http://harvest_gen_ldes/"
+  get "/ldes/*path", %{ layer: :api_services, accept: %{ any: true } } do
+    Proxy.forward conn, path, "http://ldes-serve-feed/"
   end
   #################################################################
   # login
