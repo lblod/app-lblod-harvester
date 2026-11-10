@@ -56,6 +56,14 @@ services:
   harvest_gen_delta:
     restart: "no"
 
+  harvest_gen_ldes:
+    restart: "no"
+
+  ldes-serve-feed:
+    restart: "no"
+    environment:
+      - DEBUG_MODE=true
+
   harvest_diff:
     restart: "no"
 

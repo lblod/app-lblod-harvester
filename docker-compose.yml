@@ -250,6 +250,31 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
+  harvest_gen_ldes:
+    image: lblod/harvesting-generation-ldes:feature-ldes-feed
+    environment:
+      BASE_URL: "http://localhost/ldes/"
+      HIGH_LOAD_DATABASE_ENDPOINT: "http://virtuoso:8890/sparql"
+      BATCH_SIZE: "100"
+      PAGE_RESOURCES_COUNT: "100"
+    volumes:
+      - ./data/files:/share
+      - ./data/ldes:/data
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
+
+  ldes-serve-feed:
+    image: lblod/ldes-serve-feed-service:feature-debug-endpoint
+    environment:
+      BASE_URL: "http://localhost/ldes/"
+    volumes:
+      - ./data/ldes:/data:ro
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
 
   job-controller:
     image: lblod/job-controller-service:1.2.0

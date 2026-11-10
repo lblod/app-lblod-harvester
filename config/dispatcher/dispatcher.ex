@@ -131,6 +131,12 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://delta-producer-publication-graph-maintainer/besluiten/files/"
   end
   #################################################################
+  # lblod-harvester ldes (zittingen and besluiten per bestuurseenheid)
+  #################################################################
+  get "/ldes/*path", %{ layer: :api_services, accept: %{ any: true } } do
+    Proxy.forward conn, path, "http://ldes-serve-feed/"
+  end
+  #################################################################
   # login
   #################################################################
   match "/sessions/*path", %{ layer: resources, accept: %{ any: true}} do
